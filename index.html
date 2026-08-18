@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <title>Tusker Travelogues | Kerala's Premier Tour & College IV Specialist (Reg: KL-02-0047002)</title>
   <meta name="description" content="Official portal of Tusker Tours & Travels Thrissur. Kerala & South India Tour Packages, College IVs with DJ Sound Buses, and Luxury Fleet Rentals.">
   
@@ -47,7 +47,9 @@
             'pulse-glow': 'pulseGlow 2.5s infinite',
             'float': 'float 4s ease-in-out infinite',
             'shimmer': 'shimmer 1.8s infinite linear',
-            'progress': 'progress 3s linear forwards'
+            'progress': 'progress 3s linear forwards',
+            'spin-slow': 'spin 12s linear infinite',
+            'bounce-soft': 'bounceSoft 2s infinite'
           },
           keyframes: {
             pulseGlow: {
@@ -57,6 +59,10 @@
             float: {
               '0%, 100%': { transform: 'translateY(0px)' },
               '50%': { transform: 'translateY(-6px)' }
+            },
+            bounceSoft: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-4px)' }
             },
             shimmer: {
               '0%': { transform: 'translateX(-100%)' },
@@ -77,18 +83,19 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: #07070A;
       color: #F8FAFC;
+      -webkit-tap-highlight-color: transparent;
     }
     h1, h2, h3, h4, h5, h6 {
       font-family: 'Outfit', sans-serif;
     }
     .purple-glow-bg {
-      background: radial-gradient(circle at 50% 10%, rgba(147, 51, 234, 0.32) 0%, rgba(7, 7, 10, 0) 75%);
+      background: radial-gradient(circle at 50% 10%, rgba(147, 51, 234, 0.35) 0%, rgba(7, 7, 10, 0) 75%);
     }
     .card-purple-glow {
       transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .card-purple-glow:hover {
-      box-shadow: 0 16px 40px -10px rgba(168, 85, 247, 0.5);
+      box-shadow: 0 20px 45px -10px rgba(168, 85, 247, 0.55);
       border-color: #A855F7;
       transform: translateY(-4px);
     }
@@ -114,6 +121,16 @@
     .custom-scrollbar::-webkit-scrollbar-thumb:hover {
       background: #9333EA;
     }
+    /* Scroll Reveal Transition Classes */
+    .reveal-init {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-visible {
+      opacity: 1;
+      transform: translateY(0px);
+    }
     /* Skeleton Shimmer Background */
     .skeleton-box {
       position: relative;
@@ -131,11 +148,11 @@
     }
   </style>
 </head>
-<body class="bg-brand-black text-slate-100 selection:bg-brand-purple selection:text-white custom-scrollbar relative overflow-x-hidden">
+<body class="bg-brand-black text-slate-100 selection:bg-brand-purple selection:text-white custom-scrollbar relative overflow-x-hidden pb-16 md:pb-0">
 
-  <!-- ================= FIXED LUMINOUS BRAND WATERMARK ================= -->
+  <!-- ================= FIXED LUMINOUS BRAND WATERMARK & ORBS ================= -->
   <div class="fixed inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden">
-    <img src="brand-bg.png" alt="Tusker Brand Emblem" class="w-[550px] sm:w-[850px] lg:w-[1150px] max-w-none opacity-[0.25] sm:opacity-[0.28] select-none object-contain filter brightness-150 drop-shadow-[0_0_80px_rgba(168,85,247,0.6)]">
+    <img src="brand-bg.png" alt="Tusker Brand Emblem" class="w-[550px] sm:w-[850px] lg:w-[1150px] max-w-none opacity-[0.25] sm:opacity-[0.28] select-none object-contain filter brightness-150 drop-shadow-[0_0_80px_rgba(168,85,247,0.6)] animate-pulse-glow">
   </div>
   <div class="fixed top-0 left-1/4 w-[500px] h-[500px] bg-brand-purple-vibrant/20 rounded-full blur-[180px] pointer-events-none -z-10"></div>
   <div class="fixed bottom-1/4 right-10 w-[550px] h-[550px] bg-brand-purple-deep/25 rounded-full blur-[180px] pointer-events-none -z-10"></div>
@@ -149,7 +166,7 @@
           GOVT REG: KL-02-0047002
         </span>
         <span class="text-slate-300 flex items-center gap-1.5 text-xs font-semibold">
-          <i class="fa-solid fa-location-dot text-brand-accentRed"></i>
+          <i class="fa-solid fa-location-dot text-brand-accentRed animate-bounce-soft"></i>
           <span>Thrissur • <strong>All Over Kerala Service Available</strong></span>
         </span>
       </div>
@@ -158,8 +175,8 @@
         <a href="tel:+917909241640" class="text-slate-200 hover:text-brand-purple-light transition-colors flex items-center gap-1.5 font-bold">
           <i class="fa-solid fa-phone text-brand-purple-light"></i> +91 7909241640
         </a>
-        <span class="text-slate-600">|</span>
-        <a href="tel:+916238910728" class="text-slate-200 hover:text-brand-purple-light transition-colors flex items-center gap-1.5 font-bold">
+        <span class="text-slate-600 hidden sm:inline">|</span>
+        <a href="tel:+916238910728" class="text-slate-200 hover:text-brand-purple-light transition-colors hidden sm:flex items-center gap-1.5 font-bold">
           <i class="fa-solid fa-phone text-brand-purple-light"></i> +91 6238910728
         </a>
       </div>
@@ -172,9 +189,9 @@
       <div class="flex items-center justify-between h-20 sm:h-22">
         
         <!-- Logo Branding Block -->
-        <a href="index.html" class="flex items-center gap-3.5 group py-1">
-          <img src="tusker-emblem.png" alt="Tusker Logo" class="h-11 sm:h-13 w-auto object-contain filter brightness-125 drop-shadow-[0_0_18px_rgba(168,85,247,0.7)] group-hover:scale-105 transition-transform duration-300">
-          <img src="logo.png" alt="Tusker Travelogues" class="h-9 sm:h-12 w-auto object-contain filter brightness-115 drop-shadow-[0_0_15px_rgba(168,85,247,0.45)] group-hover:brightness-125 transition-all">
+        <a href="index.html" class="flex items-center gap-3 group py-1">
+          <img src="tusker-emblem.png" alt="Tusker Logo" class="h-10 sm:h-13 w-auto object-contain filter brightness-125 drop-shadow-[0_0_18px_rgba(168,85,247,0.7)] group-hover:scale-105 transition-transform duration-300">
+          <img src="logo.png" alt="Tusker Travelogues" class="h-8 sm:h-12 w-auto object-contain filter brightness-115 drop-shadow-[0_0_15px_rgba(168,85,247,0.45)] group-hover:brightness-125 transition-all">
         </a>
 
         <!-- Desktop Navigation Links -->
@@ -204,7 +221,7 @@
 
         <!-- Mobile Menu Toggle -->
         <div class="lg:hidden flex items-center gap-2">
-          <button onclick="openEnquiryModal('Mobile Header Button')" class="bg-brand-purple text-white px-3.5 py-1.5 rounded-xl text-xs font-bold shadow-md">
+          <button onclick="openEnquiryModal('Mobile Header Button')" class="bg-brand-purple text-white px-3 py-1.5 rounded-xl text-xs font-bold shadow-md">
             Enquire
           </button>
           <button id="mobileMenuBtn" class="text-slate-300 hover:text-white p-2 focus:outline-none">
@@ -214,19 +231,26 @@
       </div>
     </div>
 
-    <!-- Mobile Dropdown Navigation -->
-    <div id="mobileMenu" class="hidden lg:hidden bg-brand-card border-b border-brand-border px-6 py-5 space-y-3">
-      <a href="index.html" class="block text-brand-purple-light font-bold py-1">Home</a>
+    <!-- Mobile Slide Drawer Menu -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-brand-card/98 border-b border-brand-border px-6 py-6 space-y-4 shadow-2xl transition-all duration-300">
+      <div class="flex items-center justify-between pb-3 border-b border-brand-border/60">
+        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Quick Navigation</span>
+        <span class="text-[10px] text-brand-purple-light font-bold">KL-02-0047002</span>
+      </div>
+      <a href="index.html" class="block text-brand-purple-light font-extrabold text-sm py-1">Home</a>
       <a href="packages.html" class="block text-slate-300 hover:text-brand-purple-light font-medium py-1">Tour Packages (1D / 2D / 3D)</a>
-      <a href="college-iv.html" class="block text-slate-300 hover:text-brand-purple-light font-medium py-1">College IV & School Tours</a>
+      <a href="college-iv.html" class="block text-slate-300 hover:text-brand-purple-light font-medium py-1 flex items-center justify-between">
+        <span>College IV & School Tours</span>
+        <span class="bg-brand-accentRed/20 text-brand-accentRed text-[9px] px-2 py-0.5 rounded-full font-bold">HOT</span>
+      </a>
       <a href="fleet.html" class="block text-slate-300 hover:text-brand-purple-light font-medium py-1">Bus & Vehicle Fleet Rentals</a>
       <a href="about.html" class="block text-slate-300 hover:text-brand-purple-light font-medium py-1">About Team Tusker</a>
       <a href="contact.html" class="block text-slate-300 hover:text-brand-purple-light font-medium py-1">Contact & Locations</a>
-      <div class="pt-2 flex flex-col gap-2">
-        <a href="https://wa.me/917909241640" target="_blank" class="w-full bg-emerald-600 py-2.5 rounded-xl text-white font-bold text-xs text-center flex items-center justify-center gap-2">
-          <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+      <div class="pt-3 flex flex-col gap-2.5">
+        <a href="https://wa.me/917909241640" target="_blank" class="w-full bg-emerald-600 py-3 rounded-2xl text-white font-bold text-xs text-center flex items-center justify-center gap-2 shadow-lg">
+          <i class="fa-brands fa-whatsapp text-sm"></i> Chat on WhatsApp (+91 7909241640)
         </a>
-        <button onclick="openEnquiryModal('Mobile Menu CTA')" class="w-full bg-brand-purple py-2.5 rounded-xl text-white font-bold text-xs">
+        <button onclick="openEnquiryModal('Mobile Menu CTA')" class="w-full bg-brand-purple py-3 rounded-2xl text-white font-bold text-xs shadow-lg shadow-brand-purple/30">
           Plan Custom Package
         </button>
       </div>
@@ -244,37 +268,37 @@
       </div>
 
       <!-- Main Headline -->
-      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.08] font-heading mb-6">
+      <h1 class="text-3xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.12] sm:leading-[1.08] font-heading mb-6">
         DISCOVER UNFORGETTABLE ESCAPES.<br/>
         <span class="bg-gradient-to-r from-white via-brand-purple-light to-brand-purple-vibrant bg-clip-text text-transparent">
           CRAFTED BY TEAM TUSKER.
         </span>
       </h1>
 
-      <p class="max-w-3xl mx-auto text-base sm:text-lg text-slate-300 mb-10 leading-relaxed font-normal">
+      <p class="max-w-3xl mx-auto text-sm sm:text-lg text-slate-300 mb-8 sm:mb-10 leading-relaxed font-normal">
         Curating extraordinary <strong>One Day, Two Days & Three Days Tour Packages</strong>, College Industrial Visits (IV) with DJ sound airbuses, School Excursions, Family Vacations, and Premium AC Luxury Bus & Car Rentals across Kerala & South India.
       </p>
 
       <!-- UI UPGRADE: PREMIUM SEARCH CONSOLE WITH CASCADING DROPDOWNS & DATE RANGE -->
-      <div class="glass-card p-5 sm:p-7 rounded-[32px] shadow-2xl max-w-4xl mx-auto text-left border border-brand-purple/50 relative">
+      <div class="glass-card p-4 sm:p-7 rounded-[28px] sm:rounded-[32px] shadow-2xl max-w-4xl mx-auto text-left border border-brand-purple/50 relative reveal-init">
         
         <!-- Category Selector Tabs -->
-        <div class="flex items-center gap-3 mb-5 border-b border-brand-border/70 pb-3.5 flex-wrap">
-          <button type="button" class="text-xs font-extrabold text-brand-purple-light bg-brand-surface border border-brand-purple/60 px-4 py-2 rounded-full flex items-center gap-2 shadow-sm">
+        <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-5 border-b border-brand-border/70 pb-3.5 overflow-x-auto custom-scrollbar">
+          <button type="button" class="text-xs font-extrabold text-brand-purple-light bg-brand-surface border border-brand-purple/60 px-4 py-2 rounded-full flex items-center gap-2 shadow-sm whitespace-nowrap">
             <i class="fa-solid fa-map-location-dot"></i> Tour Packages
           </button>
-          <button type="button" onclick="location.href='college-iv.html'" class="text-xs font-semibold text-slate-400 hover:text-white px-3.5 py-2 rounded-full transition-colors flex items-center gap-2">
+          <button type="button" onclick="location.href='college-iv.html'" class="text-xs font-semibold text-slate-400 hover:text-white px-3.5 py-2 rounded-full transition-colors flex items-center gap-2 whitespace-nowrap">
             <i class="fa-solid fa-graduation-cap text-brand-accentRed"></i> College IV Specials
           </button>
-          <button type="button" onclick="location.href='fleet.html'" class="text-xs font-semibold text-slate-400 hover:text-white px-3.5 py-2 rounded-full transition-colors flex items-center gap-2">
+          <button type="button" onclick="location.href='fleet.html'" class="text-xs font-semibold text-slate-400 hover:text-white px-3.5 py-2 rounded-full transition-colors flex items-center gap-2 whitespace-nowrap">
             <i class="fa-solid fa-bus text-brand-purple-light"></i> Luxury Bus & Car Rentals
           </button>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-center">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 items-center">
           
-          <!-- UI UPGRADE 2: CASCADING DROPDOWN 1 (Duration) -->
-          <div class="p-3.5 bg-brand-surface/95 rounded-2xl border border-brand-border/90 hover:border-brand-purple transition-all duration-200 group cursor-pointer">
+          <!-- CASCADING DROPDOWN 1 (Duration) -->
+          <div class="p-3 sm:p-3.5 bg-brand-surface/95 rounded-2xl border border-brand-border/90 hover:border-brand-purple transition-all duration-200 group cursor-pointer">
             <label class="text-[10px] uppercase tracking-wider text-slate-400 font-bold block mb-1">
               <i class="fa-solid fa-clock text-brand-purple-light mr-1"></i> Trip Duration
             </label>
@@ -286,8 +310,8 @@
             </select>
           </div>
 
-          <!-- UI UPGRADE 2: CASCADING DROPDOWN 2 (Destination) -->
-          <div class="p-3.5 bg-brand-surface/95 rounded-2xl border border-brand-border/90 hover:border-brand-purple transition-all duration-200 group cursor-pointer">
+          <!-- CASCADING DROPDOWN 2 (Destination) -->
+          <div class="p-3 sm:p-3.5 bg-brand-surface/95 rounded-2xl border border-brand-border/90 hover:border-brand-purple transition-all duration-200 group cursor-pointer">
             <label class="text-[10px] uppercase tracking-wider text-slate-400 font-bold block mb-1">
               <i class="fa-solid fa-location-dot text-brand-purple-light mr-1"></i> Destination
             </label>
@@ -302,8 +326,8 @@
             </select>
           </div>
 
-          <!-- UI UPGRADE 2: CASCADING DROPDOWN 3 (Group Category) -->
-          <div class="p-3.5 bg-brand-surface/95 rounded-2xl border border-brand-border/90 hover:border-brand-purple transition-all duration-200 group cursor-pointer">
+          <!-- CASCADING DROPDOWN 3 (Group Category) -->
+          <div class="p-3 sm:p-3.5 bg-brand-surface/95 rounded-2xl border border-brand-border/90 hover:border-brand-purple transition-all duration-200 group cursor-pointer">
             <label class="text-[10px] uppercase tracking-wider text-slate-400 font-bold block mb-1">
               <i class="fa-solid fa-users text-brand-purple-light mr-1"></i> Group Type
             </label>
@@ -328,22 +352,22 @@
         </div>
       </div>
 
-      <!-- Trust Metrics Strip -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto mt-12 pt-8 border-t border-brand-border/60">
-        <div>
-          <span class="text-2xl sm:text-3xl font-extrabold text-white font-heading">500+</span>
+      <!-- Trust Metrics Strip with Animated Counter -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-brand-border/60 reveal-init">
+        <div class="p-2">
+          <span class="text-2xl sm:text-4xl font-extrabold text-white font-heading counter" data-target="500">500</span><span class="text-brand-purple-light font-bold text-xl sm:text-2xl">+</span>
           <p class="text-xs text-slate-400 mt-0.5 font-medium">Trips Executed</p>
         </div>
-        <div>
-          <span class="text-2xl sm:text-3xl font-extrabold text-white font-heading">50,000+</span>
+        <div class="p-2">
+          <span class="text-2xl sm:text-4xl font-extrabold text-white font-heading counter" data-target="50000">50,000</span><span class="text-brand-purple-light font-bold text-xl sm:text-2xl">+</span>
           <p class="text-xs text-slate-400 mt-0.5 font-medium">Happy Travelers</p>
         </div>
-        <div>
-          <span class="text-2xl sm:text-3xl font-extrabold text-white font-heading">24*7</span>
+        <div class="p-2">
+          <span class="text-2xl sm:text-4xl font-extrabold text-white font-heading">24*7</span>
           <p class="text-xs text-slate-400 mt-0.5 font-medium">Medical & Concierge</p>
         </div>
-        <div>
-          <span class="text-2xl sm:text-3xl font-extrabold text-white font-heading">100%</span>
+        <div class="p-2">
+          <span class="text-2xl sm:text-4xl font-extrabold text-white font-heading">100%</span>
           <p class="text-xs text-slate-400 mt-0.5 font-medium">Verified Safe Stays</p>
         </div>
       </div>
@@ -352,11 +376,11 @@
   </section>
 
   <!-- ================= SECTION: FEATURED PACKAGES SHOWCASE ================= -->
-  <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+  <section class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 reveal-init">
       <div>
         <span class="text-brand-purple-light text-xs font-bold uppercase tracking-widest block mb-1">Curated Travel Catalog</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-heading">Trending Tour Packages</h2>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-white font-heading">Trending Tour Packages</h2>
         <p class="text-xs text-slate-400 mt-1">All packages include verified hotel/resort stay, fresh food, and luxury AC transport.</p>
       </div>
       <div class="mt-4 md:mt-0">
@@ -368,12 +392,12 @@
     </div>
 
     <!-- Package Cards Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
       
       <!-- Card 1: Goa 3D -->
-      <div class="glass-card rounded-[28px] overflow-hidden border border-brand-border/80 hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group">
+      <div class="glass-card rounded-[28px] overflow-hidden border border-brand-border/80 hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group reveal-init">
         <div>
-          <div class="relative h-52 overflow-hidden">
+          <div class="relative h-48 sm:h-52 overflow-hidden">
             <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&auto=format&fit=crop&q=80" alt="Goa Beaches" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
             <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
             <span class="absolute top-3 left-3 bg-brand-accentRed text-white text-[10px] font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow-md">
@@ -383,7 +407,7 @@
               3 Days / 2 Nights
             </span>
           </div>
-          <div class="p-6 sm:p-7">
+          <div class="p-5 sm:p-7">
             <span class="text-[11px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-1">BEACH, CRUISE & DJ NIGHT</span>
             <h3 class="text-xl sm:text-2xl font-extrabold text-white mt-1 mb-2 font-heading">Goa Grand Expedition</h3>
             <p class="text-xs text-slate-400 leading-relaxed mb-4">
@@ -396,17 +420,17 @@
             </ul>
           </div>
         </div>
-        <div class="p-6 sm:p-7 pt-0">
-          <button onclick="openEnquiryModal('Goa 3 Day Grand Expedition')" class="w-full py-3.5 bg-gradient-to-r from-brand-purple to-brand-purple-vibrant hover:from-brand-purple-vibrant hover:to-purple-500 text-white font-extrabold text-xs sm:text-sm rounded-2xl shadow-lg shadow-brand-purple/30 transition-all">
+        <div class="p-5 sm:p-7 pt-0">
+          <button onclick="openEnquiryModal('Goa 3 Day Grand Expedition')" class="w-full py-3.5 bg-gradient-to-r from-brand-purple to-brand-purple-vibrant hover:from-brand-purple-vibrant hover:to-purple-500 text-white font-extrabold text-xs sm:text-sm rounded-2xl shadow-lg shadow-brand-purple/30 active:scale-98 transition-all">
             Enquire Goa Package
           </button>
         </div>
       </div>
 
       <!-- Card 2: Munnar - Kodaikanal - Vagamon -->
-      <div class="glass-card rounded-[28px] overflow-hidden border border-brand-border/80 hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group">
+      <div class="glass-card rounded-[28px] overflow-hidden border border-brand-border/80 hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group reveal-init">
         <div>
-          <div class="relative h-52 overflow-hidden">
+          <div class="relative h-48 sm:h-52 overflow-hidden">
             <img src="https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?w=800&auto=format&fit=crop&q=80" alt="Munnar Tea Hills" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
             <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
             <span class="absolute top-3 left-3 bg-brand-purple text-white text-[10px] font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow-md">
@@ -416,7 +440,7 @@
               2 Days / 1 Night
             </span>
           </div>
-          <div class="p-6 sm:p-7">
+          <div class="p-5 sm:p-7">
             <span class="text-[11px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-1">MISTY HILLS & WATERFALLS</span>
             <h3 class="text-xl sm:text-2xl font-extrabold text-white mt-1 mb-2 font-heading">Munnar & Kodaikanal Tour</h3>
             <p class="text-xs text-slate-400 leading-relaxed mb-4">
@@ -429,17 +453,17 @@
             </ul>
           </div>
         </div>
-        <div class="p-6 sm:p-7 pt-0">
-          <button onclick="openEnquiryModal('Munnar - Kodaikanal Tour Package')" class="w-full py-3.5 bg-gradient-to-r from-brand-purple to-brand-purple-vibrant hover:from-brand-purple-vibrant hover:to-purple-500 text-white font-extrabold text-xs sm:text-sm rounded-2xl shadow-lg shadow-brand-purple/30 transition-all">
+        <div class="p-5 sm:p-7 pt-0">
+          <button onclick="openEnquiryModal('Munnar - Kodaikanal Tour Package')" class="w-full py-3.5 bg-gradient-to-r from-brand-purple to-brand-purple-vibrant hover:from-brand-purple-vibrant hover:to-purple-500 text-white font-extrabold text-xs sm:text-sm rounded-2xl shadow-lg shadow-brand-purple/30 active:scale-98 transition-all">
             Enquire Munnar Package
           </button>
         </div>
       </div>
 
       <!-- Card 3: Coorg - Mysore - Ooty -->
-      <div class="glass-card rounded-[28px] overflow-hidden border border-brand-border/80 hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group">
+      <div class="glass-card rounded-[28px] overflow-hidden border border-brand-border/80 hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group reveal-init">
         <div>
-          <div class="relative h-52 overflow-hidden">
+          <div class="relative h-48 sm:h-52 overflow-hidden">
             <img src="https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=800&auto=format&fit=crop&q=80" alt="Ooty Hills" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
             <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
             <span class="absolute top-3 left-3 bg-emerald-600 text-white text-[10px] font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow-md">
@@ -449,7 +473,7 @@
               3 Days / 2 Nights
             </span>
           </div>
-          <div class="p-6 sm:p-7">
+          <div class="p-5 sm:p-7">
             <span class="text-[11px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-1">PALACES, COFFEE & NILGIRIS</span>
             <h3 class="text-xl sm:text-2xl font-extrabold text-white mt-1 mb-2 font-heading">Coorg - Mysore - Ooty</h3>
             <p class="text-xs text-slate-400 leading-relaxed mb-4">
@@ -462,8 +486,8 @@
             </ul>
           </div>
         </div>
-        <div class="p-6 sm:p-7 pt-0">
-          <button onclick="openEnquiryModal('Coorg - Mysore - Ooty Grand Tour')" class="w-full py-3.5 bg-gradient-to-r from-brand-purple to-brand-purple-vibrant hover:from-brand-purple-vibrant hover:to-purple-500 text-white font-extrabold text-xs sm:text-sm rounded-2xl shadow-lg shadow-brand-purple/30 transition-all">
+        <div class="p-5 sm:p-7 pt-0">
+          <button onclick="openEnquiryModal('Coorg - Mysore - Ooty Grand Tour')" class="w-full py-3.5 bg-gradient-to-r from-brand-purple to-brand-purple-vibrant hover:from-brand-purple-vibrant hover:to-purple-500 text-white font-extrabold text-xs sm:text-sm rounded-2xl shadow-lg shadow-brand-purple/30 active:scale-98 transition-all">
             Enquire Coorg-Ooty Package
           </button>
         </div>
@@ -473,60 +497,60 @@
   </section>
 
   <!-- ================= SECTION: COLLEGE IV SPOTLIGHT ================= -->
-  <section class="py-20 bg-brand-surface/40 border-y border-brand-border/60 px-4 sm:px-6 lg:px-8">
+  <section class="py-16 sm:py-20 bg-brand-surface/40 border-y border-brand-border/60 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 items-center">
         
-        <div class="lg:col-span-7 space-y-6">
+        <div class="lg:col-span-7 space-y-5 sm:space-y-6 reveal-init">
           <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-surface border border-brand-accentRed/40 text-brand-accentRed text-xs font-bold uppercase">
             <i class="fa-solid fa-graduation-cap"></i>
             <span>College Unions & Faculty Choice</span>
           </div>
-          <h2 class="text-3xl sm:text-5xl font-extrabold text-white font-heading leading-tight">
+          <h2 class="text-2xl sm:text-5xl font-extrabold text-white font-heading leading-tight">
             Kerala's #1 Specialist for College Industrial Visits (IV)
           </h2>
-          <p class="text-sm text-slate-300 leading-relaxed">
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
             We take the hassle out of College IV organizing. From <strong>authorized industry permission letters</strong> across Bangalore, Hyderabad & Goa to <strong>DJ sound system buses</strong>, safe verified resort stays with swimming pools, campfires, and 24*7 medical support.
           </p>
 
-          <div class="grid grid-cols-2 gap-4 text-xs text-slate-200 pt-2">
-            <div class="p-4 rounded-2xl bg-brand-card border border-brand-border">
+          <div class="grid grid-cols-2 gap-3 sm:gap-4 text-xs text-slate-200 pt-2">
+            <div class="p-3.5 sm:p-4 rounded-2xl bg-brand-card border border-brand-border">
               <i class="fa-solid fa-building-wheat text-brand-purple-light text-base mb-1 block"></i>
-              <strong class="text-white block">Official Company Permits</strong>
-              <span class="text-slate-400 text-[11px]">Factory & IT documentation</span>
+              <strong class="text-white block text-xs">Official Company Permits</strong>
+              <span class="text-slate-400 text-[10px] sm:text-[11px]">Factory & IT documentation</span>
             </div>
-            <div class="p-4 rounded-2xl bg-brand-card border border-brand-border">
+            <div class="p-3.5 sm:p-4 rounded-2xl bg-brand-card border border-brand-border">
               <i class="fa-solid fa-compact-disc text-brand-purple-light text-base mb-1 block"></i>
-              <strong class="text-white block">DJ Sound & Laser Buses</strong>
-              <span class="text-slate-400 text-[11px]">High-wattage sound systems</span>
+              <strong class="text-white block text-xs">DJ Sound & Laser Buses</strong>
+              <span class="text-slate-400 text-[10px] sm:text-[11px]">High-wattage sound systems</span>
             </div>
-            <div class="p-4 rounded-2xl bg-brand-card border border-brand-border">
+            <div class="p-3.5 sm:p-4 rounded-2xl bg-brand-card border border-brand-border">
               <i class="fa-solid fa-campground text-brand-purple-light text-base mb-1 block"></i>
-              <strong class="text-white block">Pool Resorts & Campfires</strong>
-              <span class="text-slate-400 text-[11px]">Private student group stays</span>
+              <strong class="text-white block text-xs">Pool Resorts & Campfires</strong>
+              <span class="text-slate-400 text-[10px] sm:text-[11px]">Private student group stays</span>
             </div>
-            <div class="p-4 rounded-2xl bg-brand-card border border-brand-border">
+            <div class="p-3.5 sm:p-4 rounded-2xl bg-brand-card border border-brand-border">
               <i class="fa-solid fa-kit-medical text-brand-accentRed text-base mb-1 block"></i>
-              <strong class="text-white block">24*7 Medical & Safety</strong>
-              <span class="text-slate-400 text-[11px]">Trained coordinators on-trip</span>
+              <strong class="text-white block text-xs">24*7 Medical & Safety</strong>
+              <span class="text-slate-400 text-[10px] sm:text-[11px]">Trained coordinators on-trip</span>
             </div>
           </div>
 
-          <div class="flex items-center gap-4 pt-2">
-            <a href="college-iv.html" class="px-6 py-3.5 bg-gradient-to-r from-brand-purple to-brand-purple-vibrant text-white font-bold text-xs rounded-xl shadow-lg shadow-brand-purple/40 hover:scale-105 transition-all">
+          <div class="flex items-center gap-3 sm:gap-4 pt-2 flex-wrap">
+            <a href="college-iv.html" class="px-5 sm:px-6 py-3 sm:py-3.5 bg-gradient-to-r from-brand-purple to-brand-purple-vibrant text-white font-bold text-xs rounded-xl shadow-lg shadow-brand-purple/40 hover:scale-105 active:scale-98 transition-all">
               Explore All College IV Routes
             </a>
-            <button onclick="openEnquiryModal('College IV Quote Request')" class="px-6 py-3.5 bg-brand-surface border border-brand-purple text-brand-purple-light hover:bg-brand-purple hover:text-white font-bold text-xs rounded-xl transition-all">
+            <button onclick="openEnquiryModal('College IV Quote Request')" class="px-5 sm:px-6 py-3 sm:py-3.5 bg-brand-surface border border-brand-purple text-brand-purple-light hover:bg-brand-purple hover:text-white font-bold text-xs rounded-xl active:scale-98 transition-all">
               Get Student Group Rates
             </button>
           </div>
         </div>
 
-        <div class="lg:col-span-5">
+        <div class="lg:col-span-5 reveal-init">
           <div class="relative rounded-3xl overflow-hidden border border-brand-purple/50 shadow-2xl group">
-            <img src="https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=800&auto=format&fit=crop&q=80" alt="Resort Campfire Night" class="w-full h-[440px] object-cover group-hover:scale-105 transition-transform duration-500">
+            <img src="https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=800&auto=format&fit=crop&q=80" alt="Resort Campfire Night" class="w-full h-[320px] sm:h-[440px] object-cover group-hover:scale-105 transition-transform duration-500">
             <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/30 to-transparent"></div>
-            <div class="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-brand-card/90 backdrop-blur-md border border-brand-border text-xs text-white">
+            <div class="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 p-3.5 sm:p-4 rounded-2xl bg-brand-card/90 backdrop-blur-md border border-brand-border text-xs text-white">
               <span class="text-brand-purple-light font-bold uppercase text-[10px]">Student Experience</span>
               <p class="font-bold mt-0.5">"Best IV experience with Team Tusker! Incredible DJ bus, resort campfire, and zero stress with permissions."</p>
               <span class="text-slate-400 text-[10px] mt-1 block">— Mechanical Engineering Batch, Thrissur</span>
@@ -539,17 +563,17 @@
   </section>
 
   <!-- ================= SECTION: BUS & VEHICLE FLEET ================= -->
-  <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-    <div class="text-center max-w-2xl mx-auto mb-14">
+  <section class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-14 reveal-init">
       <span class="text-brand-purple-light text-xs font-bold uppercase tracking-widest">Own Transportation Fleet</span>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-heading mt-1">Tourist Buses & Vehicle Rentals</h2>
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-white font-heading mt-1">Tourist Buses & Vehicle Rentals</h2>
       <p class="text-xs text-slate-400 mt-2">Available for daily, weekly, and custom tour packages across Kerala with seasoned chauffeurs.</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       
       <!-- Bus Category -->
-      <div class="glass-card p-6 rounded-3xl border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between">
+      <div class="glass-card p-6 rounded-3xl border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between reveal-init">
         <div>
           <div class="w-12 h-12 rounded-2xl bg-brand-purple/20 text-brand-purple-light flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-bus-simple"></i>
@@ -564,13 +588,13 @@
             <li><i class="fa-solid fa-check text-brand-purple-light mr-1.5"></i> 36 Berth Luxury Sleeper Coaches</li>
           </ul>
         </div>
-        <button onclick="openEnquiryModal('Bus Rental Booking (21-56 Seater)')" class="w-full py-2.5 bg-brand-surface hover:bg-brand-purple text-white text-xs font-bold rounded-xl border border-brand-border transition-all">
+        <button onclick="openEnquiryModal('Bus Rental Booking (21-56 Seater)')" class="w-full py-3 bg-brand-surface hover:bg-brand-purple text-white text-xs font-bold rounded-xl border border-brand-border transition-all">
           Rent Tourist Bus
         </button>
       </div>
 
       <!-- Traveller & Urbania -->
-      <div class="glass-card p-6 rounded-3xl border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between">
+      <div class="glass-card p-6 rounded-3xl border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between reveal-init">
         <div>
           <div class="w-12 h-12 rounded-2xl bg-brand-purple/20 text-brand-purple-light flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-van-shuttle"></i>
@@ -585,13 +609,13 @@
             <li><i class="fa-solid fa-check text-brand-purple-light mr-1.5"></i> Reclining seats, mobile charging & audio</li>
           </ul>
         </div>
-        <button onclick="openEnquiryModal('Force Traveller / Urbania Rental')" class="w-full py-2.5 bg-brand-surface hover:bg-brand-purple text-white text-xs font-bold rounded-xl border border-brand-border transition-all">
+        <button onclick="openEnquiryModal('Force Traveller / Urbania Rental')" class="w-full py-3 bg-brand-surface hover:bg-brand-purple text-white text-xs font-bold rounded-xl border border-brand-border transition-all">
           Rent Traveller / Urbania
         </button>
       </div>
 
       <!-- Taxi & Wedding Cars -->
-      <div class="glass-card p-6 rounded-3xl border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between">
+      <div class="glass-card p-6 rounded-3xl border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between reveal-init">
         <div>
           <div class="w-12 h-12 rounded-2xl bg-brand-purple/20 text-brand-purple-light flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-car-side"></i>
@@ -606,7 +630,7 @@
             <li><i class="fa-solid fa-check text-brand-purple-light mr-1.5"></i> Wedding: Audi, BMW, Benz & Vintage</li>
           </ul>
         </div>
-        <button onclick="openEnquiryModal('Car / Wedding Car Booking')" class="w-full py-2.5 bg-brand-surface hover:bg-brand-purple text-white text-xs font-bold rounded-xl border border-brand-border transition-all">
+        <button onclick="openEnquiryModal('Car / Wedding Car Booking')" class="w-full py-3 bg-brand-surface hover:bg-brand-purple text-white text-xs font-bold rounded-xl border border-brand-border transition-all">
           Rent A Car / Wedding Car
         </button>
       </div>
@@ -615,16 +639,16 @@
   </section>
 
   <!-- ================= SECTION: 6 PILLARS OF EXCELLENCE ================= -->
-  <section class="py-20 bg-brand-surface/30 border-y border-brand-border/60 px-4 sm:px-6 lg:px-8">
+  <section class="py-16 sm:py-20 bg-brand-surface/30 border-y border-brand-border/60 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto">
-      <div class="text-center max-w-2xl mx-auto mb-14">
+      <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-14 reveal-init">
         <span class="text-brand-purple-light text-xs font-bold uppercase tracking-widest">The Tusker Promise</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-heading mt-1">Why Travelers Choose Team Tusker</h2>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-white font-heading mt-1">Why Travelers Choose Team Tusker</h2>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
         
-        <div class="glass-card p-6 rounded-3xl border border-brand-border hover:border-brand-purple transition-all card-purple-glow">
+        <div class="glass-card p-5 sm:p-6 rounded-3xl border border-brand-border hover:border-brand-purple transition-all card-purple-glow reveal-init">
           <div class="w-12 h-12 rounded-2xl bg-brand-purple/20 text-brand-purple-light flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-headset"></i>
           </div>
@@ -632,7 +656,7 @@
           <p class="text-xs text-slate-400 leading-relaxed">Direct coordinator support from the moment you plan until you return home safely.</p>
         </div>
 
-        <div class="glass-card p-6 rounded-3xl border border-brand-border hover:border-brand-purple transition-all card-purple-glow">
+        <div class="glass-card p-5 sm:p-6 rounded-3xl border border-brand-border hover:border-brand-purple transition-all card-purple-glow reveal-init">
           <div class="w-12 h-12 rounded-2xl bg-brand-accentRed/20 text-brand-accentRed flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-kit-medical"></i>
           </div>
@@ -640,7 +664,7 @@
           <p class="text-xs text-slate-400 leading-relaxed">Certified first aid kits and tie-ups with verified hospital networks across all routes.</p>
         </div>
 
-        <div class="glass-card p-6 rounded-3xl border border-brand-border hover:border-brand-purple transition-all card-purple-glow">
+        <div class="glass-card p-5 sm:p-6 rounded-3xl border border-brand-border hover:border-brand-purple transition-all card-purple-glow reveal-init">
           <div class="w-12 h-12 rounded-2xl bg-brand-purple/20 text-brand-purple-light flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-tags"></i>
           </div>
@@ -648,7 +672,7 @@
           <p class="text-xs text-slate-400 leading-relaxed">Best price guarantee with zero hidden charges, toll inclusions, and student discounts.</p>
         </div>
 
-        <div class="glass-card p-6 rounded-3xl border border-brand-border hover:border-brand-purple transition-all card-purple-glow">
+        <div class="glass-card p-5 sm:p-6 rounded-3xl border border-brand-border hover:border-brand-purple transition-all card-purple-glow reveal-init">
           <div class="w-12 h-12 rounded-2xl bg-brand-purple/20 text-brand-purple-light flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-person-hiking"></i>
           </div>
@@ -656,7 +680,7 @@
           <p class="text-xs text-slate-400 leading-relaxed">Knowledgeable guides who reveal secret viewpoints, culture, and authentic local spots.</p>
         </div>
 
-        <div class="glass-card p-6 rounded-3xl border border-brand-border hover:border-brand-purple transition-all card-purple-glow">
+        <div class="glass-card p-5 sm:p-6 rounded-3xl border border-brand-border hover:border-brand-purple transition-all card-purple-glow reveal-init">
           <div class="w-12 h-12 rounded-2xl bg-brand-purple/20 text-brand-purple-light flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-hotel"></i>
           </div>
@@ -664,7 +688,7 @@
           <p class="text-xs text-slate-400 leading-relaxed">Verified pool resorts, villas, and homestays with verified hygiene and comfort.</p>
         </div>
 
-        <div class="glass-card p-6 rounded-3xl border border-brand-border hover:border-brand-purple transition-all card-purple-glow">
+        <div class="glass-card p-5 sm:p-6 rounded-3xl border border-brand-border hover:border-brand-purple transition-all card-purple-glow reveal-init">
           <div class="w-12 h-12 rounded-2xl bg-brand-purple/20 text-brand-purple-light flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-utensils"></i>
           </div>
@@ -677,16 +701,16 @@
   </section>
 
   <!-- ================= SECTION: CLIENT REVIEWS ================= -->
-  <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-    <div class="text-center max-w-2xl mx-auto mb-14">
+  <section class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-14 reveal-init">
       <span class="text-brand-purple-light text-xs font-bold uppercase tracking-widest">Traveler Stories</span>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-heading mt-1">What Our Travelers Say</h2>
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-white font-heading mt-1">What Our Travelers Say</h2>
       <p class="text-xs text-slate-400 mt-2">Real feedback from college reps, families, and travelers across Kerala.</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       
-      <div class="glass-card p-6 rounded-3xl border border-brand-border flex flex-col justify-between">
+      <div class="glass-card p-6 rounded-3xl border border-brand-border flex flex-col justify-between reveal-init">
         <div>
           <div class="flex text-amber-400 text-xs mb-3">
             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
@@ -706,7 +730,7 @@
         </div>
       </div>
 
-      <div class="glass-card p-6 rounded-3xl border border-brand-border flex flex-col justify-between">
+      <div class="glass-card p-6 rounded-3xl border border-brand-border flex flex-col justify-between reveal-init">
         <div>
           <div class="flex text-amber-400 text-xs mb-3">
             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
@@ -726,7 +750,7 @@
         </div>
       </div>
 
-      <div class="glass-card p-6 rounded-3xl border border-brand-border flex flex-col justify-between">
+      <div class="glass-card p-6 rounded-3xl border border-brand-border flex flex-col justify-between reveal-init">
         <div>
           <div class="flex text-amber-400 text-xs mb-3">
             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
@@ -750,17 +774,17 @@
   </section>
 
   <!-- ================= SECTION: FAQ ACCORDION ================= -->
-  <section class="py-20 bg-brand-surface/30 border-t border-brand-border/60 px-4 sm:px-6 lg:px-8">
+  <section class="py-16 sm:py-20 bg-brand-surface/30 border-t border-brand-border/60 px-4 sm:px-6 lg:px-8">
     <div class="max-w-4xl mx-auto">
-      <div class="text-center max-w-2xl mx-auto mb-12">
+      <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-12 reveal-init">
         <span class="text-brand-purple-light text-xs font-bold uppercase tracking-widest">Common Questions</span>
-        <h2 class="text-3xl font-extrabold text-white font-heading mt-1">Frequently Asked Questions</h2>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-heading mt-1">Frequently Asked Questions</h2>
       </div>
 
       <div class="space-y-4">
         
-        <details class="glass-card p-5 rounded-2xl border border-brand-border cursor-pointer group">
-          <summary class="flex justify-between items-center text-sm font-bold text-white">
+        <details class="glass-card p-4 sm:p-5 rounded-2xl border border-brand-border cursor-pointer group reveal-init">
+          <summary class="flex justify-between items-center text-xs sm:text-sm font-bold text-white">
             <span>How do we book a College Industrial Visit (IV) package?</span>
             <i class="fa-solid fa-chevron-down text-brand-purple-light transition-transform group-open:rotate-180 text-xs"></i>
           </summary>
@@ -769,8 +793,8 @@
           </p>
         </details>
 
-        <details class="glass-card p-5 rounded-2xl border border-brand-border cursor-pointer group">
-          <summary class="flex justify-between items-center text-sm font-bold text-white">
+        <details class="glass-card p-4 sm:p-5 rounded-2xl border border-brand-border cursor-pointer group reveal-init">
+          <summary class="flex justify-between items-center text-xs sm:text-sm font-bold text-white">
             <span>Are bus driver allowances, interstate permits, and tolls included in the price?</span>
             <i class="fa-solid fa-chevron-down text-brand-purple-light transition-transform group-open:rotate-180 text-xs"></i>
           </summary>
@@ -779,8 +803,8 @@
           </p>
         </details>
 
-        <details class="glass-card p-5 rounded-2xl border border-brand-border cursor-pointer group">
-          <summary class="flex justify-between items-center text-sm font-bold text-white">
+        <details class="glass-card p-4 sm:p-5 rounded-2xl border border-brand-border cursor-pointer group reveal-init">
+          <summary class="flex justify-between items-center text-xs sm:text-sm font-bold text-white">
             <span>What bus seating capacities are available for rental?</span>
             <i class="fa-solid fa-chevron-down text-brand-purple-light transition-transform group-open:rotate-180 text-xs"></i>
           </summary>
@@ -789,8 +813,8 @@
           </p>
         </details>
 
-        <details class="glass-card p-5 rounded-2xl border border-brand-border cursor-pointer group">
-          <summary class="flex justify-between items-center text-sm font-bold text-white">
+        <details class="glass-card p-4 sm:p-5 rounded-2xl border border-brand-border cursor-pointer group reveal-init">
+          <summary class="flex justify-between items-center text-xs sm:text-sm font-bold text-white">
             <span>Where is Tusker Tours & Travels located?</span>
             <i class="fa-solid fa-chevron-down text-brand-purple-light transition-transform group-open:rotate-180 text-xs"></i>
           </summary>
@@ -805,10 +829,10 @@
 
   <!-- ================= FOOTER ================= -->
   <footer class="bg-brand-black border-t border-brand-border/70 py-16 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-10">
       
       <div class="space-y-4">
-        <a href="index.html" class="flex items-center gap-3.5 group mb-3">
+        <a href="index.html" class="flex items-center gap-3 group mb-3">
           <img src="tusker-emblem.png" alt="Tusker Logo" class="h-10 w-auto object-contain filter brightness-125 drop-shadow-[0_0_15px_rgba(168,85,247,0.6)]">
           <img src="logo.png" alt="Tusker Travelogues" class="h-8 sm:h-9 w-auto object-contain filter brightness-110">
         </a>
@@ -863,8 +887,28 @@
     </div>
   </footer>
 
-  <!-- ================= FLOATING ACTION BUTTONS ================= -->
-  <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+  <!-- ================= STICKY MOBILE QUICK-ACTION BOTTOM BAR ================= -->
+  <div class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-brand-black/95 backdrop-blur-2xl border-t border-brand-border/90 px-3 py-2 flex items-center justify-between gap-2 shadow-[0_-10px_30px_rgba(0,0,0,0.8)]">
+    <a href="tel:+917909241640" class="flex-1 flex flex-col items-center justify-center py-2 rounded-xl bg-brand-surface border border-brand-border text-slate-200 active:scale-95 transition-transform text-[10px] font-bold gap-0.5">
+      <i class="fa-solid fa-phone text-brand-purple-light text-xs"></i>
+      <span>Call</span>
+    </a>
+    <a href="https://wa.me/917909241640" target="_blank" class="flex-1 flex flex-col items-center justify-center py-2 rounded-xl bg-emerald-600/90 text-white active:scale-95 transition-transform text-[10px] font-bold gap-0.5 shadow-md shadow-emerald-950">
+      <i class="fa-brands fa-whatsapp text-sm"></i>
+      <span>WhatsApp</span>
+    </a>
+    <button onclick="openDatePickerModal()" class="flex-1 flex flex-col items-center justify-center py-2 rounded-xl bg-brand-surface border border-brand-purple/50 text-brand-purple-light active:scale-95 transition-transform text-[10px] font-bold gap-0.5">
+      <i class="fa-solid fa-calendar-days text-xs"></i>
+      <span>Dates</span>
+    </button>
+    <button onclick="openEnquiryModal('Mobile Bottom Bar')" class="flex-1 flex flex-col items-center justify-center py-2 rounded-xl bg-gradient-to-r from-brand-purple to-brand-purple-vibrant text-white active:scale-95 transition-transform text-[10px] font-bold gap-0.5 shadow-md shadow-purple-950">
+      <i class="fa-solid fa-paper-plane text-xs"></i>
+      <span>Enquire</span>
+    </button>
+  </div>
+
+  <!-- ================= FLOATING ACTION BUTTONS (DESKTOP) ================= -->
+  <div class="hidden md:flex fixed bottom-6 right-6 z-50 flex-col items-end gap-3">
     
     <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/917909241640?text=Hi%20Team%20Tusker,%20I%20would%20like%20to%20enquire%20about%20a%20tour%20package" target="_blank" class="w-12 h-12 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white shadow-2xl flex items-center justify-center text-xl transition-transform hover:scale-110" title="Chat with Team Tusker on WhatsApp">
@@ -882,7 +926,7 @@
 
   <!-- ================= UI UPGRADE 1: PREMIUM DATE RANGE PICKER MODAL (From Image 1) ================= -->
   <div id="datePickerModal" class="fixed inset-0 z-50 hidden bg-brand-black/85 backdrop-blur-md flex items-center justify-center p-4">
-    <div class="bg-brand-card border border-brand-purple/60 w-full max-w-xl rounded-3xl p-6 sm:p-7 shadow-2xl relative animate-float">
+    <div class="bg-brand-card border border-brand-purple/60 w-full max-w-xl rounded-3xl p-5 sm:p-7 shadow-2xl relative animate-float max-h-[90vh] overflow-y-auto custom-scrollbar">
       
       <!-- Modal Header with Presets -->
       <div class="flex items-center justify-between border-b border-brand-border/70 pb-4 mb-5 flex-wrap gap-2">
@@ -897,7 +941,7 @@
         </div>
 
         <!-- Presets Matching Screenshot (Today, Last 7 Days, This Month, Apply) -->
-        <div class="flex items-center gap-1.5 text-[11px] font-bold">
+        <div class="flex items-center gap-1.5 text-[11px] font-bold flex-wrap">
           <button type="button" onclick="setPresetDate(1)" class="px-2.5 py-1 rounded-lg bg-brand-surface text-slate-300 hover:text-white border border-brand-border hover:border-brand-purple transition-all">1 Day</button>
           <button type="button" onclick="setPresetDate(2)" class="px-2.5 py-1 rounded-lg bg-brand-surface text-slate-300 hover:text-white border border-brand-border hover:border-brand-purple transition-all">2 Days</button>
           <button type="button" onclick="setPresetDate(3)" class="px-2.5 py-1 rounded-lg bg-brand-surface text-slate-300 hover:text-white border border-brand-border hover:border-brand-purple transition-all">3 Days</button>
@@ -939,7 +983,7 @@
       <!-- Action Footer Matching Screenshot (Apply Range Button) -->
       <div class="flex items-center justify-end gap-2 pt-2 border-t border-brand-border/60">
         <button type="button" onclick="clearDateRange()" class="px-4 py-2 text-xs font-bold text-slate-400 hover:text-white">Clear</button>
-        <button type="button" onclick="applyDateRange()" class="px-5 py-2.5 bg-gradient-to-r from-brand-purple to-brand-purple-vibrant hover:from-brand-purple-vibrant hover:to-purple-500 text-white text-xs font-extrabold rounded-xl shadow-lg shadow-brand-purple/40 flex items-center gap-1.5">
+        <button type="button" onclick="applyDateRange()" class="px-5 py-2.5 bg-gradient-to-r from-brand-purple to-brand-purple-vibrant hover:from-brand-purple-vibrant hover:to-purple-500 text-white text-xs font-extrabold rounded-xl shadow-lg shadow-brand-purple/40 flex items-center gap-1.5 active:scale-95 transition-all">
           <i class="fa-solid fa-check"></i>
           <span>Apply Range</span>
         </button>
@@ -957,7 +1001,7 @@
         <i class="fa-solid fa-xmark text-sm"></i>
       </button>
 
-      <div class="flex items-center gap-3.5 mb-6">
+      <div class="flex items-center gap-3 mb-6">
         <img src="tusker-emblem.png" alt="Tusker Logo" class="h-10 w-auto object-contain filter brightness-125 drop-shadow-[0_0_12px_rgba(168,85,247,0.6)]">
         <img src="logo.png" alt="Tusker Travelogues" class="h-7 sm:h-8 w-auto object-contain">
       </div>
@@ -1043,7 +1087,7 @@
   </div>
 
   <!-- ================= UI UPGRADE 4: PREMIUM ANIMATED TOAST NOTIFICATION (From Image 4) ================= -->
-  <div id="premiumToast" class="fixed top-6 right-6 z-50 hidden transition-all duration-500 transform translate-y-[-20px] opacity-0 max-w-sm w-full">
+  <div id="premiumToast" class="fixed top-6 right-4 sm:right-6 z-50 hidden transition-all duration-500 transform translate-y-[-20px] opacity-0 max-w-sm w-[90%] sm:w-full">
     <div class="bg-gradient-to-r from-[#105a2b] via-[#15803d] to-[#16a34a] text-white p-4 rounded-2xl shadow-[0_12px_35px_rgba(34,197,94,0.45)] border border-emerald-400/40 relative overflow-hidden flex items-center gap-3.5">
       <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-xl shrink-0">
         <i class="fa-solid fa-circle-check text-white"></i>
@@ -1063,11 +1107,11 @@
 
   <!-- ================= UI UPGRADE 5: PREMIUM SUCCESS POPUP MODAL (From Image 5) ================= -->
   <div id="premiumSuccessModal" class="fixed inset-0 z-50 hidden bg-brand-black/90 backdrop-blur-lg flex items-center justify-center p-4">
-    <div class="bg-gradient-to-br from-[#0e8a75] via-[#10705a] to-[#0f5344] text-white w-full max-w-md rounded-[32px] p-8 shadow-[0_20px_50px_rgba(16,185,129,0.4)] border border-emerald-300/40 text-center relative animate-float overflow-hidden">
+    <div class="bg-gradient-to-br from-[#0e8a75] via-[#10705a] to-[#0f5344] text-white w-full max-w-md rounded-[32px] p-6 sm:p-8 shadow-[0_20px_50px_rgba(16,185,129,0.4)] border border-emerald-300/40 text-center relative animate-float overflow-hidden">
       <div class="absolute -top-16 -right-16 w-36 h-36 bg-emerald-400/30 rounded-full blur-2xl pointer-events-none"></div>
 
       <!-- Scalloped Badge Icon (Image 5) -->
-      <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-white flex items-center justify-center text-emerald-600 text-3xl shadow-xl animate-pulse-glow">
+      <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 rounded-full bg-white flex items-center justify-center text-emerald-600 text-2xl sm:text-3xl shadow-xl animate-pulse-glow">
         <i class="fa-solid fa-circle-check"></i>
       </div>
 
@@ -1095,8 +1139,50 @@
     </div>
   </div>
 
-  <!-- ================= JAVASCRIPT CONTROLLERS ================= -->
+  <!-- ================= JAVASCRIPT ANIMATIONS & CONTROLLERS ================= -->
   <script>
+    // 1. Scroll Reveal IntersectionObserver
+    document.addEventListener('DOMContentLoaded', () => {
+      const reveals = document.querySelectorAll('.reveal-init');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal-visible');
+          }
+        });
+      }, { threshold: 0.15 });
+
+      reveals.forEach(el => observer.observe(el));
+
+      // 2. Animated Number Counter on Viewport Entry
+      const counters = document.querySelectorAll('.counter');
+      let counted = false;
+      const countObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !counted) {
+            counted = true;
+            counters.forEach(c => {
+              const target = +c.getAttribute('data-target');
+              let count = 0;
+              const step = Math.ceil(target / 40);
+              const timer = setInterval(() => {
+                count += step;
+                if (count >= target) {
+                  c.innerText = target.toLocaleString();
+                  clearInterval(timer);
+                } else {
+                  c.innerText = count.toLocaleString();
+                }
+              }, 30);
+            });
+          }
+        });
+      }, { threshold: 0.3 });
+
+      const statsStrip = document.querySelector('.counter');
+      if (statsStrip) countObserver.observe(statsStrip);
+    });
+
     // Date Range Picker State
     let rangeStart = '';
     let rangeEnd = '';
