@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & Office Locations | Tusker Tours & Travels Kerala</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: '#07070A',
+              card: '#111019',
+              cardHover: '#171526',
+              surface: '#1A1829',
+              border: '#29253F',
+              accentRed: '#FF2E4D',
+              purple: {
+                light: '#C084FC',
+                DEFAULT: '#9333EA',
+                vibrant: '#A855F7',
+                dark: '#7E22CE',
+                deep: '#3B0764'
+              }
+            }
+          },
+          fontFamily: {
+            heading: ['Outfit', 'sans-serif'],
+            body: ['Plus Jakarta Sans', 'sans-serif']
+          },
+          animation: {
+            'pulse-glow': 'pulseGlow 2.5s infinite',
+            'float': 'float 4s ease-in-out infinite'
+          },
+          keyframes: {
+            pulseGlow: {
+              '0%, 100%': { boxShadow: '0 0 20px rgba(168, 85, 247, 0.45)' },
+              '50%': { boxShadow: '0 0 45px rgba(168, 85, 247, 0.9)' }
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-6px)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #07070A;
+      color: #F8FAFC;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Outfit', sans-serif;
+    }
+    .purple-glow-bg {
+      background: radial-gradient(circle at 50% 12%, rgba(147, 51, 234, 0.22) 0%, rgba(7, 7, 10, 0) 70%);
+    }
+    .card-purple-glow:hover {
+      box-shadow: 0 12px 35px -10px rgba(168, 85, 247, 0.4);
+      border-color: #9333EA;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #0B0B10;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #2A2640;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #9333EA;
+    }
+  </style>
+</head>
+<body class="bg-brand-black text-slate-100 selection:bg-brand-purple selection:text-white custom-scrollbar relative overflow-x-hidden">
+
+  <!-- Fixed Brand Watermark & Ambient Glow Background (Enhanced Luminous Brightness) -->
+  <div class="fixed inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden">
+    <img src="brand-bg.png" alt="Tusker Brand Emblem" class="w-[550px] sm:w-[800px] lg:w-[1050px] max-w-none opacity-[0.22] sm:opacity-[0.28] select-none object-contain filter brightness-150 drop-shadow-[0_0_60px_rgba(168,85,247,0.5)]">
+  </div>
+  <div class="fixed top-0 left-1/4 w-[480px] h-[480px] bg-brand-purple-vibrant/20 rounded-full blur-[160px] pointer-events-none -z-10"></div>
+  <div class="fixed bottom-1/4 right-10 w-[550px] h-[550px] bg-brand-purple-deep/25 rounded-full blur-[170px] pointer-events-none -z-10"></div>
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="sticky top-0 z-40 bg-brand-black/90 backdrop-blur-xl border-b border-brand-border/70 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <a href="index.html" class="flex items-center gap-3 group py-1">
+          <img src="tusker-emblem.png" alt="Tusker Logo" class="h-11 sm:h-13 w-auto object-contain filter brightness-125 drop-shadow-[0_0_18px_rgba(168,85,247,0.7)] group-hover:scale-105 transition-transform duration-300">
+          <img src="logo.png" alt="Tusker Travelogues" class="h-9 sm:h-12 w-auto object-contain filter brightness-115 drop-shadow-[0_0_15px_rgba(168,85,247,0.45)] group-hover:brightness-125 transition-all">
+        </a><div class="hidden lg:flex items-center gap-7 text-sm font-medium">
+          <a href="index.html" class="text-slate-300 hover:text-brand-purple-light transition-colors">Home</a>
+          <a href="packages.html" class="text-slate-300 hover:text-brand-purple-light transition-colors">Tour Packages</a>
+          <a href="college-iv.html" class="text-slate-300 hover:text-brand-purple-light transition-colors">College IV & School</a>
+          <a href="fleet.html" class="text-slate-300 hover:text-brand-purple-light transition-colors">Bus & Vehicle Fleet</a>
+          <a href="about.html" class="text-slate-300 hover:text-brand-purple-light transition-colors">About Us</a>
+          <a href="contact.html" class="text-white font-bold border-b-2 border-brand-purple pb-1">Contact</a>
+        </div>
+
+        <div class="hidden md:flex items-center gap-3">
+          <a href="https://wa.me/917909241640?text=Hi%20Team%20Tusker,%20I%20want%20to%20connect%20with%20your%20office" target="_blank" class="px-4 py-2 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 shadow-md transition-all">
+            <i class="fa-brands fa-whatsapp text-sm"></i>
+            <span>WhatsApp Us</span>
+          </a>
+        </div>
+
+        <div class="lg:hidden flex items-center gap-2">
+          <button id="mobileMenuBtn" class="text-slate-300 hover:text-white p-2 focus:outline-none">
+            <i class="fa-solid fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="hidden lg:hidden bg-brand-card border-b border-brand-border px-6 py-5 space-y-4">
+      <a href="index.html" class="block text-slate-300 hover:text-brand-purple-light font-medium">Home</a>
+      <a href="packages.html" class="block text-slate-300 hover:text-brand-purple-light font-medium">Tour Packages (1D / 2D / 3D)</a>
+      <a href="college-iv.html" class="block text-slate-300 hover:text-brand-purple-light font-medium">College IV & School Tours</a>
+      <a href="fleet.html" class="block text-slate-300 hover:text-brand-purple-light font-medium">Bus & Vehicle Fleet Rentals</a>
+      <a href="about.html" class="block text-slate-300 hover:text-brand-purple-light font-medium">About Team Tusker</a>
+      <a href="contact.html" class="block text-brand-purple-light font-bold">Contact Details</a>
+    </div>
+  </nav>
+
+  <!-- ================= HERO HEADER ================= -->
+  <section class="purple-glow-bg py-20 px-4 sm:px-6 lg:px-8 text-center">
+    <div class="max-w-4xl mx-auto">
+      <span class="text-brand-purple-light text-xs font-bold uppercase tracking-widest block mb-2">Get in Touch</span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white font-heading">
+        Contact Team Tusker
+      </h1>
+      <p class="text-sm sm:text-base text-slate-300 mt-4 max-w-2xl mx-auto leading-relaxed">
+        Speak directly with our trip managers or request a tailored itinerary and vehicle quote.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT CARDS & FORM ================= -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left Column: Info Cards -->
+      <div class="lg:col-span-5 space-y-6">
+        
+        <!-- Phone Card -->
+        <div class="bg-brand-card p-6 rounded-3xl border border-brand-border/80 flex items-start gap-4">
+          <div class="w-12 h-12 rounded-2xl bg-brand-purple/20 text-brand-purple-light flex items-center justify-center text-xl shrink-0">
+            <i class="fa-solid fa-phone"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-white mb-1">Direct Call (24*7)</h3>
+            <a href="tel:+917909241640" class="text-xs text-brand-purple-light hover:underline font-bold block">+91 7909241640</a>
+            <a href="tel:+916238910728" class="text-xs text-brand-purple-light hover:underline font-bold block mt-0.5">+91 6238910728</a>
+            <span class="text-[10px] text-slate-500 mt-1 block">Quick WhatsApp support also active on both numbers</span>
+          </div>
+        </div>
+
+        <!-- Email Card -->
+        <div class="bg-brand-card p-6 rounded-3xl border border-brand-border/80 flex items-start gap-4">
+          <div class="w-12 h-12 rounded-2xl bg-brand-purple/20 text-brand-purple-light flex items-center justify-center text-xl shrink-0">
+            <i class="fa-solid fa-envelope"></i>
+          </div>
+          <div class="overflow-hidden">
+            <h3 class="text-sm font-bold text-white mb-1">Official Email</h3>
+            <a href="mailto:tuskertraveloguestourpackages@gmail.com" class="text-xs text-brand-purple-light hover:underline font-semibold block truncate">
+              tuskertraveloguestourpackages@gmail.com
+            </a>
+            <span class="text-[10px] text-slate-500 mt-1 block">Send official college/school permission letters</span>
+          </div>
+        </div>
+
+        <!-- Location Card -->
+        <div class="bg-brand-card p-6 rounded-3xl border border-brand-border/80 flex items-start gap-4">
+          <div class="w-12 h-12 rounded-2xl bg-brand-purple/20 text-brand-purple-light flex items-center justify-center text-xl shrink-0">
+            <i class="fa-solid fa-map-location-dot"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-white mb-1">Operational Hubs</h3>
+            <p class="text-xs text-slate-300 font-semibold">Thrissur</p>
+            <p class="text-xs text-brand-purple-light font-bold mt-1">All Over Kerala Service Available</p>
+            <span class="text-[10px] text-slate-500 mt-1 block">Pickups arranged from any district across Kerala</span>
+          </div>
+        </div>
+
+        <!-- Social Media Card -->
+        <div class="bg-brand-card p-6 rounded-3xl border border-brand-border/80">
+          <h3 class="text-sm font-bold text-white mb-3">Follow Team Tusker</h3>
+          <div class="flex items-center gap-3">
+            <a href="https://www.instagram.com/tusker_travelougues_official?igsh=eG8waXpocDhteTQ5" target="_blank" class="px-4 py-2 rounded-xl bg-brand-surface border border-brand-border text-xs text-slate-300 hover:text-white hover:border-brand-purple flex items-center gap-2 transition-all">
+              <i class="fa-brands fa-instagram text-brand-purple-light"></i>
+              <span>@tusker_travelougues_official</span>
+            </a>
+            <a href="https://wa.me/917909241640" target="_blank" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-2 transition-all">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>WhatsApp</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Full Interactive Booking Form -->
+      <div class="lg:col-span-7 bg-brand-card p-8 sm:p-10 rounded-3xl border border-brand-purple/40 shadow-2xl relative">
+        <span class="text-brand-purple-light text-[10px] font-bold uppercase tracking-widest">Fast Inquiry Form</span>
+        <h2 class="text-2xl font-extrabold text-white font-heading mt-1 mb-6">Send Your Tour Requirement</h2>
+
+        <form onsubmit="handleContactSubmit(event)" class="space-y-4 text-xs">
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Your Full Name *</label>
+              <input type="text" required placeholder="John Doe" id="cName" class="w-full bg-brand-surface border border-brand-border rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-brand-purple">
+            </div>
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Phone / WhatsApp Number *</label>
+              <input type="tel" required placeholder="+91 9876543210" id="cPhone" class="w-full bg-brand-surface border border-brand-border rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-brand-purple">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Email Address</label>
+              <input type="email" placeholder="example@email.com" id="cEmail" class="w-full bg-brand-surface border border-brand-border rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-brand-purple">
+            </div>
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Pickup District in Kerala</label>
+              <input type="text" placeholder="e.g. Thrissur / Kochi / Calicut" id="cLocation" class="w-full bg-brand-surface border border-brand-border rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-brand-purple">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Tour Duration</label>
+              <select id="cDuration" class="w-full bg-brand-surface border border-brand-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-purple">
+                <option>One Day Package</option>
+                <option selected>Two Days Package</option>
+                <option>Three Days Package</option>
+                <option>Multi-Day Custom Tour</option>
+                <option>Vehicle / Bus Rental Only</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Tour Category</label>
+              <select id="cCategory" class="w-full bg-brand-surface border border-brand-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-purple">
+                <option>College IV (Industrial Visit)</option>
+                <option>School Educational Tour</option>
+                <option selected>Family Vacation</option>
+                <option>Friends / Group Trip</option>
+                <option>Honeymoon Special</option>
+                <option>Pilgrimage Tour</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Target Destinations & Requirements</label>
+            <textarea rows="3" id="cNotes" placeholder="e.g. 45 students to Goa with DJ Bus and hotel stay..." class="w-full bg-brand-surface border border-brand-border rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-brand-purple resize-none"></textarea>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-3 pt-2">
+            <button type="submit" class="flex-1 py-3.5 bg-gradient-to-r from-brand-purple to-brand-purple-vibrant hover:from-brand-purple-vibrant hover:to-purple-500 text-white rounded-xl font-bold text-xs tracking-wide shadow-lg shadow-brand-purple/40 transition-all">
+              Send Requirement
+            </button>
+            <button type="button" onclick="sendContactViaWhatsApp()" class="py-3.5 px-6 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-all">
+              <i class="fa-brands fa-whatsapp text-sm"></i>
+              <span>Send via WhatsApp</span>
+            </button>
+          </div>
+
+          <p class="text-center text-[10px] text-slate-500"><i class="fa-solid fa-lock text-brand-purple-light mr-1"></i> 100% Privacy. Team Tusker will respond within 24 hrs.</p>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-brand-black border-t border-brand-border/70 py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div class="space-y-4">
+        <a href="index.html" class="flex items-center gap-3 group mb-3">
+          <img src="tusker-emblem.png" alt="Tusker Logo" class="h-10 w-auto object-contain filter brightness-125 drop-shadow-[0_0_15px_rgba(168,85,247,0.6)]">
+          <img src="logo.png" alt="Tusker Travelogues" class="h-8 sm:h-9 w-auto object-contain filter brightness-110">
+        </a>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          Registration No: <strong class="text-slate-300">KL-02-0047002</strong><br/>
+          Thrissur  All Over Kerala Service Available.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold text-sm mb-4">Quick Links</h4>
+        <ul class="space-y-2 text-xs text-slate-400">
+          <li><a href="index.html" class="hover:text-brand-purple-light">Home</a></li>
+          <li><a href="packages.html" class="hover:text-brand-purple-light">Tour Packages</a></li>
+          <li><a href="college-iv.html" class="hover:text-brand-purple-light">College IV & School</a></li>
+          <li><a href="fleet.html" class="hover:text-brand-purple-light">Bus & Vehicle Fleet</a></li>
+          <li><a href="about.html" class="hover:text-brand-purple-light">About Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold text-sm mb-4">Direct Contact</h4>
+        <p class="text-xs text-slate-300 font-semibold">+91 7909241640</p>
+        <p class="text-xs text-slate-300 font-semibold mt-1">+91 6238910728</p>
+        <p class="text-xs text-slate-400 mt-2">tuskertraveloguestourpackages@gmail.com</p>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold text-sm mb-4">24*7 Concierge</h4>
+        <p class="text-xs text-slate-400 mb-2">Connect with our trip curator right now on WhatsApp.</p>
+        <a href="https://wa.me/917909241640" target="_blank" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl transition-all text-center block">
+          Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= FLOATING ENQUIRE NOW ================= -->
+  <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+    <a href="https://wa.me/917909241640?text=Hi%20Team%20Tusker,%20I%20want%20to%20contact%20your%20office" target="_blank" class="w-12 h-12 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white shadow-2xl flex items-center justify-center text-xl transition-transform hover:scale-110">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <script>
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('cName').value;
+      alert(`Thank you, ${name}! Your requirement has been received by Team Tusker. Our team will contact you via WhatsApp / Call shortly!`);
+    }
+
+    function sendContactViaWhatsApp() {
+      const name = document.getElementById('cName').value || 'Customer';
+      const phone = document.getElementById('cPhone').value || 'Not provided';
+      const location = document.getElementById('cLocation').value || 'Kerala';
+      const duration = document.getElementById('cDuration').value;
+      const category = document.getElementById('cCategory').value;
+      const notes = document.getElementById('cNotes').value || 'None';
+
+      const msg = `*New Tour Enquiry - Team Tusker*%0A%0A• *Name:* ${encodeURIComponent(name)}%0A• *Phone:* ${encodeURIComponent(phone)}%0A• *Pickup:* ${encodeURIComponent(location)}%0A• *Duration:* ${encodeURIComponent(duration)}%0A• *Category:* ${encodeURIComponent(category)}%0A• *Requirements:* ${encodeURIComponent(notes)}`;
+      window.open(`https://wa.me/917909241640?text=${msg}`, '_blank');
+    }
+
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>

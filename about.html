@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Team Tusker | Tusker Tours & Travels (Reg: KL-02-0047002)</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: '#07070A',
+              card: '#111019',
+              cardHover: '#171526',
+              surface: '#1A1829',
+              border: '#29253F',
+              accentRed: '#FF2E4D',
+              purple: {
+                light: '#C084FC',
+                DEFAULT: '#9333EA',
+                vibrant: '#A855F7',
+                dark: '#7E22CE',
+                deep: '#3B0764'
+              }
+            }
+          },
+          fontFamily: {
+            heading: ['Outfit', 'sans-serif'],
+            body: ['Plus Jakarta Sans', 'sans-serif']
+          },
+          animation: {
+            'pulse-glow': 'pulseGlow 2.5s infinite',
+            'float': 'float 4s ease-in-out infinite'
+          },
+          keyframes: {
+            pulseGlow: {
+              '0%, 100%': { boxShadow: '0 0 20px rgba(168, 85, 247, 0.45)' },
+              '50%': { boxShadow: '0 0 45px rgba(168, 85, 247, 0.9)' }
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-6px)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #07070A;
+      color: #F8FAFC;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Outfit', sans-serif;
+    }
+    .purple-glow-bg {
+      background: radial-gradient(circle at 50% 12%, rgba(147, 51, 234, 0.22) 0%, rgba(7, 7, 10, 0) 70%);
+    }
+    .card-purple-glow:hover {
+      box-shadow: 0 12px 35px -10px rgba(168, 85, 247, 0.4);
+      border-color: #9333EA;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #0B0B10;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #2A2640;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #9333EA;
+    }
+  </style>
+</head>
+<body class="bg-brand-black text-slate-100 selection:bg-brand-purple selection:text-white custom-scrollbar relative overflow-x-hidden">
+
+  <!-- Fixed Brand Watermark & Ambient Glow Background (Enhanced Luminous Brightness) -->
+  <div class="fixed inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden">
+    <img src="brand-bg.png" alt="Tusker Brand Emblem" class="w-[550px] sm:w-[800px] lg:w-[1050px] max-w-none opacity-[0.22] sm:opacity-[0.28] select-none object-contain filter brightness-150 drop-shadow-[0_0_60px_rgba(168,85,247,0.5)]">
+  </div>
+  <div class="fixed top-0 left-1/4 w-[480px] h-[480px] bg-brand-purple-vibrant/20 rounded-full blur-[160px] pointer-events-none -z-10"></div>
+  <div class="fixed bottom-1/4 right-10 w-[550px] h-[550px] bg-brand-purple-deep/25 rounded-full blur-[170px] pointer-events-none -z-10"></div>
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="sticky top-0 z-40 bg-brand-black/90 backdrop-blur-xl border-b border-brand-border/70 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <a href="index.html" class="flex items-center gap-3 group py-1">
+          <img src="tusker-emblem.png" alt="Tusker Logo" class="h-11 sm:h-13 w-auto object-contain filter brightness-125 drop-shadow-[0_0_18px_rgba(168,85,247,0.7)] group-hover:scale-105 transition-transform duration-300">
+          <img src="logo.png" alt="Tusker Travelogues" class="h-9 sm:h-12 w-auto object-contain filter brightness-115 drop-shadow-[0_0_15px_rgba(168,85,247,0.45)] group-hover:brightness-125 transition-all">
+        </a><div class="hidden lg:flex items-center gap-7 text-sm font-medium">
+          <a href="index.html" class="text-slate-300 hover:text-brand-purple-light transition-colors">Home</a>
+          <a href="packages.html" class="text-slate-300 hover:text-brand-purple-light transition-colors">Tour Packages</a>
+          <a href="college-iv.html" class="text-slate-300 hover:text-brand-purple-light transition-colors">College IV & School</a>
+          <a href="fleet.html" class="text-slate-300 hover:text-brand-purple-light transition-colors">Bus & Vehicle Fleet</a>
+          <a href="about.html" class="text-white font-bold border-b-2 border-brand-purple pb-1">About Us</a>
+          <a href="contact.html" class="text-slate-300 hover:text-brand-purple-light transition-colors">Contact</a>
+        </div>
+
+        <div class="hidden md:flex items-center gap-3">
+          <a href="https://wa.me/917909241640?text=Hi%20Team%20Tusker,%20I%20would%20like%20to%20know%20more%20about%20your%20services" target="_blank" class="px-4 py-2 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 shadow-md transition-all">
+            <i class="fa-brands fa-whatsapp text-sm"></i>
+            <span>WhatsApp Us</span>
+          </a>
+          <button onclick="openEnquiryModal('About Us Page Booking')" class="bg-gradient-to-r from-brand-purple to-brand-purple-vibrant hover:from-brand-purple-vibrant hover:to-purple-500 text-white px-5 py-2.5 rounded-full text-xs font-bold hover:shadow-lg hover:shadow-brand-purple/40 hover:scale-105 transition-all duration-300 flex items-center gap-2">
+            <span>Plan With Us</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </button>
+        </div>
+
+        <div class="lg:hidden flex items-center gap-2">
+          <button onclick="openEnquiryModal('')" class="bg-brand-purple text-white px-3 py-1.5 rounded-lg text-xs font-bold">
+            Enquire
+          </button>
+          <button id="mobileMenuBtn" class="text-slate-300 hover:text-white p-2 focus:outline-none">
+            <i class="fa-solid fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="hidden lg:hidden bg-brand-card border-b border-brand-border px-6 py-5 space-y-4">
+      <a href="index.html" class="block text-slate-300 hover:text-brand-purple-light font-medium">Home</a>
+      <a href="packages.html" class="block text-slate-300 hover:text-brand-purple-light font-medium">Tour Packages (1D / 2D / 3D)</a>
+      <a href="college-iv.html" class="block text-slate-300 hover:text-brand-purple-light font-medium">College IV & School Tours</a>
+      <a href="fleet.html" class="block text-slate-300 hover:text-brand-purple-light font-medium">Bus & Vehicle Fleet Rentals</a>
+      <a href="about.html" class="block text-brand-purple-light font-bold">About Team Tusker</a>
+      <a href="contact.html" class="block text-slate-300 hover:text-brand-purple-light font-medium">Contact Details</a>
+    </div>
+  </nav>
+
+  <!-- ================= HERO HEADER ================= -->
+  <section class="purple-glow-bg py-20 px-4 sm:px-6 lg:px-8 text-center">
+    <div class="max-w-4xl mx-auto">
+      <span class="text-brand-purple-light text-xs font-bold uppercase tracking-widest block mb-2">Our Story & Mission</span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white font-heading">
+        Discover the World with Team Tusker
+      </h1>
+      <p class="text-sm sm:text-base text-slate-300 mt-4 max-w-2xl mx-auto leading-relaxed">
+        Your trusted travel companion across Kerala and South India. "Where every trip tells a story."
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT US VERBATIM WRITE-UP ================= -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+    <div class="bg-brand-card border border-brand-purple/40 rounded-3xl p-8 sm:p-12 shadow-2xl space-y-6 text-sm text-slate-300 leading-relaxed">
+      
+      <div class="flex items-center gap-4 border-b border-brand-border/60 pb-6">
+        <div class="flex items-center justify-center gap-2 mb-2"><img src="tusker-emblem.png" alt="Tusker Logo" class="h-10 w-auto object-contain"><img src="tusker-text.png" alt="Tusker" class="h-6 w-auto object-contain"></div>
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-white font-heading">Tusker Tours & Travels</h2>
+          <p class="text-xs text-brand-purple-light font-semibold">Government Registered Operator • REG NO: KL - 02 - 0047002</p>
+        </div>
+      </div>
+
+      <p class="text-base text-slate-200 font-medium leading-relaxed">
+        At <strong>Team Tusker Travelogues</strong>, we believe that every journey should be more than just a trip — it should be a story worth telling, a memory worth cherishing, and an experience that transforms you. With a deep passion for exploration and a commitment to excellence, we craft personalized travel experiences that go beyond the ordinary.
+      </p>
+
+      <p>
+        Whether you’re dreaming of serene backwaters, vibrant city escapes, misty hill stations, or cultural heritage trails, our dedicated team works tirelessly to turn your travel dreams into reality. From romantic getaways and family vacations to educational tours and adventure expeditions, we offer a wide range of curated packages to suit every kind of traveler.
+      </p>
+
+      <p>
+        What sets us apart is our attention to detail, our network of trusted partners, and our promise to deliver not just a trip, but a seamless, enriching, and truly unforgettable experience. We handle everything — from planning and bookings to guided tours and local experiences — so you can focus on what matters most: <strong>enjoying your journey.</strong>
+      </p>
+
+      <div class="p-6 rounded-2xl bg-brand-surface border border-brand-purple/50 text-center">
+        <p class="text-base font-bold text-white font-heading italic">
+          "Join hands with Team Tusker and open the door to new destinations, new cultures, and new perspectives. Let the world be your playground, and let us be your guide."
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= 6 CORE SERVICE PILLARS ================= -->
+  <section class="py-16 bg-brand-surface/40 border-y border-brand-border/60 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-brand-purple-light text-xs font-bold uppercase tracking-widest">The Tusker Promise</span>
+        <h2 class="text-3xl font-extrabold text-white font-heading mt-1">Our 6 Core Service Pillars</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <div class="bg-brand-card p-6 rounded-3xl border border-brand-border hover:border-brand-purple transition-all card-purple-glow">
+          <div class="w-12 h-12 rounded-2xl bg-brand-purple/20 text-brand-purple-light flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-headset"></i>
+          </div>
+          <h3 class="text-base font-bold text-white mb-1.5">24*7 Customer Support</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">Dedicated trip manager available 24/7 on phone and WhatsApp from start to finish.</p>
+        </div>
+
+        <div class="bg-brand-card p-6 rounded-3xl border border-brand-border hover:border-brand-purple transition-all card-purple-glow">
+          <div class="w-12 h-12 rounded-2xl bg-brand-accentRed/20 text-brand-accentRed flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-kit-medical"></i>
+          </div>
+          <h3 class="text-base font-bold text-white mb-1.5">24*7 Medical Support</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">Emergency medical backup, certified first aid, and network of hospitals across all routes.</p>
+        </div>
+
+        <div class="bg-brand-card p-6 rounded-3xl border border-brand-border hover:border-brand-purple transition-all card-purple-glow">
+          <div class="w-12 h-12 rounded-2xl bg-brand-purple/20 text-brand-purple-light flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-tags"></i>
+          </div>
+          <h3 class="text-base font-bold text-white mb-1.5">Affordable Rates</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">Transparent pricing with zero hidden charges and special rates for students and groups.</p>
+        </div>
+
+        <div class="bg-brand-card p-6 rounded-3xl border border-brand-border hover:border-brand-purple transition-all card-purple-glow">
+          <div class="w-12 h-12 rounded-2xl bg-brand-purple/20 text-brand-purple-light flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-person-hiking"></i>
+          </div>
+          <h3 class="text-base font-bold text-white mb-1.5">Experienced Tour Guides</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">Native licensed coordinators who know every local viewpoint, culture, and hidden gem.</p>
+        </div>
+
+        <div class="bg-brand-card p-6 rounded-3xl border border-brand-border hover:border-brand-purple transition-all card-purple-glow">
+          <div class="w-12 h-12 rounded-2xl bg-brand-purple/20 text-brand-purple-light flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-hotel"></i>
+          </div>
+          <h3 class="text-base font-bold text-white mb-1.5">Premium / Budget Friendly Stays</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">Handpicked verified resorts, pool villas, and homestays with verified hygiene standards.</p>
+        </div>
+
+        <div class="bg-brand-card p-6 rounded-3xl border border-brand-border hover:border-brand-purple transition-all card-purple-glow">
+          <div class="w-12 h-12 rounded-2xl bg-brand-purple/20 text-brand-purple-light flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-utensils"></i>
+          </div>
+          <h3 class="text-base font-bold text-white mb-1.5">Live / Hotel Fresh Quality Food</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">Hot, delicious, fresh traditional Kerala and South Indian catering throughout your travel.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-brand-black border-t border-brand-border/70 py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div class="space-y-4">
+        <a href="index.html" class="flex items-center gap-3 group mb-3">
+          <img src="tusker-emblem.png" alt="Tusker Logo" class="h-10 w-auto object-contain filter brightness-125 drop-shadow-[0_0_15px_rgba(168,85,247,0.6)]">
+          <img src="logo.png" alt="Tusker Travelogues" class="h-8 sm:h-9 w-auto object-contain filter brightness-110">
+        </a>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          Registration No: <strong class="text-slate-300">KL-02-0047002</strong><br/>
+          Thrissur  All Over Kerala Service Available.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold text-sm mb-4">Quick Links</h4>
+        <ul class="space-y-2 text-xs text-slate-400">
+          <li><a href="index.html" class="hover:text-brand-purple-light">Home</a></li>
+          <li><a href="packages.html" class="hover:text-brand-purple-light">Tour Packages</a></li>
+          <li><a href="college-iv.html" class="hover:text-brand-purple-light">College IV & School</a></li>
+          <li><a href="fleet.html" class="hover:text-brand-purple-light">Bus & Vehicle Fleet</a></li>
+          <li><a href="contact.html" class="hover:text-brand-purple-light">Contact & Locations</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold text-sm mb-4">Direct Contact</h4>
+        <p class="text-xs text-slate-300 font-semibold">+91 7909241640</p>
+        <p class="text-xs text-slate-300 font-semibold mt-1">+91 6238910728</p>
+        <p class="text-xs text-slate-400 mt-2">tuskertraveloguestourpackages@gmail.com</p>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold text-sm mb-4">Join Us Today</h4>
+        <button onclick="openEnquiryModal('Footer About Page')" class="w-full py-2.5 bg-brand-purple hover:bg-brand-purple-vibrant text-white font-bold text-xs rounded-xl transition-all shadow-md">
+          Request A Custom Quote
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= FLOATING ENQUIRE NOW ================= -->
+  <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+    <a href="https://wa.me/917909241640?text=Hi%20Team%20Tusker,%20I%20would%20like%20to%20plan%20a%20trip" target="_blank" class="w-12 h-12 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white shadow-2xl flex items-center justify-center text-xl transition-transform hover:scale-110">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <button onclick="openEnquiryModal('')" class="group relative flex items-center gap-3 px-5 py-3.5 rounded-full bg-gradient-to-r from-brand-purple via-brand-purple-vibrant to-brand-purple-dark text-white font-bold text-sm shadow-2xl shadow-purple-900/70 border border-purple-400/40 hover:scale-105 transition-all duration-300 animate-pulse-glow">
+      <span class="w-2.5 h-2.5 rounded-full bg-white animate-ping"></span>
+      <i class="fa-solid fa-paper-plane text-xs"></i>
+      <span class="tracking-wide">Enquire Now</span>
+    </button>
+  </div>
+
+  <!-- Modal -->
+  <div id="enquiryModal" class="fixed inset-0 z-50 hidden bg-brand-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6">
+    <div class="bg-brand-card border border-brand-purple/50 w-full max-w-lg rounded-3xl p-6 sm:p-8 shadow-2xl relative custom-scrollbar max-h-[90vh] overflow-y-auto">
+      <button onclick="closeEnquiryModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-brand-surface text-slate-400 hover:text-white flex items-center justify-center border border-brand-border">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-6">
+        <img src="tusker-emblem.png" alt="Tusker Logo" class="h-10 w-auto object-contain filter brightness-125 drop-shadow-[0_0_12px_rgba(168,85,247,0.6)]">
+        <img src="logo.png" alt="Tusker Travelogues" class="h-7 sm:h-8 w-auto object-contain">
+      </div>
+
+      <form id="enquiryForm" onsubmit="handleEnquirySubmit(event)" class="space-y-3.5 text-xs">
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Your Name *</label>
+          <input type="text" required placeholder="John Doe" id="enqName" class="w-full bg-brand-surface border border-brand-border rounded-xl px-3.5 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-brand-purple">
+        </div>
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">WhatsApp / Phone *</label>
+          <input type="tel" required placeholder="+91 9876543210" id="enqPhone" class="w-full bg-brand-surface border border-brand-border rounded-xl px-3.5 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-brand-purple">
+        </div>
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Trip Details</label>
+          <textarea rows="2" id="enqNotes" placeholder="Destination, dates, number of people..." class="w-full bg-brand-surface border border-brand-border rounded-xl px-3.5 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-brand-purple resize-none"></textarea>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-2 pt-2">
+          <button type="submit" class="flex-1 py-3 bg-gradient-to-r from-brand-purple to-brand-purple-vibrant text-white rounded-xl font-bold text-xs tracking-wide shadow-lg shadow-brand-purple/40">
+            Send Enquiry
+          </button>
+          <button type="button" onclick="sendViaWhatsApp()" class="py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-1.5">
+            <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openEnquiryModal(tourName) {
+      const modal = document.getElementById('enquiryModal');
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeEnquiryModal() {
+      const modal = document.getElementById('enquiryModal');
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+    function handleEnquirySubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('enqName').value;
+      alert(`Thank you, ${name}! Your message has been received by Team Tusker.`);
+      closeEnquiryModal();
+    }
+    function sendViaWhatsApp() {
+      const name = document.getElementById('enqName').value || 'Customer';
+      const phone = document.getElementById('enqPhone').value || 'Not provided';
+      const notes = document.getElementById('enqNotes').value || 'None';
+      const msg = `*New Inquiry - Team Tusker*%0A%0A• *Name:* ${encodeURIComponent(name)}%0A• *Phone:* ${encodeURIComponent(phone)}%0A• *Notes:* ${encodeURIComponent(notes)}`;
+      window.open(`https://wa.me/917909241640?text=${msg}`, '_blank');
+      closeEnquiryModal();
+    }
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>
