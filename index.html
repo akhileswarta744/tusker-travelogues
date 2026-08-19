@@ -92,12 +92,12 @@
       background: radial-gradient(circle at 50% 10%, rgba(147, 51, 234, 0.35) 0%, rgba(7, 7, 10, 0) 75%);
     }
     .card-purple-glow {
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .card-purple-glow:hover {
-      box-shadow: 0 20px 45px -10px rgba(168, 85, 247, 0.55);
+      box-shadow: 0 20px 45px -10px rgba(168, 85, 247, 0.6);
       border-color: #A855F7;
-      transform: translateY(-4px);
+      transform: translateY(-5px);
     }
     .glass-card {
       background: rgba(16, 14, 25, 0.88);
@@ -106,7 +106,7 @@
       border: 1px solid rgba(40, 36, 62, 0.9);
     }
     .glass-card:hover {
-      border-color: rgba(168, 85, 247, 0.65);
+      border-color: rgba(168, 85, 247, 0.7);
     }
     .custom-scrollbar::-webkit-scrollbar {
       width: 6px;
@@ -131,20 +131,12 @@
       opacity: 1;
       transform: translateY(0px);
     }
-    /* Skeleton Shimmer Background */
-    .skeleton-box {
-      position: relative;
-      overflow: hidden;
-      background: rgba(24, 21, 40, 0.8);
-      border-radius: 12px;
+    /* Video Hover Overlay Transition */
+    .video-hover-container video {
+      transition: opacity 0.6s ease-in-out;
     }
-    .skeleton-box::after {
-      position: absolute;
-      top: 0; right: 0; bottom: 0; left: 0;
-      transform: translateX(-100%);
-      background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, rgba(168, 85, 247, 0.15) 50%, rgba(255, 255, 255, 0) 100%);
-      animation: shimmer 1.8s infinite;
-      content: '';
+    .video-hover-container:hover video {
+      opacity: 1;
     }
   </style>
 </head>
@@ -209,20 +201,24 @@
 
         <!-- Right Quick Actions -->
         <div class="hidden md:flex items-center gap-3">
+          <button onclick="openVideoReelModal()" class="px-3.5 py-2 rounded-full bg-brand-surface border border-brand-purple/50 hover:border-brand-purple text-brand-purple-light hover:text-white text-xs font-bold flex items-center gap-2 transition-all">
+            <i class="fa-solid fa-circle-play text-brand-accentRed animate-pulse"></i>
+            <span>Watch Reel</span>
+          </button>
           <a href="https://wa.me/917909241640?text=Hi%20Team%20Tusker,%20I%20would%20like%20to%20enquire%20about%20a%20tour%20package" target="_blank" class="px-4 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-2 shadow-lg shadow-emerald-950/50 hover:scale-105 transition-all">
             <i class="fa-brands fa-whatsapp text-sm"></i>
-            <span>WhatsApp Us</span>
+            <span>WhatsApp</span>
           </a>
           <button onclick="openEnquiryModal('')" class="bg-gradient-to-r from-brand-purple to-brand-purple-vibrant hover:from-brand-purple-vibrant hover:to-purple-500 text-white px-5 py-2.5 rounded-full text-xs font-bold hover:shadow-lg hover:shadow-brand-purple/40 hover:scale-105 transition-all duration-300 flex items-center gap-2">
-            <span>Book A Trip</span>
+            <span>Book Trip</span>
             <i class="fa-solid fa-arrow-right text-[10px]"></i>
           </button>
         </div>
 
         <!-- Mobile Menu Toggle -->
         <div class="lg:hidden flex items-center gap-2">
-          <button onclick="openEnquiryModal('')" class="bg-brand-purple text-white px-3 py-1.5 rounded-xl text-xs font-bold shadow-md">
-            Enquire
+          <button onclick="openVideoReelModal()" class="w-8 h-8 rounded-xl bg-brand-surface border border-brand-purple/50 text-brand-accentRed flex items-center justify-center text-xs">
+            <i class="fa-solid fa-play"></i>
           </button>
           <button id="mobileMenuBtn" class="text-slate-300 hover:text-white p-2 focus:outline-none">
             <i class="fa-solid fa-bars text-xl"></i>
@@ -231,13 +227,9 @@
       </div>
     </div>
 
-    <!-- Mobile Slide Drawer Menu -->
-    <div id="mobileMenu" class="hidden lg:hidden bg-brand-card/98 border-b border-brand-border px-6 py-6 space-y-4 shadow-2xl transition-all duration-300">
-      <div class="flex items-center justify-between pb-3 border-b border-brand-border/60">
-        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Quick Navigation</span>
-        <span class="text-[10px] text-brand-purple-light font-bold">KL-02-0047002</span>
-      </div>
-      <a href="index.html" class="block text-brand-purple-light font-extrabold text-sm py-1">Home</a>
+    <!-- Mobile Slide Drawer -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-brand-card/98 border-b border-brand-border px-6 py-6 space-y-4 shadow-2xl">
+      <a href="index.html" class="block text-brand-purple-light font-bold py-1">Home</a>
       <a href="packages.html" class="block text-slate-300 hover:text-brand-purple-light font-medium py-1">Tour Packages (1D / 2D / 3D)</a>
       <a href="college-iv.html" class="block text-slate-300 hover:text-brand-purple-light font-medium py-1 flex items-center justify-between">
         <span>College IV & School Tours</span>
@@ -247,24 +239,27 @@
       <a href="about.html" class="block text-slate-300 hover:text-brand-purple-light font-medium py-1">About Team Tusker</a>
       <a href="contact.html" class="block text-slate-300 hover:text-brand-purple-light font-medium py-1">Contact & Locations</a>
       <div class="pt-3 flex flex-col gap-2.5">
-        <a href="https://wa.me/917909241640" target="_blank" class="w-full bg-emerald-600 py-3 rounded-2xl text-white font-bold text-xs text-center flex items-center justify-center gap-2 shadow-lg">
-          <i class="fa-brands fa-whatsapp text-sm"></i> Chat on WhatsApp (+91 7909241640)
-        </a>
-        <button onclick="openEnquiryModal('')" class="w-full bg-brand-purple py-3 rounded-2xl text-white font-bold text-xs shadow-lg shadow-brand-purple/30">
-          Plan Custom Package
+        <button onclick="openVideoReelModal()" class="w-full bg-brand-surface border border-brand-purple/60 py-3 rounded-2xl text-brand-purple-light font-bold text-xs flex items-center justify-center gap-2">
+          <i class="fa-solid fa-circle-play text-brand-accentRed"></i> Watch 4K Tour Reel
         </button>
+        <a href="https://wa.me/917909241640" target="_blank" class="w-full bg-emerald-600 py-3 rounded-2xl text-white font-bold text-xs text-center flex items-center justify-center gap-2 shadow-lg">
+          <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp Us (+91 7909241640)
+        </a>
       </div>
     </div>
   </nav>
 
-  <!-- ================= HERO SECTION WITH DATE RANGE & CASCADING DROPDOWNS ================= -->
+  <!-- ================= HERO SECTION WITH AMBIENT VIDEO BADGE ================= -->
   <section class="relative min-h-[92vh] flex items-center justify-center purple-glow-bg px-4 sm:px-6 lg:px-8 pt-8 pb-20">
     <div class="max-w-6xl mx-auto text-center relative z-10">
       
-      <!-- Trust Badge -->
-      <div class="inline-flex items-center gap-2.5 px-5 py-2 rounded-full glass-card text-brand-purple-light text-xs font-semibold mb-6 shadow-xl animate-float">
+      <!-- Trust Badge & Watch Video Trigger -->
+      <div class="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-2 rounded-full glass-card text-brand-purple-light text-xs font-semibold mb-6 shadow-xl animate-float flex-wrap justify-center">
         <span class="w-2.5 h-2.5 rounded-full bg-brand-accentRed animate-ping"></span>
         <span class="text-slate-100 font-bold">★ 4.9/5 Rating • Kerala's Premier Tour & College IV Specialists</span>
+        <button onclick="openVideoReelModal()" class="text-brand-accentRed hover:underline flex items-center gap-1 font-extrabold text-[11px] ml-1">
+          <i class="fa-solid fa-circle-play"></i> Watch 4K Video Reel
+        </button>
       </div>
 
       <!-- Main Headline -->
@@ -375,33 +370,46 @@
     </div>
   </section>
 
-  <!-- ================= SECTION: FEATURED PACKAGES SHOWCASE ================= -->
+  <!-- ================= SECTION: FEATURED PACKAGES WITH VIDEO HOVER ANIMATION ================= -->
   <section class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 reveal-init">
       <div>
-        <span class="text-brand-purple-light text-xs font-bold uppercase tracking-widest block mb-1">Curated Travel Catalog</span>
+        <div class="flex items-center gap-2 mb-1">
+          <span class="text-brand-purple-light text-xs font-bold uppercase tracking-widest">Curated Travel Catalog</span>
+          <span class="bg-brand-accentRed/20 text-brand-accentRed text-[9px] font-black px-2 py-0.5 rounded-full uppercase flex items-center gap-1">
+            <i class="fa-solid fa-video text-[8px] animate-pulse"></i> 4K Video Hover
+          </span>
+        </div>
         <h2 class="text-2xl sm:text-4xl font-extrabold text-white font-heading">Trending Tour Packages</h2>
-        <p class="text-xs text-slate-400 mt-1">All packages include verified hotel/resort stay, fresh food, and luxury AC transport.</p>
+        <p class="text-xs text-slate-400 mt-1">Hover over any card to view cinematic video animation. Includes verified hotel stay & AC travel.</p>
       </div>
-      <div class="mt-4 md:mt-0">
+      <div class="mt-4 md:mt-0 flex gap-2">
         <a href="packages.html" class="px-5 py-2.5 rounded-xl bg-brand-surface border border-brand-purple/60 text-brand-purple-light hover:bg-brand-purple hover:text-white text-xs font-bold transition-all inline-flex items-center gap-2">
-          <span>View All 27+ Destinations</span>
+          <span>Explore All 27+ Destinations</span>
           <i class="fa-solid fa-arrow-right text-[10px]"></i>
         </a>
       </div>
     </div>
 
-    <!-- Package Cards Grid -->
+    <!-- Package Cards Grid with Smooth Video Hover -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
       
-      <!-- Card 1: Goa 3D -->
-      <div class="glass-card rounded-[28px] overflow-hidden border border-brand-border/80 hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group reveal-init">
+      <!-- Card 1: Goa 3D with Video Hover -->
+      <div class="video-hover-container glass-card rounded-[28px] overflow-hidden border border-brand-border/80 hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group reveal-init" onmouseenter="playCardVideo(this)" onmouseleave="pauseCardVideo(this)">
         <div>
-          <div class="relative h-48 sm:h-52 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&auto=format&fit=crop&q=80" alt="Goa Beaches" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+          <div class="relative h-52 sm:h-56 overflow-hidden">
+            <!-- Base Image Poster -->
+            <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&auto=format&fit=crop&q=80" alt="Goa Beaches" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+            <!-- Autoplay Hover Video Stream -->
+            <video class="absolute inset-0 w-full h-full object-cover opacity-0 pointer-events-none" loop muted playsinline preload="metadata">
+              <source src="https://assets.mixkit.co/videos/preview/mixkit-waves-in-the-water-1164-large.mp4" type="video/mp4">
+            </video>
             <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
             <span class="absolute top-3 left-3 bg-brand-accentRed text-white text-[10px] font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow-md">
               ★ #1 Bestseller
+            </span>
+            <span class="absolute bottom-3 left-3 bg-black/80 backdrop-blur-md text-brand-purple-light text-[10px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border/70 flex items-center gap-1">
+              <i class="fa-solid fa-play text-[8px] animate-pulse"></i> 4K Video Hover
             </span>
             <span class="absolute bottom-3 right-3 bg-brand-black/90 backdrop-blur-md text-slate-100 text-xs font-extrabold px-3.5 py-1.5 rounded-xl border border-brand-border">
               3 Days / 2 Nights
@@ -420,21 +428,29 @@
             </ul>
           </div>
         </div>
-        <div class="p-5 sm:p-7 pt-0">
-          <button onclick="openEnquiryModal('Goa 3 Day Grand Expedition')" class="w-full py-3.5 bg-gradient-to-r from-brand-purple to-brand-purple-vibrant hover:from-brand-purple-vibrant hover:to-purple-500 text-white font-extrabold text-xs sm:text-sm rounded-2xl shadow-lg shadow-brand-purple/30 active:scale-98 transition-all">
+        <div class="p-5 sm:p-7 pt-0 flex gap-2">
+          <button onclick="openEnquiryModal('Goa 3 Day Grand Expedition')" class="flex-1 py-3.5 bg-gradient-to-r from-brand-purple to-brand-purple-vibrant hover:from-brand-purple-vibrant hover:to-purple-500 text-white font-extrabold text-xs sm:text-sm rounded-2xl shadow-lg shadow-brand-purple/30 active:scale-98 transition-all">
             Enquire Goa Package
           </button>
         </div>
       </div>
 
-      <!-- Card 2: Munnar - Kodaikanal - Vagamon -->
-      <div class="glass-card rounded-[28px] overflow-hidden border border-brand-border/80 hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group reveal-init">
+      <!-- Card 2: Munnar - Kodaikanal with Video Hover -->
+      <div class="video-hover-container glass-card rounded-[28px] overflow-hidden border border-brand-border/80 hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group reveal-init" onmouseenter="playCardVideo(this)" onmouseleave="pauseCardVideo(this)">
         <div>
-          <div class="relative h-48 sm:h-52 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?w=800&auto=format&fit=crop&q=80" alt="Munnar Tea Hills" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+          <div class="relative h-52 sm:h-56 overflow-hidden">
+            <!-- Base Image Poster -->
+            <img src="https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?w=800&auto=format&fit=crop&q=80" alt="Munnar Tea Hills" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+            <!-- Autoplay Hover Video Stream -->
+            <video class="absolute inset-0 w-full h-full object-cover opacity-0 pointer-events-none" loop muted playsinline preload="metadata">
+              <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-green-mountain-forest-41551-large.mp4" type="video/mp4">
+            </video>
             <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
             <span class="absolute top-3 left-3 bg-brand-purple text-white text-[10px] font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow-md">
               Hill Station Special
+            </span>
+            <span class="absolute bottom-3 left-3 bg-black/80 backdrop-blur-md text-brand-purple-light text-[10px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border/70 flex items-center gap-1">
+              <i class="fa-solid fa-play text-[8px] animate-pulse"></i> 4K Video Hover
             </span>
             <span class="absolute bottom-3 right-3 bg-brand-black/90 backdrop-blur-md text-slate-100 text-xs font-extrabold px-3.5 py-1.5 rounded-xl border border-brand-border">
               2 Days / 1 Night
@@ -453,21 +469,29 @@
             </ul>
           </div>
         </div>
-        <div class="p-5 sm:p-7 pt-0">
-          <button onclick="openEnquiryModal('Munnar - Kodaikanal Tour Package')" class="w-full py-3.5 bg-gradient-to-r from-brand-purple to-brand-purple-vibrant hover:from-brand-purple-vibrant hover:to-purple-500 text-white font-extrabold text-xs sm:text-sm rounded-2xl shadow-lg shadow-brand-purple/30 active:scale-98 transition-all">
+        <div class="p-5 sm:p-7 pt-0 flex gap-2">
+          <button onclick="openEnquiryModal('Munnar - Kodaikanal Tour Package')" class="flex-1 py-3.5 bg-gradient-to-r from-brand-purple to-brand-purple-vibrant hover:from-brand-purple-vibrant hover:to-purple-500 text-white font-extrabold text-xs sm:text-sm rounded-2xl shadow-lg shadow-brand-purple/30 active:scale-98 transition-all">
             Enquire Munnar Package
           </button>
         </div>
       </div>
 
-      <!-- Card 3: Coorg - Mysore - Ooty -->
-      <div class="glass-card rounded-[28px] overflow-hidden border border-brand-border/80 hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group reveal-init">
+      <!-- Card 3: Coorg - Mysore - Ooty with Video Hover -->
+      <div class="video-hover-container glass-card rounded-[28px] overflow-hidden border border-brand-border/80 hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group reveal-init" onmouseenter="playCardVideo(this)" onmouseleave="pauseCardVideo(this)">
         <div>
-          <div class="relative h-48 sm:h-52 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=800&auto=format&fit=crop&q=80" alt="Ooty Hills" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+          <div class="relative h-52 sm:h-56 overflow-hidden">
+            <!-- Base Image Poster -->
+            <img src="mysore-palace.jpg" alt="Mysore Palace" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+            <!-- Autoplay Hover Video Stream -->
+            <video class="absolute inset-0 w-full h-full object-cover opacity-0 pointer-events-none" loop muted playsinline preload="metadata">
+              <source src="https://assets.mixkit.co/videos/preview/mixkit-driving-on-a-road-surrounded-by-nature-41554-large.mp4" type="video/mp4">
+            </video>
             <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
             <span class="absolute top-3 left-3 bg-emerald-600 text-white text-[10px] font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow-md">
               Top Family Choice
+            </span>
+            <span class="absolute bottom-3 left-3 bg-black/80 backdrop-blur-md text-brand-purple-light text-[10px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border/70 flex items-center gap-1">
+              <i class="fa-solid fa-play text-[8px] animate-pulse"></i> 4K Video Hover
             </span>
             <span class="absolute bottom-3 right-3 bg-brand-black/90 backdrop-blur-md text-slate-100 text-xs font-extrabold px-3.5 py-1.5 rounded-xl border border-brand-border">
               3 Days / 2 Nights
@@ -486,8 +510,8 @@
             </ul>
           </div>
         </div>
-        <div class="p-5 sm:p-7 pt-0">
-          <button onclick="openEnquiryModal('Coorg - Mysore - Ooty Grand Tour')" class="w-full py-3.5 bg-gradient-to-r from-brand-purple to-brand-purple-vibrant hover:from-brand-purple-vibrant hover:to-purple-500 text-white font-extrabold text-xs sm:text-sm rounded-2xl shadow-lg shadow-brand-purple/30 active:scale-98 transition-all">
+        <div class="p-5 sm:p-7 pt-0 flex gap-2">
+          <button onclick="openEnquiryModal('Coorg - Mysore - Ooty Grand Tour')" class="flex-1 py-3.5 bg-gradient-to-r from-brand-purple to-brand-purple-vibrant hover:from-brand-purple-vibrant hover:to-purple-500 text-white font-extrabold text-xs sm:text-sm rounded-2xl shadow-lg shadow-brand-purple/30 active:scale-98 transition-all">
             Enquire Coorg-Ooty Package
           </button>
         </div>
@@ -496,7 +520,7 @@
     </div>
   </section>
 
-  <!-- ================= SECTION: COLLEGE IV SPOTLIGHT ================= -->
+  <!-- ================= SECTION: COLLEGE IV SPOTLIGHT WITH CAMPFIRE VIDEO HOVER ================= -->
   <section class="py-16 sm:py-20 bg-brand-surface/40 border-y border-brand-border/60 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 items-center">
@@ -547,9 +571,15 @@
         </div>
 
         <div class="lg:col-span-5 reveal-init">
-          <div class="relative rounded-3xl overflow-hidden border border-brand-purple/50 shadow-2xl group">
-            <img src="https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=800&auto=format&fit=crop&q=80" alt="Resort Campfire Night" class="w-full h-[320px] sm:h-[440px] object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="video-hover-container relative rounded-3xl overflow-hidden border border-brand-purple/50 shadow-2xl group cursor-pointer" onmouseenter="playCardVideo(this)" onmouseleave="pauseCardVideo(this)">
+            <img src="https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=800&auto=format&fit=crop&q=80" alt="Resort Campfire Night" class="w-full h-[320px] sm:h-[440px] object-cover group-hover:scale-105 transition-transform duration-700">
+            <video class="absolute inset-0 w-full h-full object-cover opacity-0 pointer-events-none" loop muted playsinline preload="metadata">
+              <source src="https://assets.mixkit.co/videos/preview/mixkit-bonfire-burning-in-the-night-42880-large.mp4" type="video/mp4">
+            </video>
             <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/30 to-transparent"></div>
+            <span class="absolute top-4 right-4 bg-black/80 backdrop-blur-md text-brand-purple-light text-[10px] font-extrabold px-3 py-1 rounded-full border border-brand-border/70 flex items-center gap-1.5 shadow-lg">
+              <i class="fa-solid fa-fire text-amber-400 animate-pulse"></i> Campfire Video Hover
+            </span>
             <div class="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 p-3.5 sm:p-4 rounded-2xl bg-brand-card/90 backdrop-blur-md border border-brand-border text-xs text-white">
               <span class="text-brand-purple-light font-bold uppercase text-[10px]">Student Experience</span>
               <p class="font-bold mt-0.5">"Best IV experience with Team Tusker! Incredible DJ bus, resort campfire, and zero stress with permissions."</p>
@@ -924,7 +954,43 @@
     </button>
   </div>
 
-  <!-- ================= UI UPGRADE 1: PREMIUM DATE RANGE PICKER MODAL (From Image 1) ================= -->
+  <!-- ================= CINEMATIC 4K VIDEO TOUR REEL MODAL ================= -->
+  <div id="videoReelModal" class="fixed inset-0 z-50 hidden bg-brand-black/95 backdrop-blur-xl flex items-center justify-center p-4 sm:p-6 transition-all duration-300">
+    <div class="bg-brand-card border border-brand-purple/60 w-full max-w-3xl rounded-3xl overflow-hidden shadow-2xl relative animate-float">
+      
+      <!-- Video Modal Header -->
+      <div class="p-4 bg-brand-surface/90 border-b border-brand-border flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <span class="w-2 h-2 rounded-full bg-brand-accentRed animate-ping"></span>
+          <h4 class="text-sm font-bold text-white flex items-center gap-2 font-heading">
+            <i class="fa-solid fa-video text-brand-purple-light"></i>
+            <span>Tusker Travelogues 4K Tour Experience Reel</span>
+          </h4>
+        </div>
+        <button onclick="closeVideoReelModal()" class="w-8 h-8 rounded-full bg-brand-card text-slate-400 hover:text-white flex items-center justify-center border border-brand-border transition-colors">
+          <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+      </div>
+
+      <!-- Video Player Stream -->
+      <div class="relative aspect-video bg-black flex items-center justify-center">
+        <video id="reelPlayer" class="w-full h-full object-cover" controls loop playsinline>
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-green-mountain-forest-41551-large.mp4" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
+      </div>
+
+      <!-- Video Footer Action -->
+      <div class="p-4 bg-brand-card border-t border-brand-border flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p class="text-xs text-slate-400 text-center sm:text-left">Experience DJ sound buses, resort campfires & scenic hills with Team Tusker.</p>
+        <button onclick="closeVideoReelModal(); openEnquiryModal('4K Video Reel Inquiry');" class="px-5 py-2.5 bg-brand-purple hover:bg-brand-purple-vibrant text-white text-xs font-bold rounded-xl transition-all shadow-md">
+          Plan Similar Tour
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= UI UPGRADE 1: PREMIUM DATE RANGE PICKER MODAL ================= -->
   <div id="datePickerModal" class="fixed inset-0 z-50 hidden bg-brand-black/85 backdrop-blur-md flex items-center justify-center p-4">
     <div class="bg-brand-card border border-brand-purple/60 w-full max-w-xl rounded-3xl p-5 sm:p-7 shadow-2xl relative animate-float max-h-[90vh] overflow-y-auto custom-scrollbar">
       
@@ -940,7 +1006,6 @@
           </div>
         </div>
 
-        <!-- Presets Matching Screenshot (Today, Last 7 Days, This Month, Apply) -->
         <div class="flex items-center gap-1.5 text-[11px] font-bold flex-wrap">
           <button type="button" onclick="setPresetDate(1)" class="px-2.5 py-1 rounded-lg bg-brand-surface text-slate-300 hover:text-white border border-brand-border hover:border-brand-purple transition-all">1 Day</button>
           <button type="button" onclick="setPresetDate(2)" class="px-2.5 py-1 rounded-lg bg-brand-surface text-slate-300 hover:text-white border border-brand-border hover:border-brand-purple transition-all">2 Days</button>
@@ -949,10 +1014,7 @@
         </div>
       </div>
 
-      <!-- Date Range UI Body (Left Summary + Right Pickers) -->
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
-        
-        <!-- Left Summary Sidebar Matching Screenshot -->
         <div class="p-4 rounded-2xl bg-brand-surface/90 border border-brand-purple/40 text-center flex flex-col justify-center items-center">
           <div class="w-10 h-10 rounded-2xl bg-brand-purple/30 text-brand-purple-light flex items-center justify-center text-base mb-2">
             <i class="fa-solid fa-calendar-check"></i>
@@ -966,7 +1028,6 @@
           </span>
         </div>
 
-        <!-- Right Inputs -->
         <div class="sm:col-span-2 space-y-3">
           <div>
             <label class="block text-[11px] font-bold text-slate-300 mb-1">Departure / Start Date</label>
@@ -977,10 +1038,8 @@
             <input type="date" id="pickerEndDate" onchange="calculateDateRange()" class="w-full bg-brand-surface border border-brand-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-brand-purple font-semibold">
           </div>
         </div>
-
       </div>
 
-      <!-- Action Footer Matching Screenshot (Apply Range Button) -->
       <div class="flex items-center justify-end gap-2 pt-2 border-t border-brand-border/60">
         <button type="button" onclick="clearDateRange()" class="px-4 py-2 text-xs font-bold text-slate-400 hover:text-white">Clear</button>
         <button type="button" onclick="applyDateRange()" class="px-5 py-2.5 bg-gradient-to-r from-brand-purple to-brand-purple-vibrant hover:from-brand-purple-vibrant hover:to-purple-500 text-white text-xs font-extrabold rounded-xl shadow-lg shadow-brand-purple/40 flex items-center gap-1.5 active:scale-95 transition-all">
@@ -992,7 +1051,7 @@
     </div>
   </div>
 
-  <!-- ================= ENQUIRY MODAL (Glassmorphic) ================= -->
+  <!-- ================= ENQUIRY MODAL ================= -->
   <div id="enquiryModal" class="fixed inset-0 z-50 hidden bg-brand-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 transition-all duration-300">
     <div class="bg-brand-card border border-brand-purple/50 w-full max-w-lg rounded-3xl p-6 sm:p-8 shadow-2xl relative animate-float overflow-hidden custom-scrollbar max-h-[90vh] overflow-y-auto">
       <div class="absolute -top-20 -right-20 w-44 h-44 bg-brand-purple-vibrant/30 rounded-full blur-3xl pointer-events-none"></div>
@@ -1086,7 +1145,7 @@
     </div>
   </div>
 
-  <!-- ================= UI UPGRADE 4: PREMIUM ANIMATED TOAST NOTIFICATION (From Image 4) ================= -->
+  <!-- ================= UI UPGRADE 4: PREMIUM ANIMATED TOAST NOTIFICATION ================= -->
   <div id="premiumToast" class="fixed top-6 right-4 sm:right-6 z-50 hidden transition-all duration-500 transform translate-y-[-20px] opacity-0 max-w-sm w-[90%] sm:w-full">
     <div class="bg-gradient-to-r from-[#105a2b] via-[#15803d] to-[#16a34a] text-white p-4 rounded-2xl shadow-[0_12px_35px_rgba(34,197,94,0.45)] border border-emerald-400/40 relative overflow-hidden flex items-center gap-3.5">
       <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-xl shrink-0">
@@ -1100,17 +1159,15 @@
         <i class="fa-solid fa-xmark"></i>
       </button>
       
-      <!-- Animated Progress Bar -->
       <div class="absolute bottom-0 left-0 h-1 bg-emerald-200/80 w-full animate-progress"></div>
     </div>
   </div>
 
-  <!-- ================= UI UPGRADE 5: PREMIUM SUCCESS POPUP MODAL (From Image 5) ================= -->
+  <!-- ================= UI UPGRADE 5: PREMIUM SUCCESS POPUP MODAL ================= -->
   <div id="premiumSuccessModal" class="fixed inset-0 z-50 hidden bg-brand-black/90 backdrop-blur-lg flex items-center justify-center p-4">
     <div class="bg-gradient-to-br from-[#0e8a75] via-[#10705a] to-[#0f5344] text-white w-full max-w-md rounded-[32px] p-6 sm:p-8 shadow-[0_20px_50px_rgba(16,185,129,0.4)] border border-emerald-300/40 text-center relative animate-float overflow-hidden">
       <div class="absolute -top-16 -right-16 w-36 h-36 bg-emerald-400/30 rounded-full blur-2xl pointer-events-none"></div>
 
-      <!-- Scalloped Badge Icon (Image 5) -->
       <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 rounded-full bg-white flex items-center justify-center text-emerald-600 text-2xl sm:text-3xl shadow-xl animate-pulse-glow">
         <i class="fa-solid fa-circle-check"></i>
       </div>
@@ -1141,7 +1198,39 @@
 
   <!-- ================= JAVASCRIPT ANIMATIONS & CONTROLLERS ================= -->
   <script>
-    // 1. Scroll Reveal IntersectionObserver
+    // Video Hover Physics
+    function playCardVideo(container) {
+      const vid = container.querySelector('video');
+      if (vid) {
+        vid.play().catch(() => {});
+      }
+    }
+
+    function pauseCardVideo(container) {
+      const vid = container.querySelector('video');
+      if (vid) {
+        vid.pause();
+      }
+    }
+
+    // Video Tour Reel Modal
+    function openVideoReelModal() {
+      const modal = document.getElementById('videoReelModal');
+      const player = document.getElementById('reelPlayer');
+      modal.classList.remove('hidden');
+      if (player) player.play().catch(() => {});
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeVideoReelModal() {
+      const modal = document.getElementById('videoReelModal');
+      const player = document.getElementById('reelPlayer');
+      modal.classList.add('hidden');
+      if (player) player.pause();
+      document.body.style.overflow = 'auto';
+    }
+
+    // Scroll Reveal IntersectionObserver
     document.addEventListener('DOMContentLoaded', () => {
       const reveals = document.querySelectorAll('.reveal-init');
       const observer = new IntersectionObserver((entries) => {
@@ -1154,7 +1243,7 @@
 
       reveals.forEach(el => observer.observe(el));
 
-      // 2. Animated Number Counter on Viewport Entry
+      // Animated Number Counter
       const counters = document.querySelectorAll('.counter');
       let counted = false;
       const countObserver = new IntersectionObserver((entries) => {
@@ -1244,7 +1333,7 @@
       closeDatePickerModal();
     }
 
-    // Modal controllers
+    // Clean Modal controllers
     function openEnquiryModal(tourName) {
       const modal = document.getElementById('enquiryModal');
       const input = document.getElementById('modalTourInput');
@@ -1275,7 +1364,7 @@
       openEnquiryModal(`${duration}: ${dest} (${type})`);
     }
 
-    // Toast Controller (UI Upgrade 4)
+    // Toast Controller
     function showToast(title, message) {
       const toast = document.getElementById('premiumToast');
       document.getElementById('toastTitle').innerText = title;
@@ -1298,7 +1387,7 @@
       }, 400);
     }
 
-    // Success Modal Controller (UI Upgrade 5)
+    // Success Modal Controller
     function showSuccessModal(name, tour) {
       const modal = document.getElementById('premiumSuccessModal');
       document.getElementById('successModalText').innerText = `Thank you, ${name}! Your enquiry for "${tour}" has been sent to Team Tusker. Our team will contact you via WhatsApp / Call (+91 7909241640) shortly!`;
