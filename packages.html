@@ -2,10 +2,11 @@
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tour Packages Catalog | Tusker Tours & Travels (1D, 2D, 3D Packages)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Tour Packages Catalog | Tusker Tours & Travels Thrissur (1D, 2D, 3D Packages)</title>
+  <meta name="description" content="Official tour catalog of Tusker Travelogues. 1-Day, 2-Days, and 3-Days packages across Munnar, Goa, Ooty, Wayanad, Coorg, Gokarna, and South India.">
   
-  <!-- Google Fonts -->
+  <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -13,7 +14,7 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- FontAwesome 6 Icons -->
+  <!-- FontAwesome 6 Pro Icons CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <script>
@@ -24,10 +25,10 @@
           colors: {
             brand: {
               black: '#07070A',
-              card: '#111019',
-              cardHover: '#171526',
-              surface: '#1A1829',
-              border: '#29253F',
+              card: '#100E19',
+              cardHover: '#171424',
+              surface: '#181528',
+              border: '#28243E',
               accentRed: '#FF2E4D',
               purple: {
                 light: '#C084FC',
@@ -44,16 +45,26 @@
           },
           animation: {
             'pulse-glow': 'pulseGlow 2.5s infinite',
-            'float': 'float 4s ease-in-out infinite'
+            'float': 'float 4s ease-in-out infinite',
+            'shimmer': 'shimmer 1.8s infinite linear',
+            'progress': 'progress 3s linear forwards'
           },
           keyframes: {
             pulseGlow: {
               '0%, 100%': { boxShadow: '0 0 20px rgba(168, 85, 247, 0.45)' },
-              '50%': { boxShadow: '0 0 45px rgba(168, 85, 247, 0.9)' }
+              '50%': { boxShadow: '0 0 50px rgba(168, 85, 247, 0.85)' }
             },
             float: {
               '0%, 100%': { transform: 'translateY(0px)' },
               '50%': { transform: 'translateY(-6px)' }
+            },
+            shimmer: {
+              '0%': { transform: 'translateX(-100%)' },
+              '100%': { transform: 'translateX(100%)' }
+            },
+            progress: {
+              '0%': { width: '0%' },
+              '100%': { width: '100%' }
             }
           }
         }
@@ -66,71 +77,126 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: #07070A;
       color: #F8FAFC;
+      -webkit-tap-highlight-color: transparent;
     }
     h1, h2, h3, h4, h5, h6 {
       font-family: 'Outfit', sans-serif;
     }
     .purple-glow-bg {
-      background: radial-gradient(circle at 50% 10%, rgba(147, 51, 234, 0.2) 0%, rgba(7, 7, 10, 0) 70%);
+      background: radial-gradient(circle at 50% 10%, rgba(147, 51, 234, 0.35) 0%, rgba(7, 7, 10, 0) 75%);
+    }
+    .card-purple-glow {
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .card-purple-glow:hover {
-      box-shadow: 0 12px 35px -10px rgba(168, 85, 247, 0.4);
-      border-color: #9333EA;
+      box-shadow: 0 20px 45px -10px rgba(168, 85, 247, 0.55);
+      border-color: #A855F7;
+      transform: translateY(-4px);
+    }
+    .glass-card {
+      background: rgba(16, 14, 25, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(40, 36, 62, 0.9);
+    }
+    .glass-card:hover {
+      border-color: rgba(168, 85, 247, 0.65);
     }
     .custom-scrollbar::-webkit-scrollbar {
       width: 6px;
     }
     .custom-scrollbar::-webkit-scrollbar-track {
-      background: #0B0B10;
+      background: #08080C;
     }
     .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #2A2640;
+      background: #28243E;
       border-radius: 4px;
     }
     .custom-scrollbar::-webkit-scrollbar-thumb:hover {
       background: #9333EA;
     }
+    .pkg-tab-btn.active {
+      background: linear-gradient(135deg, #9333EA, #A855F7);
+      color: #FFFFFF;
+      box-shadow: 0 10px 25px -5px rgba(168, 85, 247, 0.5);
+      border-color: #C084FC;
+    }
   </style>
 </head>
-<body class="bg-brand-black text-slate-100 selection:bg-brand-purple selection:text-white custom-scrollbar relative overflow-x-hidden">
+<body class="bg-brand-black text-slate-100 selection:bg-brand-purple selection:text-white custom-scrollbar relative overflow-x-hidden pb-16 md:pb-0">
 
-  <!-- Fixed Brand Watermark & Ambient Glow Background (Enhanced Luminous Brightness) -->
+  <!-- ================= FIXED LUMINOUS BRAND WATERMARK ================= -->
   <div class="fixed inset-0 pointer-events-none -z-10 flex items-center justify-center overflow-hidden">
-    <img src="brand-bg.png" alt="Tusker Brand Emblem" class="w-[550px] sm:w-[800px] lg:w-[1050px] max-w-none opacity-[0.22] sm:opacity-[0.28] select-none object-contain filter brightness-150 drop-shadow-[0_0_60px_rgba(168,85,247,0.5)]">
+    <img src="brand-bg.png" alt="Tusker Brand Emblem" class="w-[550px] sm:w-[850px] lg:w-[1150px] max-w-none opacity-[0.25] sm:opacity-[0.28] select-none object-contain filter brightness-150 drop-shadow-[0_0_80px_rgba(168,85,247,0.6)]">
   </div>
-  <div class="fixed top-0 left-1/4 w-[480px] h-[480px] bg-brand-purple-vibrant/20 rounded-full blur-[160px] pointer-events-none -z-10"></div>
-  <div class="fixed bottom-1/4 right-10 w-[550px] h-[550px] bg-brand-purple-deep/25 rounded-full blur-[170px] pointer-events-none -z-10"></div>
+  <div class="fixed top-0 left-1/4 w-[500px] h-[500px] bg-brand-purple-vibrant/20 rounded-full blur-[180px] pointer-events-none -z-10"></div>
+  <div class="fixed bottom-1/4 right-10 w-[550px] h-[550px] bg-brand-purple-deep/25 rounded-full blur-[180px] pointer-events-none -z-10"></div>
 
-  <!-- ================= NAVBAR ================= -->
-  <nav class="sticky top-0 z-40 bg-brand-black/90 backdrop-blur-xl border-b border-brand-border/70 transition-all duration-300">
+  <!-- ================= TOP ANNOUNCEMENT BAR ================= -->
+  <div class="bg-gradient-to-r from-brand-black via-brand-purple-deep to-brand-black border-b border-brand-border/80 py-2.5 px-4 text-xs font-medium relative z-50">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2.5 text-center sm:text-left">
+      <div class="flex items-center gap-3 flex-wrap justify-center">
+        <span class="bg-brand-purple/40 text-brand-purple-light border border-brand-purple/60 px-3 py-0.5 rounded-full text-[10px] uppercase font-extrabold tracking-wider flex items-center gap-1.5 shadow-sm">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+          GOVT REG: KL-02-0047002
+        </span>
+        <span class="text-slate-300 flex items-center gap-1.5 text-xs font-semibold">
+          <i class="fa-solid fa-location-dot text-brand-accentRed"></i>
+          <span>Thrissur • <strong>All Over Kerala Service Available</strong></span>
+        </span>
+      </div>
+
+      <div class="flex items-center gap-4 text-xs">
+        <a href="tel:+917909241640" class="text-slate-200 hover:text-brand-purple-light transition-colors flex items-center gap-1.5 font-bold">
+          <i class="fa-solid fa-phone text-brand-purple-light"></i> +91 7909241640
+        </a>
+        <span class="text-slate-600 hidden sm:inline">|</span>
+        <a href="tel:+916238910728" class="text-slate-200 hover:text-brand-purple-light transition-colors hidden sm:flex items-center gap-1.5 font-bold">
+          <i class="fa-solid fa-phone text-brand-purple-light"></i> +91 6238910728
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= STICKY LUXURY NAVBAR ================= -->
+  <nav class="sticky top-0 z-40 bg-brand-black/92 backdrop-blur-2xl border-b border-brand-border/80 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20">
+      <div class="flex items-center justify-between h-20 sm:h-22">
         
+        <!-- Logo Branding Block -->
         <a href="index.html" class="flex items-center gap-3 group py-1">
-          <img src="tusker-emblem.png" alt="Tusker Logo" class="h-11 sm:h-13 w-auto object-contain filter brightness-125 drop-shadow-[0_0_18px_rgba(168,85,247,0.7)] group-hover:scale-105 transition-transform duration-300">
-          <img src="logo.png" alt="Tusker Travelogues" class="h-9 sm:h-12 w-auto object-contain filter brightness-115 drop-shadow-[0_0_15px_rgba(168,85,247,0.45)] group-hover:brightness-125 transition-all">
-        </a><div class="hidden lg:flex items-center gap-7 text-sm font-medium">
+          <img src="tusker-emblem.png" alt="Tusker Logo" class="h-10 sm:h-13 w-auto object-contain filter brightness-125 drop-shadow-[0_0_18px_rgba(168,85,247,0.7)] group-hover:scale-105 transition-transform duration-300">
+          <img src="logo.png" alt="Tusker Travelogues" class="h-8 sm:h-12 w-auto object-contain filter brightness-115 drop-shadow-[0_0_15px_rgba(168,85,247,0.45)] group-hover:brightness-125 transition-all">
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <div class="hidden lg:flex items-center gap-7 text-sm font-semibold tracking-wide">
           <a href="index.html" class="text-slate-300 hover:text-brand-purple-light transition-colors">Home</a>
-          <a href="packages.html" class="text-white font-bold border-b-2 border-brand-purple pb-1">Tour Packages</a>
-          <a href="college-iv.html" class="text-slate-300 hover:text-brand-purple-light transition-colors">College IV & School</a>
-          <a href="fleet.html" class="text-slate-300 hover:text-brand-purple-light transition-colors">Bus & Vehicle Fleet</a>
+          <a href="packages.html" class="text-white font-extrabold border-b-2 border-brand-purple pb-1">Tour Packages</a>
+          <a href="college-iv.html" class="text-slate-300 hover:text-brand-purple-light transition-colors flex items-center gap-1.5">
+            <span>College IV & School</span>
+            <span class="bg-brand-accentRed/20 text-brand-accentRed border border-brand-accentRed/40 text-[9px] px-1.5 py-0.2 rounded font-bold uppercase">Hot</span>
+          </a>
+          <a href="fleet.html" class="text-slate-300 hover:text-brand-purple-light transition-colors">Bus & Fleet</a>
           <a href="about.html" class="text-slate-300 hover:text-brand-purple-light transition-colors">About Us</a>
           <a href="contact.html" class="text-slate-300 hover:text-brand-purple-light transition-colors">Contact</a>
         </div>
 
+        <!-- Right Quick Actions -->
         <div class="hidden md:flex items-center gap-3">
-          <a href="https://wa.me/917909241640?text=Hi%20Team%20Tusker,%20I%20would%20like%20to%20enquire%20about%20a%20tour%20package" target="_blank" class="px-4 py-2 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 shadow-md transition-all">
+          <a href="https://wa.me/917909241640?text=Hi%20Team%20Tusker,%20I%20would%20like%20to%20enquire%20about%20a%20tour%20package" target="_blank" class="px-4 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-2 shadow-lg shadow-emerald-950/50 hover:scale-105 transition-all">
             <i class="fa-brands fa-whatsapp text-sm"></i>
             <span>WhatsApp Us</span>
           </a>
-          <button onclick="openEnquiryModal('Tour Packages Custom Quote')" class="bg-gradient-to-r from-brand-purple to-brand-purple-vibrant hover:from-brand-purple-vibrant hover:to-purple-500 text-white px-5 py-2.5 rounded-full text-xs font-bold hover:shadow-lg hover:shadow-brand-purple/40 hover:scale-105 transition-all duration-300 flex items-center gap-2">
-            <span>Custom Quote</span>
+          <button onclick="openEnquiryModal('Header Book Trip')" class="bg-gradient-to-r from-brand-purple to-brand-purple-vibrant hover:from-brand-purple-vibrant hover:to-purple-500 text-white px-5 py-2.5 rounded-full text-xs font-bold hover:shadow-lg hover:shadow-brand-purple/40 hover:scale-105 transition-all duration-300 flex items-center gap-2">
+            <span>Book A Trip</span>
             <i class="fa-solid fa-arrow-right text-[10px]"></i>
           </button>
         </div>
 
+        <!-- Mobile Menu Toggle -->
         <div class="lg:hidden flex items-center gap-2">
-          <button onclick="openEnquiryModal('')" class="bg-brand-purple text-white px-3 py-1.5 rounded-lg text-xs font-bold">
+          <button onclick="openEnquiryModal('Mobile Header Button')" class="bg-brand-purple text-white px-3 py-1.5 rounded-xl text-xs font-bold shadow-md">
             Enquire
           </button>
           <button id="mobileMenuBtn" class="text-slate-300 hover:text-white p-2 focus:outline-none">
@@ -140,286 +206,1375 @@
       </div>
     </div>
 
-    <div id="mobileMenu" class="hidden lg:hidden bg-brand-card border-b border-brand-border px-6 py-5 space-y-4">
-      <a href="index.html" class="block text-slate-300 hover:text-brand-purple-light font-medium">Home</a>
-      <a href="packages.html" class="block text-brand-purple-light font-bold">Tour Packages (1D / 2D / 3D)</a>
-      <a href="college-iv.html" class="block text-slate-300 hover:text-brand-purple-light font-medium">College IV & School Tours</a>
-      <a href="fleet.html" class="block text-slate-300 hover:text-brand-purple-light font-medium">Bus & Vehicle Fleet Rentals</a>
-      <a href="about.html" class="block text-slate-300 hover:text-brand-purple-light font-medium">About Team Tusker</a>
-      <a href="contact.html" class="block text-slate-300 hover:text-brand-purple-light font-medium">Contact Details</a>
+    <!-- Mobile Slide Drawer -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-brand-card/98 border-b border-brand-border px-6 py-6 space-y-4 shadow-2xl">
+      <a href="index.html" class="block text-slate-300 hover:text-brand-purple-light font-medium py-1">Home</a>
+      <a href="packages.html" class="block text-brand-purple-light font-bold py-1">Tour Packages (1D / 2D / 3D)</a>
+      <a href="college-iv.html" class="block text-slate-300 hover:text-brand-purple-light font-medium py-1">College IV & School Tours</a>
+      <a href="fleet.html" class="block text-slate-300 hover:text-brand-purple-light font-medium py-1">Bus & Vehicle Fleet Rentals</a>
+      <a href="about.html" class="block text-slate-300 hover:text-brand-purple-light font-medium py-1">About Team Tusker</a>
+      <a href="contact.html" class="block text-slate-300 hover:text-brand-purple-light font-medium py-1">Contact & Locations</a>
     </div>
   </nav>
 
-  <!-- ================= HEADER TITLE ================= -->
-  <section class="purple-glow-bg py-16 px-4 sm:px-6 lg:px-8 text-center">
+  <!-- ================= HEADER TITLE & LIVE SEARCH ================= -->
+  <section class="purple-glow-bg py-14 sm:py-18 px-4 sm:px-6 lg:px-8 text-center">
     <div class="max-w-4xl mx-auto">
       <span class="text-brand-purple-light text-xs font-bold uppercase tracking-widest block mb-2">Signature Itinerary Catalog</span>
       <h1 class="text-3xl sm:text-5xl font-extrabold text-white font-heading">
         Tour Packages & Custom Circuits
       </h1>
-      <p class="text-sm text-slate-300 mt-3 max-w-2xl mx-auto leading-relaxed">
-        Select from our official One Day, Two Days, and Three Days tour packages across Kerala, Tamil Nadu, Karnataka, Goa, and Hyderabad.
+      <p class="text-xs sm:text-sm text-slate-300 mt-3 max-w-2xl mx-auto leading-relaxed">
+        Select from our official One Day, Two Days, and Three Days tour packages across Kerala, Tamil Nadu, Karnataka, Goa, and Hyderabad with verified hotels, hot meals & luxury AC travel.
       </p>
 
       <!-- Live Search Box for packages -->
       <div class="mt-8 max-w-md mx-auto relative">
-        <input type="text" id="pkgSearchInput" placeholder="Search destination (e.g., Munnar, Goa, Ooty, Coorg)..." oninput="filterPackages()" class="w-full bg-brand-card border border-brand-purple/60 rounded-2xl py-3.5 pl-11 pr-4 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-brand-purple shadow-lg">
+        <input type="text" id="pkgSearchInput" placeholder="Search destination (e.g. Munnar, Goa, Ooty, Coorg)..." oninput="filterPackages()" class="w-full bg-brand-surface border border-brand-purple/60 rounded-2xl py-3.5 pl-11 pr-4 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-brand-purple shadow-lg">
         <i class="fa-solid fa-magnifying-glass absolute left-4 top-4 text-brand-purple-light text-sm"></i>
       </div>
     </div>
   </section>
 
-  <!-- ================= PACKAGES CONTENT ================= -->
-  <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+  <!-- ================= PACKAGES CONTENT WITH TAB SWITCHER ================= -->
+  <section class="py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
     
     <!-- Tab Controls -->
-    <div class="flex items-center justify-center gap-3 mb-12 flex-wrap">
-      <button onclick="switchTab('tab-1d', this)" class="pkg-tab-btn active px-6 py-3 rounded-2xl bg-brand-purple text-white text-xs font-bold shadow-lg shadow-brand-purple/30 transition-all flex items-center gap-2">
-        <i class="fa-solid fa-sun"></i> One Day Packages (27 Destinations)
+    <div class="flex items-center justify-center gap-3 mb-10 flex-wrap">
+      <button onclick="switchTab('tab-1d', this)" class="pkg-tab-btn px-5 sm:px-6 py-3 rounded-2xl bg-brand-surface border border-brand-border text-slate-300 hover:text-white text-xs font-bold transition-all flex items-center gap-2">
+        <i class="fa-solid fa-sun text-amber-400"></i> One Day Packages (27 Destinations)
       </button>
-      <button onclick="switchTab('tab-2d', this)" class="pkg-tab-btn px-6 py-3 rounded-2xl bg-brand-surface border border-brand-border text-slate-300 hover:text-white hover:border-brand-purple text-xs font-bold transition-all flex items-center gap-2">
-        <i class="fa-solid fa-route"></i> Two Days Packages (Overnight Stays)
+      <button onclick="switchTab('tab-2d', this)" class="pkg-tab-btn active px-5 sm:px-6 py-3 rounded-2xl bg-brand-surface border border-brand-border text-slate-300 hover:text-white text-xs font-bold transition-all flex items-center gap-2">
+        <i class="fa-solid fa-route text-brand-purple-light"></i> Two Days Packages (Overnight Stays)
       </button>
-      <button onclick="switchTab('tab-3d', this)" class="pkg-tab-btn px-6 py-3 rounded-2xl bg-brand-surface border border-brand-border text-slate-300 hover:text-white hover:border-brand-purple text-xs font-bold transition-all flex items-center gap-2">
-        <i class="fa-solid fa-map-location-dot"></i> Three Days Packages (Grand Expeditions)
+      <button onclick="switchTab('tab-3d', this)" class="pkg-tab-btn px-5 sm:px-6 py-3 rounded-2xl bg-brand-surface border border-brand-border text-slate-300 hover:text-white text-xs font-bold transition-all flex items-center gap-2">
+        <i class="fa-solid fa-map-location-dot text-emerald-400"></i> Three Days Packages (Grand Expeditions)
       </button>
     </div>
 
-    <!-- TAB 1: ONE DAY PACKAGES -->
-    <div id="tab-1d" class="pkg-content-tab block space-y-6">
-      <div class="bg-brand-card/90 border border-brand-purple/40 rounded-3xl p-6 sm:p-8 shadow-xl">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 border-b border-brand-border/60 pb-4">
-          <div>
-            <h3 class="text-xl font-bold text-white">One Day Tour Destinations</h3>
-            <p class="text-xs text-slate-400">Perfect for day outings, family day trips, school picnics, and weekend drives.</p>
+    <!-- TAB 1: ONE DAY PACKAGES (27 DESTINATIONS WITH PHOTOS) -->
+    <div id="tab-1d" class="pkg-content-tab hidden space-y-6">
+      <div class="flex items-center justify-between flex-wrap gap-4 border-b border-brand-border/70 pb-4">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-extrabold text-white font-heading">One Day Tour Destinations (27 Packages)</h2>
+          <p class="text-xs text-slate-400 mt-0.5">Perfect for day outings, family day trips, school picnics, and weekend drives.</p>
+        </div>
+        <button onclick="openEnquiryModal('One Day Custom Tour')" class="px-4 py-2 bg-brand-purple hover:bg-brand-purple-vibrant text-white text-xs font-bold rounded-xl transition-all shadow-md">
+          Enquire 1-Day Tour
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Munnar Day Out Misty hills, Tea Gardens & Mattupetty Dam">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?w=600&auto=format&fit=crop&q=80" alt="Munnar Day Out" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              1 Day Trip
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
           </div>
-          <button onclick="openEnquiryModal('Custom 1-Day Package Inquiry')" class="px-5 py-2.5 bg-brand-purple hover:bg-brand-purple-vibrant text-white text-xs font-bold rounded-xl transition-all">
-            Enquire 1-Day Tour
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Hills & Tea Trails</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Munnar Day Out</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Misty hills, Tea Gardens & Mattupetty Dam</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Munnar Day Out (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
           </button>
         </div>
+      </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3" id="oneDayList">
-          <div class="pkg-item p-3.5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple hover:bg-brand-purple/10 transition-all cursor-pointer text-center" onclick="openEnquiryModal('1-Day: Munnar')">
-            <span class="block text-xs font-bold text-white">Munnar</span>
-            <span class="text-[10px] text-brand-purple-light">Misty Hills & Tea</span>
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Ooty & Coonoor Toy Train, Botanical Garden & Doddabetta">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=600&auto=format&fit=crop&q=80" alt="Ooty & Coonoor" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              1 Day Trip
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
           </div>
-          <div class="pkg-item p-3.5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple hover:bg-brand-purple/10 transition-all cursor-pointer text-center" onclick="openEnquiryModal('1-Day: Wayanad')">
-            <span class="block text-xs font-bold text-white">Wayanad</span>
-            <span class="text-[10px] text-brand-purple-light">Waterfalls & Caves</span>
-          </div>
-          <div class="pkg-item p-3.5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple hover:bg-brand-purple/10 transition-all cursor-pointer text-center" onclick="openEnquiryModal('1-Day: Ooty & Coonoor')">
-            <span class="block text-xs font-bold text-white">Ooty Coonoor</span>
-            <span class="text-[10px] text-brand-purple-light">Toy Train & Botanical</span>
-          </div>
-          <div class="pkg-item p-3.5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple hover:bg-brand-purple/10 transition-all cursor-pointer text-center" onclick="openEnquiryModal('1-Day: Vagamon')">
-            <span class="block text-xs font-bold text-white">Vagamon</span>
-            <span class="text-[10px] text-brand-purple-light">Pine Forest & Meadows</span>
-          </div>
-          <div class="pkg-item p-3.5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple hover:bg-brand-purple/10 transition-all cursor-pointer text-center" onclick="openEnquiryModal('1-Day: Athirappilly')">
-            <span class="block text-xs font-bold text-white">Athirappilly</span>
-            <span class="text-[10px] text-brand-purple-light">Vazhachal Waterfalls</span>
-          </div>
-          <div class="pkg-item p-3.5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple hover:bg-brand-purple/10 transition-all cursor-pointer text-center" onclick="openEnquiryModal('1-Day: Wonderla')">
-            <span class="block text-xs font-bold text-white">Wonderla</span>
-            <span class="text-[10px] text-brand-purple-light">Amusement Park</span>
-          </div>
-          <div class="pkg-item p-3.5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple hover:bg-brand-purple/10 transition-all cursor-pointer text-center" onclick="openEnquiryModal('1-Day: Silver Storm')">
-            <span class="block text-xs font-bold text-white">Silver Storm</span>
-            <span class="text-[10px] text-brand-purple-light">Snow Storm & Rides</span>
-          </div>
-          <div class="pkg-item p-3.5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple hover:bg-brand-purple/10 transition-all cursor-pointer text-center" onclick="openEnquiryModal('1-Day: Alappuzha')">
-            <span class="block text-xs font-bold text-white">Alappuzha</span>
-            <span class="text-[10px] text-brand-purple-light">Houseboat Day Cruise</span>
-          </div>
-          <div class="pkg-item p-3.5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple hover:bg-brand-purple/10 transition-all cursor-pointer text-center" onclick="openEnquiryModal('1-Day: Coorg')">
-            <span class="block text-xs font-bold text-white">Coorg</span>
-            <span class="text-[10px] text-brand-purple-light">Coffee Plantations</span>
-          </div>
-          <div class="pkg-item p-3.5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple hover:bg-brand-purple/10 transition-all cursor-pointer text-center" onclick="openEnquiryModal('1-Day: Mysore')">
-            <span class="block text-xs font-bold text-white">Mysore</span>
-            <span class="text-[10px] text-brand-purple-light">Palace & Zoo</span>
-          </div>
-          <div class="pkg-item p-3.5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple hover:bg-brand-purple/10 transition-all cursor-pointer text-center" onclick="openEnquiryModal('1-Day: Kodaikanal')">
-            <span class="block text-xs font-bold text-white">Kodaikanal</span>
-            <span class="text-[10px] text-brand-purple-light">Princess of Hills</span>
-          </div>
-          <div class="pkg-item p-3.5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple hover:bg-brand-purple/10 transition-all cursor-pointer text-center" onclick="openEnquiryModal('1-Day: Ramakkalmedu')">
-            <span class="block text-xs font-bold text-white">Ramakkalmedu</span>
-            <span class="text-[10px] text-brand-purple-light">Windmills & Viewpoint</span>
-          </div>
-          <div class="pkg-item p-3.5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple hover:bg-brand-purple/10 transition-all cursor-pointer text-center" onclick="openEnquiryModal('1-Day: Idukki')">
-            <span class="block text-xs font-bold text-white">Idukki</span>
-            <span class="text-[10px] text-brand-purple-light">Arch Dam & Hills</span>
-          </div>
-          <div class="pkg-item p-3.5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple hover:bg-brand-purple/10 transition-all cursor-pointer text-center" onclick="openEnquiryModal('1-Day: Thekkadi')">
-            <span class="block text-xs font-bold text-white">Thekkadi</span>
-            <span class="text-[10px] text-brand-purple-light">Periyar Boating</span>
-          </div>
-          <div class="pkg-item p-3.5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple hover:bg-brand-purple/10 transition-all cursor-pointer text-center" onclick="openEnquiryModal('1-Day: Chikmagalore')">
-            <span class="block text-xs font-bold text-white">Chikmagalore</span>
-            <span class="text-[10px] text-brand-purple-light">Peak Trek & Coffee</span>
-          </div>
-          <div class="pkg-item p-3.5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple hover:bg-brand-purple/10 transition-all cursor-pointer text-center" onclick="openEnquiryModal('1-Day: Nelliyambathi')">
-            <span class="block text-xs font-bold text-white">Nelliyambathi</span>
-            <span class="text-[10px] text-brand-purple-light">Orange Farms</span>
-          </div>
-          <div class="pkg-item p-3.5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple hover:bg-brand-purple/10 transition-all cursor-pointer text-center" onclick="openEnquiryModal('1-Day: Valpara & Malakapara')">
-            <span class="block text-xs font-bold text-white">Valpara, Malakapara</span>
-            <span class="text-[10px] text-brand-purple-light">Forest Drive</span>
-          </div>
-          <div class="pkg-item p-3.5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple hover:bg-brand-purple/10 transition-all cursor-pointer text-center" onclick="openEnquiryModal('1-Day: Kannyakumari')">
-            <span class="block text-xs font-bold text-white">Kannyakumari</span>
-            <span class="text-[10px] text-brand-purple-light">Sunrise & Rock Memorial</span>
-          </div>
-          <div class="pkg-item p-3.5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple hover:bg-brand-purple/10 transition-all cursor-pointer text-center" onclick="openEnquiryModal('1-Day: Udupi')">
-            <span class="block text-xs font-bold text-white">Udupi</span>
-            <span class="text-[10px] text-brand-purple-light">Temple & Malpe</span>
-          </div>
-          <div class="pkg-item p-3.5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple hover:bg-brand-purple/10 transition-all cursor-pointer text-center" onclick="openEnquiryModal('1-Day: Kasargod')">
-            <span class="block text-xs font-bold text-white">Kasargod</span>
-            <span class="text-[10px] text-brand-purple-light">Bekal Fort & Beach</span>
-          </div>
-          <div class="pkg-item p-3.5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple hover:bg-brand-purple/10 transition-all cursor-pointer text-center" onclick="openEnquiryModal('1-Day: Kannur')">
-            <span class="block text-xs font-bold text-white">Kannur</span>
-            <span class="text-[10px] text-brand-purple-light">Muzhappilangad Beach</span>
-          </div>
-          <div class="pkg-item p-3.5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple hover:bg-brand-purple/10 transition-all cursor-pointer text-center" onclick="openEnquiryModal('1-Day: Palakkad')">
-            <span class="block text-xs font-bold text-white">Palakkad</span>
-            <span class="text-[10px] text-brand-purple-light">Fort & Malampuzha</span>
-          </div>
-          <div class="pkg-item p-3.5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple hover:bg-brand-purple/10 transition-all cursor-pointer text-center" onclick="openEnquiryModal('1-Day: Thiruvananthapuram')">
-            <span class="block text-xs font-bold text-white">Thiruvananthapuram</span>
-            <span class="text-[10px] text-brand-purple-light">Temple & Kovalam</span>
-          </div>
-          <div class="pkg-item p-3.5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple hover:bg-brand-purple/10 transition-all cursor-pointer text-center" onclick="openEnquiryModal('1-Day: Marayor')">
-            <span class="block text-xs font-bold text-white">Marayor</span>
-            <span class="text-[10px] text-brand-purple-light">Sandalwood Forest</span>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Nilgiris Queen</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Ooty & Coonoor</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Toy Train, Botanical Garden & Doddabetta</p>
           </div>
         </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Ooty & Coonoor (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Wayanad Day Tour Banasura Dam, Edakkal Caves & Waterfalls">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600&auto=format&fit=crop&q=80" alt="Wayanad Day Tour" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              1 Day Trip
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Waterfalls & Caves</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Wayanad Day Tour</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Banasura Dam, Edakkal Caves & Waterfalls</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Wayanad Day Tour (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Alappuzha Houseboat Houseboat cruise, Backwaters & Sunset beach">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80" alt="Alappuzha Houseboat" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              1 Day Trip
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Backwater Cruise</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Alappuzha Houseboat</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Houseboat cruise, Backwaters & Sunset beach</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Alappuzha Houseboat (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Vagamon Meadows Pine Forest, Kurisumala & Green Meadows">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop&q=80" alt="Vagamon Meadows" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              1 Day Trip
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Pine Forests</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Vagamon Meadows</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Pine Forest, Kurisumala & Green Meadows</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Vagamon Meadows (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Athirappilly & Vazhachal Kerala's Niagara Falls & Rainforest drive">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?w=600&auto=format&fit=crop&q=80" alt="Athirappilly & Vazhachal" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              1 Day Trip
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Waterfalls</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Athirappilly & Vazhachal</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Kerala's Niagara Falls & Rainforest drive</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Athirappilly & Vazhachal (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Wonderla Kochi Land & Water Rides, Wave Pool & High Thrill">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1513889961551-628c1e5e2ee9?w=600&auto=format&fit=crop&q=80" alt="Wonderla Kochi" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              Theme Park
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Theme Park</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Wonderla Kochi</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Land & Water Rides, Wave Pool & High Thrill</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Wonderla Kochi (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Silver Storm & Snow Storm Snow world, Water slides & Amusement rides">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600&auto=format&fit=crop&q=80" alt="Silver Storm & Snow Storm" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              Theme Park
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Theme Park</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Silver Storm & Snow Storm</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Snow world, Water slides & Amusement rides</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Silver Storm & Snow Storm (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Mysore Palace & Zoo Grand Mysore Palace, Zoo & Chamundi Hill">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&auto=format&fit=crop&q=80" alt="Mysore Palace & Zoo" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              1 Day Trip
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Heritage & Royal</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Mysore Palace & Zoo</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Grand Mysore Palace, Zoo & Chamundi Hill</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Mysore Palace & Zoo (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Coorg Coffee Trails Abbey Falls, Golden Temple & Coffee estates">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?w=600&auto=format&fit=crop&q=80" alt="Coorg Coffee Trails" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              1 Day Trip
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Scotland of India</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Coorg Coffee Trails</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Abbey Falls, Golden Temple & Coffee estates</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Coorg Coffee Trails (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Kodaikanal Day Out Pillar Rocks, Pine Forest & Kodai Lake">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=600&auto=format&fit=crop&q=80" alt="Kodaikanal Day Out" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              1 Day Trip
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Princess of Hills</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Kodaikanal Day Out</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Pillar Rocks, Pine Forest & Kodai Lake</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Kodaikanal Day Out (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Ramakkalmedu & Windmills High velocity wind point, Kuravan Kurathi statue">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=600&auto=format&fit=crop&q=80" alt="Ramakkalmedu & Windmills" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              1 Day Trip
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Windmill Safari</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Ramakkalmedu & Windmills</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">High velocity wind point, Kuravan Kurathi statue</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Ramakkalmedu & Windmills (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Idukki Arch Dam & Hills Calvary Mount, Arch Dam & Forest drive">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1511497584788-87676104235f?w=600&auto=format&fit=crop&q=80" alt="Idukki Arch Dam & Hills" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              1 Day Trip
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Engineering Marvel</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Idukki Arch Dam & Hills</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Calvary Mount, Arch Dam & Forest drive</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Idukki Arch Dam & Hills (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Thekkady Periyar Wildlife Boat safari, Spice gardens & Elephant camp">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?w=600&auto=format&fit=crop&q=80" alt="Thekkady Periyar Wildlife" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              1 Day Trip
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Wildlife Sanctuary</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Thekkady Periyar Wildlife</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Boat safari, Spice gardens & Elephant camp</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Thekkady Periyar Wildlife (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Chikmagalur Peaks Mullayanagiri, Baba Budangiri & Coffee estates">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1518457607834-6e8d80c183c5?w=600&auto=format&fit=crop&q=80" alt="Chikmagalur Peaks" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              1 Day Trip
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Coffee Capital</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Chikmagalur Peaks</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Mullayanagiri, Baba Budangiri & Coffee estates</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Chikmagalur Peaks (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Nelliyampathy Orange Farms Pothundi Dam, Orange estates & Cloud hills">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&auto=format&fit=crop&q=80" alt="Nelliyampathy Orange Farms" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              1 Day Trip
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Orange Valley</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Nelliyampathy Orange Farms</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Pothundi Dam, Orange estates & Cloud hills</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Nelliyampathy Orange Farms (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Valparai & Malakkappara Sholayar Dam, 40 Hairpin bends & Tea hills">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop&q=80" alt="Valparai & Malakkappara" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              1 Day Trip
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Hairpin Safari</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Valparai & Malakkappara</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Sholayar Dam, 40 Hairpin bends & Tea hills</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Valparai & Malakkappara (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Kanyakumari Sunrise & Rock Vivekananda Rock Memorial & Sunset point">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80" alt="Kanyakumari Sunrise & Rock" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              1 Day Trip
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Southern Tip</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Kanyakumari Sunrise & Rock</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Vivekananda Rock Memorial & Sunset point</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Kanyakumari Sunrise & Rock (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Udupi Krishna Temple & Malpe Sri Krishna Temple, Malpe Beach & Sea Walk">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&auto=format&fit=crop&q=80" alt="Udupi Krishna Temple & Malpe" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              1 Day Trip
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Temple & Coast</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Udupi Krishna Temple & Malpe</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Sri Krishna Temple, Malpe Beach & Sea Walk</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Udupi Krishna Temple & Malpe (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Bekal Fort & Kasargod Historic sea fort, beach park & backwaters">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop&q=80" alt="Bekal Fort & Kasargod" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              1 Day Trip
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Historic Fort</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Bekal Fort & Kasargod</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Historic sea fort, beach park & backwaters</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Bekal Fort & Kasargod (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Kannur Muzhappilangad Beach Asia's longest drive-in beach & St. Angelo Fort">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=600&auto=format&fit=crop&q=80" alt="Kannur Muzhappilangad Beach" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              1 Day Trip
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Drive-In Beach</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Kannur Muzhappilangad Beach</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Asia's longest drive-in beach & St. Angelo Fort</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Kannur Muzhappilangad Beach (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Palakkad Fort & Malampuzha Tipu Sultan Fort, Dam Garden & Ropeway">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=600&auto=format&fit=crop&q=80" alt="Palakkad Fort & Malampuzha" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              1 Day Trip
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Heritage Garden</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Palakkad Fort & Malampuzha</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Tipu Sultan Fort, Dam Garden & Ropeway</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Palakkad Fort & Malampuzha (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Trivandrum City & Kovalam Padmanabhaswamy Temple, Zoo & Kovalam beach">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&auto=format&fit=crop&q=80" alt="Trivandrum City & Kovalam" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              1 Day Trip
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Capital & Beach</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Trivandrum City & Kovalam</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Padmanabhaswamy Temple, Zoo & Kovalam beach</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Trivandrum City & Kovalam (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Marayoor Sandalwood Forest Natural Sandalwood reserve, Dolmens & Jaggery">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1511497584788-87676104235f?w=600&auto=format&fit=crop&q=80" alt="Marayoor Sandalwood Forest" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              1 Day Trip
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Forest & Heritage</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Marayoor Sandalwood Forest</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Natural Sandalwood reserve, Dolmens & Jaggery</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Marayoor Sandalwood Forest (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Thenmala Ecotourism India's first ecotourism destination & Dam">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?w=600&auto=format&fit=crop&q=80" alt="Thenmala Ecotourism" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              1 Day Trip
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Eco Adventure</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Thenmala Ecotourism</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">India's first ecotourism destination & Dam</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Thenmala Ecotourism (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Gavi Forest Safari Pristine evergreen jungle, boating & wildlife">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&auto=format&fit=crop&q=80" alt="Gavi Forest Safari" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              1 Day Trip
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Deep Forest Safari</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Gavi Forest Safari</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Pristine evergreen jungle, boating & wildlife</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Gavi Forest Safari (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Illikkal Kallu & Vagamon Highest peak of Kottayam & scenic mountain ridge">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop&q=80" alt="Illikkal Kallu & Vagamon" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              1 Day Trip
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              1 Day (Morning to Night)
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Mountain Peak</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Illikkal Kallu & Vagamon</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Highest peak of Kottayam & scenic mountain ridge</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Illikkal Kallu & Vagamon (1 Day (Morning to Night))')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
       </div>
     </div>
 
-    <!-- TAB 2: TWO DAYS PACKAGES -->
-    <div id="tab-2d" class="pkg-content-tab hidden space-y-6">
-      <div class="bg-brand-card/90 border border-brand-purple/40 rounded-3xl p-6 sm:p-8 shadow-xl">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 border-b border-brand-border/60 pb-4">
-          <div>
-            <h3 class="text-xl font-bold text-white">Two Days Tour Packages (Overnight)</h3>
-            <p class="text-xs text-slate-400">Includes resort / hotel stay, breakfast, campfire & guided transport.</p>
+    <!-- TAB 2: TWO DAYS PACKAGES (12 OVERNIGHT DESTINATIONS WITH PHOTOS) -->
+    <div id="tab-2d" class="pkg-content-tab block space-y-6">
+      <div class="flex items-center justify-between flex-wrap gap-4 border-b border-brand-border/70 pb-4">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-extrabold text-white font-heading">Two Days Tour Packages (Overnight Stays)</h2>
+          <p class="text-xs text-slate-400 mt-0.5">Includes verified resort/hotel stay, hot breakfast & dinner, campfire & guided transport.</p>
+        </div>
+        <button onclick="openEnquiryModal('Two Days Tour Package')" class="px-4 py-2 bg-brand-purple hover:bg-brand-purple-vibrant text-white text-xs font-bold rounded-xl transition-all shadow-md">
+          Enquire 2-Days Tour
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Goa 2 Day Package Calangute & Baga beach, Fort Aguada & Mandovi DJ cruise">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=600&auto=format&fit=crop&q=80" alt="Goa 2 Day Package" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              ★ Bestseller
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              2 Days / 1 Night
+            </span>
           </div>
-          <button onclick="openEnquiryModal('Custom 2-Day Package Inquiry')" class="px-5 py-2.5 bg-brand-purple hover:bg-brand-purple-vibrant text-white text-xs font-bold rounded-xl transition-all">
-            Enquire 2-Days Tour
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Beaches & DJ Night</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Goa 2 Day Package</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Calangute & Baga beach, Fort Aguada & Mandovi DJ cruise</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Goa 2 Day Package (2 Days / 1 Night)')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
           </button>
         </div>
+      </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="twoDayList">
-          <div class="pkg-item p-5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple transition-all cursor-pointer group" onclick="openEnquiryModal('2-Day: Goa Special Package')">
-            <span class="text-[10px] font-bold text-brand-purple-light uppercase">2 Days / 1 Night</span>
-            <h4 class="text-base font-bold text-white group-hover:text-brand-purple-light mt-1">Goa 2 Day Package</h4>
-            <p class="text-xs text-slate-400 mt-1">Beaches, Fort Aguada, Mandovi Cruise & Beach Party</p>
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Ooty 2 Day Package Botanical Garden, Doddabetta Peak, Pykara Lake & Coonoor">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=600&auto=format&fit=crop&q=80" alt="Ooty 2 Day Package" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              Hill Special
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              2 Days / 1 Night
+            </span>
           </div>
-
-          <div class="pkg-item p-5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple transition-all cursor-pointer group" onclick="openEnquiryModal('2-Day: Ooty 2 Day Package')">
-            <span class="text-[10px] font-bold text-brand-purple-light uppercase">2 Days / 1 Night</span>
-            <h4 class="text-base font-bold text-white group-hover:text-brand-purple-light mt-1">Ooty 2 Day Package</h4>
-            <p class="text-xs text-slate-400 mt-1">Botanical Garden, Doddabetta, Pykara & Coonoor</p>
-          </div>
-
-          <div class="pkg-item p-5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple transition-all cursor-pointer group" onclick="openEnquiryModal('2-Day: Gokarna & Dandeli')">
-            <span class="text-[10px] font-bold text-brand-purple-light uppercase">2 Days / 1 Night</span>
-            <h4 class="text-base font-bold text-white group-hover:text-brand-purple-light mt-1">Gokarna 2 Day / Dandeli</h4>
-            <p class="text-xs text-slate-400 mt-1">Om Beach, River Kali Water Rafting & Caves</p>
-          </div>
-
-          <div class="pkg-item p-5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple transition-all cursor-pointer group" onclick="openEnquiryModal('2-Day: Munnar - Kodaikanal')">
-            <span class="text-[10px] font-bold text-brand-purple-light uppercase">2 Days / 1 Night</span>
-            <h4 class="text-base font-bold text-white group-hover:text-brand-purple-light mt-1">Munnar - Kodaikanal</h4>
-            <p class="text-xs text-slate-400 mt-1">Twin Hill Station Mist & Lake Tour</p>
-          </div>
-
-          <div class="pkg-item p-5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple transition-all cursor-pointer group" onclick="openEnquiryModal('2-Day: Mysore - Coorg')">
-            <span class="text-[10px] font-bold text-brand-purple-light uppercase">2 Days / 1 Night</span>
-            <h4 class="text-base font-bold text-white group-hover:text-brand-purple-light mt-1">Mysore - Coorg</h4>
-            <p class="text-xs text-slate-400 mt-1">Palace, Golden Temple, Abbey Falls & Campfire</p>
-          </div>
-
-          <div class="pkg-item p-5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple transition-all cursor-pointer group" onclick="openEnquiryModal('2-Day: Vagamon - Munnar - Kodaikanal')">
-            <span class="text-[10px] font-bold text-brand-purple-light uppercase">2 Days / 1 Night</span>
-            <h4 class="text-base font-bold text-white group-hover:text-brand-purple-light mt-1">Vagamon - Munnar - Kodaikanal</h4>
-            <p class="text-xs text-slate-400 mt-1">Pine Forest, Jeep Trek & Lake Boating</p>
-          </div>
-
-          <div class="pkg-item p-5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple transition-all cursor-pointer group" onclick="openEnquiryModal('2-Day: Coorg - Wayanad')">
-            <span class="text-[10px] font-bold text-brand-purple-light uppercase">2 Days / 1 Night</span>
-            <h4 class="text-base font-bold text-white group-hover:text-brand-purple-light mt-1">Coorg - Wayanad</h4>
-            <p class="text-xs text-slate-400 mt-1">Coffee plantations & Banasura Sagar Dam</p>
-          </div>
-
-          <div class="pkg-item p-5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple transition-all cursor-pointer group" onclick="openEnquiryModal('2-Day: Mysore - Chikmagalore')">
-            <span class="text-[10px] font-bold text-brand-purple-light uppercase">2 Days / 1 Night</span>
-            <h4 class="text-base font-bold text-white group-hover:text-brand-purple-light mt-1">Mysore - Chikmagalore</h4>
-            <p class="text-xs text-slate-400 mt-1">Heritage Palace & Mullayanagiri Peak</p>
-          </div>
-
-          <div class="pkg-item p-5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple transition-all cursor-pointer group" onclick="openEnquiryModal('2-Day: Trivandrum - Kanyakumari')">
-            <span class="text-[10px] font-bold text-brand-purple-light uppercase">2 Days / 1 Night</span>
-            <h4 class="text-base font-bold text-white group-hover:text-brand-purple-light mt-1">Thiruvananthapuram - Kanyakumari</h4>
-            <p class="text-xs text-slate-400 mt-1">Padmanabhaswamy Temple & Sunset Point</p>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Nilgiri Trails</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Ooty 2 Day Package</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Botanical Garden, Doddabetta Peak, Pykara Lake & Coonoor</p>
           </div>
         </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Ooty 2 Day Package (2 Days / 1 Night)')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Gokarna 2 Day / Dandeli Om Beach, Kudle Beach & River Kali White Water Rafting">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80" alt="Gokarna 2 Day / Dandeli" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              Adventure
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              2 Days / 1 Night
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Beach & River Rafting</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Gokarna 2 Day / Dandeli</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Om Beach, Kudle Beach & River Kali White Water Rafting</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Gokarna 2 Day / Dandeli (2 Days / 1 Night)')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Munnar - Kodaikanal Mattupetty Dam, Tea Gardens, Pillar Rocks & Kodai Lake">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?w=600&auto=format&fit=crop&q=80" alt="Munnar - Kodaikanal" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              Twin Hills
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              2 Days / 1 Night
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Misty Mountains</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Munnar - Kodaikanal</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Mattupetty Dam, Tea Gardens, Pillar Rocks & Kodai Lake</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Munnar - Kodaikanal (2 Days / 1 Night)')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Mysore - Coorg Grand Mysore Palace, Golden Temple, Abbey Falls & Campfire">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&auto=format&fit=crop&q=80" alt="Mysore - Coorg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              Heritage
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              2 Days / 1 Night
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Palace & Coffee</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Mysore - Coorg</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Grand Mysore Palace, Golden Temple, Abbey Falls & Campfire</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Mysore - Coorg (2 Days / 1 Night)')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Vagamon - Munnar - Kodaikanal Pine Forest, Jeep Trek, Tea Valley & Lake Boating">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop&q=80" alt="Vagamon - Munnar - Kodaikanal" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              Grand Hills
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              2 Days / 1 Night
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Triple Hill Circuit</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Vagamon - Munnar - Kodaikanal</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Pine Forest, Jeep Trek, Tea Valley & Lake Boating</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Vagamon - Munnar - Kodaikanal (2 Days / 1 Night)')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Coorg - Wayanad Coffee plantations, Banasura Sagar Dam & Edakkal Caves">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?w=600&auto=format&fit=crop&q=80" alt="Coorg - Wayanad" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              Nature
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              2 Days / 1 Night
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Plantation Trails</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Coorg - Wayanad</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Coffee plantations, Banasura Sagar Dam & Edakkal Caves</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Coorg - Wayanad (2 Days / 1 Night)')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Mysore - Chikmagalore Heritage Mysore Palace & Mullayanagiri Peak Coffee Trails">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1518457607834-6e8d80c183c5?w=600&auto=format&fit=crop&q=80" alt="Mysore - Chikmagalore" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              Royal & Peaks
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              2 Days / 1 Night
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Peaks & Heritage</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Mysore - Chikmagalore</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Heritage Mysore Palace & Mullayanagiri Peak Coffee Trails</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Mysore - Chikmagalore (2 Days / 1 Night)')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Thiruvananthapuram - Kanyakumari Padmanabhaswamy Temple, Kovalam & Sunset Rock Memorial">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80" alt="Thiruvananthapuram - Kanyakumari" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              Coastal South
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              2 Days / 1 Night
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Coastal Sunset</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Thiruvananthapuram - Kanyakumari</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Padmanabhaswamy Temple, Kovalam & Sunset Rock Memorial</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Thiruvananthapuram - Kanyakumari (2 Days / 1 Night)')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Wayanad - Kozhikode Edakkal Caves, Chembra Peak & Kozhikode Beach Food Tour">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600&auto=format&fit=crop&q=80" alt="Wayanad - Kozhikode" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              Food & Caves
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              2 Days / 1 Night
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Caves & Malabar Food</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Wayanad - Kozhikode</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Edakkal Caves, Chembra Peak & Kozhikode Beach Food Tour</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Wayanad - Kozhikode (2 Days / 1 Night)')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Idukki - Thekkady - Ramakkalmedu Arch Dam, Periyar Lake Safari & High Velocity Windmills">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=600&auto=format&fit=crop&q=80" alt="Idukki - Thekkady - Ramakkalmedu" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              High Hills
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              2 Days / 1 Night
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Wildlife & Windmills</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Idukki - Thekkady - Ramakkalmedu</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Arch Dam, Periyar Lake Safari & High Velocity Windmills</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Idukki - Thekkady - Ramakkalmedu (2 Days / 1 Night)')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Hyderabad Ramoji 2 Days Ramoji Film City, Charminar & Golconda Light Show">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&auto=format&fit=crop&q=80" alt="Hyderabad Ramoji 2 Days" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              City Special
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              2 Days / 1 Night
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Film City & Royal</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Hyderabad Ramoji 2 Days</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Ramoji Film City, Charminar & Golconda Light Show</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Hyderabad Ramoji 2 Days (2 Days / 1 Night)')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
       </div>
     </div>
 
-    <!-- TAB 3: THREE DAYS PACKAGES -->
+    <!-- TAB 3: THREE DAYS GRAND PACKAGES (12 DESTINATIONS WITH PHOTOS) -->
     <div id="tab-3d" class="pkg-content-tab hidden space-y-6">
-      <div class="bg-brand-card/90 border border-brand-purple/40 rounded-3xl p-6 sm:p-8 shadow-xl">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 border-b border-brand-border/60 pb-4">
-          <div>
-            <h3 class="text-xl font-bold text-white">Three Days Grand Packages</h3>
-            <p class="text-xs text-slate-400">Comprehensive circuits for Colleges, Schools, Families & Corporate Retreats.</p>
+      <div class="flex items-center justify-between flex-wrap gap-4 border-b border-brand-border/70 pb-4">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-extrabold text-white font-heading">Three Days Grand Packages (Grand Expeditions)</h2>
+          <p class="text-xs text-slate-400 mt-0.5">Comprehensive multi-destination circuits for Colleges, Schools, Families & Corporate Retreats.</p>
+        </div>
+        <button onclick="openEnquiryModal('Three Days Grand Package')" class="px-4 py-2 bg-brand-purple hover:bg-brand-purple-vibrant text-white text-xs font-bold rounded-xl transition-all shadow-md">
+          Enquire 3-Days Tour
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Goa 3 Day Grand Package North & South Goa, Water Sports, Mandovi DJ Cruise & Luxury Resort Stay">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=600&auto=format&fit=crop&q=80" alt="Goa 3 Day Grand Package" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              ★ #1 Bestseller
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              3 Days / 2 Nights
+            </span>
           </div>
-          <button onclick="openEnquiryModal('Custom 3-Day Package Inquiry')" class="px-5 py-2.5 bg-brand-purple hover:bg-brand-purple-vibrant text-white text-xs font-bold rounded-xl transition-all">
-            Enquire 3-Days Tour
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Beaches, Cruise & DJ</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Goa 3 Day Grand Package</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">North & South Goa, Water Sports, Mandovi DJ Cruise & Luxury Resort Stay</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Goa 3 Day Grand Package (3 Days / 2 Nights)')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
           </button>
         </div>
+      </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="threeDayList">
-          <div class="pkg-item p-5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple transition-all cursor-pointer group" onclick="openEnquiryModal('3-Day: Goa Grand Package')">
-            <span class="text-[10px] font-bold text-brand-accentRed uppercase">3 Days / 2 Nights • Best Seller</span>
-            <h4 class="text-base font-bold text-white group-hover:text-brand-purple-light mt-1">Goa 3 Day Grand Package</h4>
-            <p class="text-xs text-slate-400 mt-1">North & South Goa, Water Sports, DJ Cruise & Luxury Resort</p>
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Coorg - Mysore - Ooty Golden Temple, Mysore Palace illumination & Doddabetta Tea Gardens">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=600&auto=format&fit=crop&q=80" alt="Coorg - Mysore - Ooty" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              Top Family Pick
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              3 Days / 2 Nights
+            </span>
           </div>
-
-          <div class="pkg-item p-5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple transition-all cursor-pointer group" onclick="openEnquiryModal('3-Day: Coorg - Mysore - Ooty')">
-            <span class="text-[10px] font-bold text-brand-purple-light uppercase">3 Days / 2 Nights</span>
-            <h4 class="text-base font-bold text-white group-hover:text-brand-purple-light mt-1">Coorg - Mysore - Ooty</h4>
-            <p class="text-xs text-slate-400 mt-1">Golden Temple, Mysore Palace & Doddabetta Tea Gardens</p>
-          </div>
-
-          <div class="pkg-item p-5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple transition-all cursor-pointer group" onclick="openEnquiryModal('3-Day: Kodaikanal - Ramakkalmedu - Munnar')">
-            <span class="text-[10px] font-bold text-brand-purple-light uppercase">3 Days / 2 Nights</span>
-            <h4 class="text-base font-bold text-white group-hover:text-brand-purple-light mt-1">Kodaikanal - Ramakkalmedu - Munnar</h4>
-            <p class="text-xs text-slate-400 mt-1">Pine Forest, Windmills, Tea Factory & Off-road Safari</p>
-          </div>
-
-          <div class="pkg-item p-5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple transition-all cursor-pointer group" onclick="openEnquiryModal('3-Day: Wayanad - Coorg - Belur - Chikmagalore')">
-            <span class="text-[10px] font-bold text-brand-purple-light uppercase">3 Days / 2 Nights</span>
-            <h4 class="text-base font-bold text-white group-hover:text-brand-purple-light mt-1">Wayanad - Coorg - Belur - Chikmagalore</h4>
-            <p class="text-xs text-slate-400 mt-1">Hoysala Temples, Waterfalls, Coffee Hills & Caves</p>
-          </div>
-
-          <div class="pkg-item p-5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple transition-all cursor-pointer group" onclick="openEnquiryModal('3-Day: Udupi - Gokarna - Chikmagalore')">
-            <span class="text-[10px] font-bold text-brand-purple-light uppercase">3 Days / 2 Nights</span>
-            <h4 class="text-base font-bold text-white group-hover:text-brand-purple-light mt-1">Udupi - Gokarna - Chikmagalore</h4>
-            <p class="text-xs text-slate-400 mt-1">St. Mary’s Island, Murudeshwar & Om Beach</p>
-          </div>
-
-          <div class="pkg-item p-5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-purple transition-all cursor-pointer group" onclick="openEnquiryModal('3-Day: Mysore - Bangalore - Chikmagalore')">
-            <span class="text-[10px] font-bold text-brand-purple-light uppercase">3 Days / 2 Nights</span>
-            <h4 class="text-base font-bold text-white group-hover:text-brand-purple-light mt-1">Mysore - Bangalore - Chikmagalore</h4>
-            <p class="text-xs text-slate-400 mt-1">City Palace, Lalbagh, Wonderla option & Hill Stations</p>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Palaces & Nilgiris</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Coorg - Mysore - Ooty</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Golden Temple, Mysore Palace illumination & Doddabetta Tea Gardens</p>
           </div>
         </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Coorg - Mysore - Ooty (3 Days / 2 Nights)')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Kodaikanal - Ramakkalmedu - Munnar Pine Forest, Windmills, Tea Factory & Off-road Safari">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=600&auto=format&fit=crop&q=80" alt="Kodaikanal - Ramakkalmedu - Munnar" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              Misty Trio
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              3 Days / 2 Nights
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Triple Mountain Grand</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Kodaikanal - Ramakkalmedu - Munnar</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Pine Forest, Windmills, Tea Factory & Off-road Safari</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Kodaikanal - Ramakkalmedu - Munnar (3 Days / 2 Nights)')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Wayanad - Coorg - Belur - Chikmagalore Hoysala Temples, Waterfalls, Coffee Hills & Edakkal Caves">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?w=600&auto=format&fit=crop&q=80" alt="Wayanad - Coorg - Belur - Chikmagalore" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              Heritage & Hills
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              3 Days / 2 Nights
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Karnataka Heritage</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Wayanad - Coorg - Belur - Chikmagalore</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Hoysala Temples, Waterfalls, Coffee Hills & Edakkal Caves</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Wayanad - Coorg - Belur - Chikmagalore (3 Days / 2 Nights)')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Udupi - Gokarna - Chikmagalore St. Mary's Island, Murudeshwar Shiva Temple & Om Beach">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80" alt="Udupi - Gokarna - Chikmagalore" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              Coastal Grand
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              3 Days / 2 Nights
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Coastal Karnataka</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Udupi - Gokarna - Chikmagalore</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">St. Mary's Island, Murudeshwar Shiva Temple & Om Beach</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Udupi - Gokarna - Chikmagalore (3 Days / 2 Nights)')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Mysore - Bangalore - Chikmagalore Mysore City Palace, Lalbagh, Wonderla option & Hill Stations">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&auto=format&fit=crop&q=80" alt="Mysore - Bangalore - Chikmagalore" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              Metro & Hills
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              3 Days / 2 Nights
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">City & Nature</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Mysore - Bangalore - Chikmagalore</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Mysore City Palace, Lalbagh, Wonderla option & Hill Stations</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Mysore - Bangalore - Chikmagalore (3 Days / 2 Nights)')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Hyderabad - Ramoji - Srisailam World-famous Ramoji Film City, Charminar & Srisailam Temple">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&auto=format&fit=crop&q=80" alt="Hyderabad - Ramoji - Srisailam" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              Heritage Capital
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              3 Days / 2 Nights
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Grand City Tour</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Hyderabad - Ramoji - Srisailam</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">World-famous Ramoji Film City, Charminar & Srisailam Temple</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Hyderabad - Ramoji - Srisailam (3 Days / 2 Nights)')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Dandeli - Goa - Gokarna White Water Rafting, Dandeli Jungle, Goa DJ Cruise & Beach Stays">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80" alt="Dandeli - Goa - Gokarna" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              Adventure IV
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              3 Days / 2 Nights
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Adventure & Beaches</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Dandeli - Goa - Gokarna</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">White Water Rafting, Dandeli Jungle, Goa DJ Cruise & Beach Stays</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Dandeli - Goa - Gokarna (3 Days / 2 Nights)')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Kanyakumari - Rameshwaram - Madurai Vivekananda Rock, Dhanushkodi Beach & Meenakshi Amman Temple">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&auto=format&fit=crop&q=80" alt="Kanyakumari - Rameshwaram - Madurai" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              Temple Triangle
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              3 Days / 2 Nights
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Spiritual & Coastal</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Kanyakumari - Rameshwaram - Madurai</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Vivekananda Rock, Dhanushkodi Beach & Meenakshi Amman Temple</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Kanyakumari - Rameshwaram - Madurai (3 Days / 2 Nights)')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Munnar - Thekkady - Alleppey Houseboat Tea Gardens, Periyar Lake Safari & Overnight Luxury Houseboat Cruise">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?w=600&auto=format&fit=crop&q=80" alt="Munnar - Thekkady - Alleppey Houseboat" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              Kerala Classic
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              3 Days / 2 Nights
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Hills & Backwaters</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Munnar - Thekkady - Alleppey Houseboat</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Tea Gardens, Periyar Lake Safari & Overnight Luxury Houseboat Cruise</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Munnar - Thekkady - Alleppey Houseboat (3 Days / 2 Nights)')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Ooty - Kodaikanal - Valparai Triple Hill Station Grand Circuit with 40 Hairpin Bends & Lakes">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=600&auto=format&fit=crop&q=80" alt="Ooty - Kodaikanal - Valparai" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              High Altitude
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              3 Days / 2 Nights
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">Hill Station Safari</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Ooty - Kodaikanal - Valparai</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Triple Hill Station Grand Circuit with 40 Hairpin Bends & Lakes</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Ooty - Kodaikanal - Valparai (3 Days / 2 Nights)')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
+      <div class="pkg-card glass-card rounded-[24px] overflow-hidden border border-brand-border hover:border-brand-purple transition-all card-purple-glow flex flex-col justify-between group" data-title="Custom College / Group Multi-City IV Tailored factory permission routes with DJ Airbus & Pool Resorts">
+        <div>
+          <div class="relative h-44 sm:h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=600&auto=format&fit=crop&q=80" alt="Custom College / Group Multi-City IV" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-brand-purple text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              ★ Custom IV
+            </span>
+            <span class="absolute bottom-2.5 right-3 bg-brand-black/90 backdrop-blur-md text-slate-200 text-[11px] font-extrabold px-2.5 py-1 rounded-lg border border-brand-border">
+              3 Days / 2 Nights
+            </span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-[10px] text-brand-purple-light uppercase font-extrabold tracking-wider block mb-0.5">College IV Special</span>
+            <h3 class="text-base sm:text-lg font-bold text-white font-heading">Custom College / Group Multi-City IV</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Tailored factory permission routes with DJ Airbus & Pool Resorts</p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0">
+          <button onclick="openEnquiryModal('Custom College / Group Multi-City IV (3 Days / 2 Nights)')" class="w-full py-2.5 bg-brand-surface group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-purple-vibrant text-white text-xs font-bold rounded-xl border border-brand-border group-hover:border-transparent transition-all shadow-md">
+            Enquire Package
+          </button>
+        </div>
+      </div>
+
       </div>
     </div>
 
@@ -427,7 +1582,8 @@
 
   <!-- ================= FOOTER ================= -->
   <footer class="bg-brand-black border-t border-brand-border/70 py-16 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-10">
+      
       <div class="space-y-4">
         <a href="index.html" class="flex items-center gap-3 group mb-3">
           <img src="tusker-emblem.png" alt="Tusker Logo" class="h-10 w-auto object-contain filter brightness-125 drop-shadow-[0_0_15px_rgba(168,85,247,0.6)]">
@@ -435,53 +1591,76 @@
         </a>
         <p class="text-xs text-slate-400 leading-relaxed">
           Registration No: <strong class="text-slate-300">KL-02-0047002</strong><br/>
-          Thrissur  All Over Kerala Service Available.
+          Crafting memorable College IVs, School Tours, Family Vacations & Luxury Bus Rentals across Kerala and South India.
         </p>
+        <div class="flex gap-3 text-slate-400 pt-2">
+          <a href="https://www.instagram.com/tusker_travelougues_official?igsh=eG8waXpocDhteTQ5" target="_blank" class="w-8 h-8 rounded-full bg-brand-surface flex items-center justify-center hover:bg-brand-purple hover:text-white transition-all" title="Instagram @tusker_travelougues_official">
+            <i class="fa-brands fa-instagram text-xs"></i>
+          </a>
+          <a href="https://wa.me/917909241640" target="_blank" class="w-8 h-8 rounded-full bg-brand-surface flex items-center justify-center hover:bg-brand-purple hover:text-white transition-all" title="WhatsApp">
+            <i class="fa-brands fa-whatsapp text-xs"></i>
+          </a>
+        </div>
       </div>
 
       <div>
-        <h4 class="text-white font-bold text-sm mb-4">Quick Links</h4>
+        <h4 class="text-white font-bold text-sm mb-4">Explore Links</h4>
         <ul class="space-y-2 text-xs text-slate-400">
-          <li><a href="index.html" class="hover:text-brand-purple-light">Home</a></li>
-          <li><a href="college-iv.html" class="hover:text-brand-purple-light">College IV & School</a></li>
-          <li><a href="fleet.html" class="hover:text-brand-purple-light">Bus & Vehicle Fleet</a></li>
-          <li><a href="about.html" class="hover:text-brand-purple-light">About Us</a></li>
-          <li><a href="contact.html" class="hover:text-brand-purple-light">Contact & Locations</a></li>
+          <li><a href="index.html" class="hover:text-brand-purple-light transition-colors">Home</a></li>
+          <li><a href="packages.html" class="hover:text-brand-purple-light transition-colors">Tour Packages (1D / 2D / 3D)</a></li>
+          <li><a href="college-iv.html" class="hover:text-brand-purple-light transition-colors">College IV & School Tours</a></li>
+          <li><a href="fleet.html" class="hover:text-brand-purple-light transition-colors">Bus & Vehicle Fleet Rentals</a></li>
+          <li><a href="about.html" class="hover:text-brand-purple-light transition-colors">About Team Tusker</a></li>
+          <li><a href="contact.html" class="hover:text-brand-purple-light transition-colors">Contact & Locations</a></li>
         </ul>
       </div>
 
       <div>
-        <h4 class="text-white font-bold text-sm mb-4">Direct Contact</h4>
-        <p class="text-xs text-slate-300 font-semibold">+91 7909241640</p>
-        <p class="text-xs text-slate-300 font-semibold mt-1">+91 6238910728</p>
-        <p class="text-xs text-slate-400 mt-2">tuskertraveloguestourpackages@gmail.com</p>
+        <h4 class="text-white font-bold text-sm mb-4">Official Contact</h4>
+        <ul class="space-y-2 text-xs text-slate-400">
+          <li><i class="fa-solid fa-phone text-brand-purple-light mr-1.5"></i> +91 7909241640</li>
+          <li><i class="fa-solid fa-phone text-brand-purple-light mr-1.5"></i> +91 6238910728</li>
+          <li><i class="fa-solid fa-location-dot text-brand-purple-light mr-1.5"></i> Thrissur, Kerala</li>
+          <li><i class="fa-solid fa-envelope text-brand-purple-light mr-1.5"></i> tuskertraveloguestourpackages@gmail.com</li>
+        </ul>
       </div>
 
       <div>
-        <h4 class="text-white font-bold text-sm mb-4">Need Custom Package?</h4>
-        <button onclick="openEnquiryModal('Footer Packages Page')" class="w-full py-2.5 bg-brand-purple hover:bg-brand-purple-vibrant text-white font-bold text-xs rounded-xl transition-all shadow-md">
-          Request Custom Itinerary
+        <h4 class="text-white font-bold text-sm mb-4">Quick Enquiry</h4>
+        <p class="text-xs text-slate-400 mb-3">Speak to our trip curator for instant custom quotes and reservations.</p>
+        <button onclick="openEnquiryModal('Footer Custom Quote')" class="w-full py-2.5 bg-brand-purple hover:bg-brand-purple-vibrant text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-brand-purple/30">
+          Request A Custom Quote
         </button>
       </div>
+
+    </div>
+
+    <div class="max-w-7xl mx-auto mt-12 pt-6 border-t border-brand-border/40 text-center text-xs text-slate-500">
+      &copy; 2026 Tusker Tours & Travels (Reg: KL-02-0047002). All rights reserved.
     </div>
   </footer>
 
-  <!-- ================= FLOATING ENQUIRE NOW ================= -->
-  <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
-    <a href="https://wa.me/917909241640?text=Hi%20Team%20Tusker,%20I%20would%20like%20to%20enquire%20about%20a%20tour%20package" target="_blank" class="w-12 h-12 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white shadow-2xl flex items-center justify-center text-xl transition-transform hover:scale-110">
-      <i class="fa-brands fa-whatsapp"></i>
+  <!-- ================= STICKY MOBILE QUICK-ACTION BOTTOM BAR ================= -->
+  <div class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-brand-black/95 backdrop-blur-2xl border-t border-brand-border/90 px-3 py-2 flex items-center justify-between gap-2 shadow-[0_-10px_30px_rgba(0,0,0,0.8)]">
+    <a href="tel:+917909241640" class="flex-1 flex flex-col items-center justify-center py-2 rounded-xl bg-brand-surface border border-brand-border text-slate-200 active:scale-95 transition-transform text-[10px] font-bold gap-0.5">
+      <i class="fa-solid fa-phone text-brand-purple-light text-xs"></i>
+      <span>Call</span>
     </a>
-    <button onclick="openEnquiryModal('')" class="group relative flex items-center gap-3 px-5 py-3.5 rounded-full bg-gradient-to-r from-brand-purple via-brand-purple-vibrant to-brand-purple-dark text-white font-bold text-sm shadow-2xl shadow-purple-900/70 border border-purple-400/40 hover:scale-105 transition-all duration-300 animate-pulse-glow">
-      <span class="w-2.5 h-2.5 rounded-full bg-white animate-ping"></span>
+    <a href="https://wa.me/917909241640" target="_blank" class="flex-1 flex flex-col items-center justify-center py-2 rounded-xl bg-emerald-600/90 text-white active:scale-95 transition-transform text-[10px] font-bold gap-0.5 shadow-md shadow-emerald-950">
+      <i class="fa-brands fa-whatsapp text-sm"></i>
+      <span>WhatsApp</span>
+    </a>
+    <button onclick="openEnquiryModal('Mobile Bottom Bar')" class="flex-1 flex flex-col items-center justify-center py-2 rounded-xl bg-gradient-to-r from-brand-purple to-brand-purple-vibrant text-white active:scale-95 transition-transform text-[10px] font-bold gap-0.5 shadow-md shadow-purple-950">
       <i class="fa-solid fa-paper-plane text-xs"></i>
-      <span class="tracking-wide">Enquire Now</span>
+      <span>Enquire</span>
     </button>
   </div>
 
-  <!-- Modal -->
-  <div id="enquiryModal" class="fixed inset-0 z-50 hidden bg-brand-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6">
-    <div class="bg-brand-card border border-brand-purple/50 w-full max-w-lg rounded-3xl p-6 sm:p-8 shadow-2xl relative custom-scrollbar max-h-[90vh] overflow-y-auto">
-      <button onclick="closeEnquiryModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-brand-surface text-slate-400 hover:text-white flex items-center justify-center border border-brand-border">
+  <!-- ================= ENQUIRY MODAL ================= -->
+  <div id="enquiryModal" class="fixed inset-0 z-50 hidden bg-brand-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 transition-all duration-300">
+    <div class="bg-brand-card border border-brand-purple/50 w-full max-w-lg rounded-3xl p-6 sm:p-8 shadow-2xl relative animate-float overflow-hidden custom-scrollbar max-h-[90vh] overflow-y-auto">
+      
+      <button onclick="closeEnquiryModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-brand-surface text-slate-400 hover:text-white flex items-center justify-center border border-brand-border transition-colors">
         <i class="fa-solid fa-xmark text-sm"></i>
       </button>
 
@@ -492,7 +1671,7 @@
 
       <form id="enquiryForm" onsubmit="handleEnquirySubmit(event)" class="space-y-3.5 text-xs">
         <div>
-          <label class="block text-slate-300 font-semibold mb-1">Selected Package / Route</label>
+          <label class="block text-slate-300 font-semibold mb-1">Selected Package / Requirement</label>
           <input type="text" id="modalTourInput" placeholder="e.g. Munnar 2 Days / College IV / Bus Rental" class="w-full bg-brand-surface border border-brand-border rounded-xl px-3.5 py-2.5 text-white font-medium focus:outline-none focus:border-brand-purple">
         </div>
 
@@ -509,56 +1688,95 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block text-slate-300 font-semibold mb-1">Pickup Location</label>
-            <input type="text" placeholder="e.g. Thrissur / Kochi" id="enqLocation" class="w-full bg-brand-surface border border-brand-border rounded-xl px-3.5 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-brand-purple">
+            <label class="block text-slate-300 font-semibold mb-1">Starting / Pickup Location</label>
+            <input type="text" placeholder="e.g. Thrissur / Kochi / Calicut" id="enqLocation" class="w-full bg-brand-surface border border-brand-border rounded-xl px-3.5 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-brand-purple">
           </div>
           <div>
-            <label class="block text-slate-300 font-semibold mb-1">Travel Date</label>
+            <label class="block text-slate-300 font-semibold mb-1">Approx. Travel Date</label>
             <input type="date" id="enqDate" class="w-full bg-brand-surface border border-brand-border rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-brand-purple">
           </div>
         </div>
 
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Tour Category</label>
+            <select id="enqCategory" class="w-full bg-brand-surface border border-brand-border rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-brand-purple">
+              <option>College IV (Industrial Visit)</option>
+              <option>School Educational Tour</option>
+              <option selected>Family Vacation</option>
+              <option>Friends / Group Trip</option>
+              <option>Honeymoon Special</option>
+              <option>Bus / Vehicle Rental Only</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Vehicle Preference</label>
+            <select id="enqVehicle" class="w-full bg-brand-surface border border-brand-border rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-brand-purple">
+              <option>AC Luxury Bus (45-56 Seater)</option>
+              <option>Traveller AC Pushback (12-26 Seater)</option>
+              <option>Force Urbania (12-16 Seater)</option>
+              <option>Innova Crysta / Taxi Car</option>
+              <option>Wedding Luxury Car</option>
+              <option>Package with Transport Included</option>
+            </select>
+          </div>
+        </div>
+
         <div>
-          <label class="block text-slate-300 font-semibold mb-1">Notes / Preferences</label>
-          <textarea rows="2" id="enqNotes" placeholder="Number of travelers, stay category, food preferences..." class="w-full bg-brand-surface border border-brand-border rounded-xl px-3.5 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-brand-purple resize-none"></textarea>
+          <label class="block text-slate-300 font-semibold mb-1">Special Requirements / Notes</label>
+          <textarea rows="2" id="enqNotes" placeholder="e.g. Number of students/members, food inclusion, campfire, resort stay..." class="w-full bg-brand-surface border border-brand-border rounded-xl px-3.5 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-brand-purple resize-none"></textarea>
         </div>
 
         <div class="flex flex-col sm:flex-row gap-2 pt-2">
-          <button type="submit" class="flex-1 py-3 bg-gradient-to-r from-brand-purple to-brand-purple-vibrant text-white rounded-xl font-bold text-xs tracking-wide shadow-lg shadow-brand-purple/40">
-            Submit Enquiry
+          <button type="submit" class="flex-1 py-3 bg-gradient-to-r from-brand-purple to-brand-purple-vibrant hover:from-brand-purple-vibrant hover:to-purple-500 text-white rounded-xl font-bold text-xs tracking-wide shadow-lg shadow-brand-purple/40 transition-all flex items-center justify-center gap-2">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span>Submit Enquiry</span>
           </button>
-          <button type="button" onclick="sendViaWhatsApp()" class="py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-1.5">
-            <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
+          
+          <button type="button" onclick="sendViaWhatsApp()" class="py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-all" title="Send direct to Team Tusker WhatsApp">
+            <i class="fa-brands fa-whatsapp text-sm"></i>
+            <span>WhatsApp (+91 7909241640)</span>
           </button>
         </div>
+
+        <p class="text-center text-[10px] text-slate-500"><i class="fa-solid fa-lock text-brand-purple-light mr-1"></i> 100% Confidential. Team Tusker will respond within 24 hrs.</p>
       </form>
     </div>
   </div>
 
+  <!-- ================= JAVASCRIPT CONTROLLERS ================= -->
   <script>
+    // Tab Switcher
     function switchTab(tabId, btn) {
-      document.querySelectorAll('.pkg-content-tab').forEach(el => el.classList.add('hidden'));
-      document.querySelectorAll('.pkg-tab-btn').forEach(b => {
-        b.classList.remove('active', 'bg-brand-purple', 'text-white', 'shadow-lg');
-        b.classList.add('bg-brand-surface', 'text-slate-300', 'border', 'border-brand-border');
-      });
+      document.querySelectorAll('.pkg-content-tab').forEach(t => t.classList.add('hidden'));
+      document.querySelectorAll('.pkg-tab-btn').forEach(b => b.classList.remove('active'));
+      
       document.getElementById(tabId).classList.remove('hidden');
-      btn.classList.add('active', 'bg-brand-purple', 'text-white', 'shadow-lg');
-      btn.classList.remove('bg-brand-surface', 'text-slate-300', 'border');
+      btn.classList.add('active');
     }
 
+    // Live Search Filter across all cards
     function filterPackages() {
-      const q = document.getElementById('pkgSearchInput').value.toLowerCase();
-      document.querySelectorAll('.pkg-item').forEach(item => {
-        const text = item.innerText.toLowerCase();
-        item.style.display = text.includes(q) ? 'block' : 'none';
+      const q = document.getElementById('pkgSearchInput').value.toLowerCase().trim();
+      const activeTab = document.querySelector('.pkg-content-tab:not(.hidden)');
+      if (!activeTab) return;
+
+      const cards = activeTab.querySelectorAll('.pkg-card');
+      cards.forEach(card => {
+        const text = card.getAttribute('data-title').toLowerCase();
+        if (text.includes(q)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
       });
     }
 
+    // Modal controllers
     function openEnquiryModal(tourName) {
       const modal = document.getElementById('enquiryModal');
       const input = document.getElementById('modalTourInput');
-      input.value = tourName ? tourName : "";
+      input.value = tourName ? tourName : '';
       modal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
     }
@@ -569,26 +1787,35 @@
       document.body.style.overflow = 'auto';
     }
 
+    document.getElementById('enquiryModal').addEventListener('click', function(e) {
+      if (e.target === this) closeEnquiryModal();
+    });
+
+    // Form submit
     function handleEnquirySubmit(e) {
       e.preventDefault();
-      const tour = document.getElementById('modalTourInput').value;
+      const tour = document.getElementById('modalTourInput').value || 'Custom Tour';
       const name = document.getElementById('enqName').value;
-      alert(`Thank you, ${name}! Your enquiry for "${tour}" has been sent to Team Tusker. We will reach out on WhatsApp/Call shortly!`);
+      alert(`Thank you, ${name}! Your enquiry for "${tour}" has been sent to Team Tusker. Our team will contact you via WhatsApp / Call (+91 7909241640) shortly!`);
       closeEnquiryModal();
     }
 
+    // WhatsApp Message Composer
     function sendViaWhatsApp() {
-      const tour = document.getElementById('modalTourInput').value;
+      const tour = document.getElementById('modalTourInput').value || 'Custom Tour Package';
       const name = document.getElementById('enqName').value || 'Traveler';
       const phone = document.getElementById('enqPhone').value || 'Not provided';
-      const location = document.getElementById('enqLocation').value || 'Kerala';
+      const location = document.getElementById('enqLocation').value || 'Thrissur / Kerala';
+      const category = document.getElementById('enqCategory').value;
+      const vehicle = document.getElementById('enqVehicle').value;
       const notes = document.getElementById('enqNotes').value || 'None';
 
-      const msg = `*New Tour Enquiry - Team Tusker*%0A%0A• *Package:* ${encodeURIComponent(tour)}%0A• *Name:* ${encodeURIComponent(name)}%0A• *Phone:* ${encodeURIComponent(phone)}%0A• *Pickup:* ${encodeURIComponent(location)}%0A• *Details:* ${encodeURIComponent(notes)}`;
+      const msg = `*New Tour Enquiry - Team Tusker*%0A%0A• *Package:* ${encodeURIComponent(tour)}%0A• *Name:* ${encodeURIComponent(name)}%0A• *Phone:* ${encodeURIComponent(phone)}%0A• *Pickup:* ${encodeURIComponent(location)}%0A• *Category:* ${encodeURIComponent(category)}%0A• *Vehicle:* ${encodeURIComponent(vehicle)}%0A• *Details:* ${encodeURIComponent(notes)}`;
       window.open(`https://wa.me/917909241640?text=${msg}`, '_blank');
       closeEnquiryModal();
     }
 
+    // Mobile menu toggle
     const mobileBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     mobileBtn.addEventListener('click', () => {
