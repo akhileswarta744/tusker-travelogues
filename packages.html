@@ -188,7 +188,7 @@
             <i class="fa-brands fa-whatsapp text-sm"></i>
             <span>WhatsApp Us</span>
           </a>
-          <button onclick="openEnquiryModal('Header Book Trip')" class="bg-gradient-to-r from-brand-purple to-brand-purple-vibrant hover:from-brand-purple-vibrant hover:to-purple-500 text-white px-5 py-2.5 rounded-full text-xs font-bold hover:shadow-lg hover:shadow-brand-purple/40 hover:scale-105 transition-all duration-300 flex items-center gap-2">
+          <button onclick="openEnquiryModal('')" class="bg-gradient-to-r from-brand-purple to-brand-purple-vibrant hover:from-brand-purple-vibrant hover:to-purple-500 text-white px-5 py-2.5 rounded-full text-xs font-bold hover:shadow-lg hover:shadow-brand-purple/40 hover:scale-105 transition-all duration-300 flex items-center gap-2">
             <span>Book A Trip</span>
             <i class="fa-solid fa-arrow-right text-[10px]"></i>
           </button>
@@ -196,7 +196,7 @@
 
         <!-- Mobile Menu Toggle -->
         <div class="lg:hidden flex items-center gap-2">
-          <button onclick="openEnquiryModal('Mobile Header Button')" class="bg-brand-purple text-white px-3 py-1.5 rounded-xl text-xs font-bold shadow-md">
+          <button onclick="openEnquiryModal('')" class="bg-brand-purple text-white px-3 py-1.5 rounded-xl text-xs font-bold shadow-md">
             Enquire
           </button>
           <button id="mobileMenuBtn" class="text-slate-300 hover:text-white p-2 focus:outline-none">
@@ -1628,7 +1628,7 @@
       <div>
         <h4 class="text-white font-bold text-sm mb-4">Quick Enquiry</h4>
         <p class="text-xs text-slate-400 mb-3">Speak to our trip curator for instant custom quotes and reservations.</p>
-        <button onclick="openEnquiryModal('Footer Custom Quote')" class="w-full py-2.5 bg-brand-purple hover:bg-brand-purple-vibrant text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-brand-purple/30">
+        <button onclick="openEnquiryModal('')" class="w-full py-2.5 bg-brand-purple hover:bg-brand-purple-vibrant text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-brand-purple/30">
           Request A Custom Quote
         </button>
       </div>
@@ -1650,7 +1650,7 @@
       <i class="fa-brands fa-whatsapp text-sm"></i>
       <span>WhatsApp</span>
     </a>
-    <button onclick="openEnquiryModal('Mobile Bottom Bar')" class="flex-1 flex flex-col items-center justify-center py-2 rounded-xl bg-gradient-to-r from-brand-purple to-brand-purple-vibrant text-white active:scale-95 transition-transform text-[10px] font-bold gap-0.5 shadow-md shadow-purple-950">
+    <button onclick="openEnquiryModal('')" class="flex-1 flex flex-col items-center justify-center py-2 rounded-xl bg-gradient-to-r from-brand-purple to-brand-purple-vibrant text-white active:scale-95 transition-transform text-[10px] font-bold gap-0.5 shadow-md shadow-purple-950">
       <i class="fa-solid fa-paper-plane text-xs"></i>
       <span>Enquire</span>
     </button>
@@ -1776,7 +1776,11 @@
     function openEnquiryModal(tourName) {
       const modal = document.getElementById('enquiryModal');
       const input = document.getElementById('modalTourInput');
-      input.value = tourName ? tourName : '';
+      if (tourName && !tourName.toLowerCase().includes('footer') && !tourName.toLowerCase().includes('button') && !tourName.toLowerCase().includes('header') && !tourName.toLowerCase().includes('bar') && !tourName.toLowerCase().includes('cta') && !tourName.toLowerCase().includes('custom')) {
+        input.value = tourName;
+      } else {
+        input.value = '';
+      }
       modal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
     }

@@ -213,7 +213,7 @@
             <i class="fa-brands fa-whatsapp text-sm"></i>
             <span>WhatsApp Us</span>
           </a>
-          <button onclick="openEnquiryModal('Header Book Trip')" class="bg-gradient-to-r from-brand-purple to-brand-purple-vibrant hover:from-brand-purple-vibrant hover:to-purple-500 text-white px-5 py-2.5 rounded-full text-xs font-bold hover:shadow-lg hover:shadow-brand-purple/40 hover:scale-105 transition-all duration-300 flex items-center gap-2">
+          <button onclick="openEnquiryModal('')" class="bg-gradient-to-r from-brand-purple to-brand-purple-vibrant hover:from-brand-purple-vibrant hover:to-purple-500 text-white px-5 py-2.5 rounded-full text-xs font-bold hover:shadow-lg hover:shadow-brand-purple/40 hover:scale-105 transition-all duration-300 flex items-center gap-2">
             <span>Book A Trip</span>
             <i class="fa-solid fa-arrow-right text-[10px]"></i>
           </button>
@@ -221,7 +221,7 @@
 
         <!-- Mobile Menu Toggle -->
         <div class="lg:hidden flex items-center gap-2">
-          <button onclick="openEnquiryModal('Mobile Header Button')" class="bg-brand-purple text-white px-3 py-1.5 rounded-xl text-xs font-bold shadow-md">
+          <button onclick="openEnquiryModal('')" class="bg-brand-purple text-white px-3 py-1.5 rounded-xl text-xs font-bold shadow-md">
             Enquire
           </button>
           <button id="mobileMenuBtn" class="text-slate-300 hover:text-white p-2 focus:outline-none">
@@ -250,7 +250,7 @@
         <a href="https://wa.me/917909241640" target="_blank" class="w-full bg-emerald-600 py-3 rounded-2xl text-white font-bold text-xs text-center flex items-center justify-center gap-2 shadow-lg">
           <i class="fa-brands fa-whatsapp text-sm"></i> Chat on WhatsApp (+91 7909241640)
         </a>
-        <button onclick="openEnquiryModal('Mobile Menu CTA')" class="w-full bg-brand-purple py-3 rounded-2xl text-white font-bold text-xs shadow-lg shadow-brand-purple/30">
+        <button onclick="openEnquiryModal('')" class="w-full bg-brand-purple py-3 rounded-2xl text-white font-bold text-xs shadow-lg shadow-brand-purple/30">
           Plan Custom Package
         </button>
       </div>
@@ -875,7 +875,7 @@
       <div>
         <h4 class="text-white font-bold text-sm mb-4">Quick Enquiry</h4>
         <p class="text-xs text-slate-400 mb-3">Speak to our trip curator for instant custom quotes and reservations.</p>
-        <button onclick="openEnquiryModal('Footer Custom Quote')" class="w-full py-2.5 bg-brand-purple hover:bg-brand-purple-vibrant text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-brand-purple/30">
+        <button onclick="openEnquiryModal('')" class="w-full py-2.5 bg-brand-purple hover:bg-brand-purple-vibrant text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-brand-purple/30">
           Request A Custom Quote
         </button>
       </div>
@@ -901,7 +901,7 @@
       <i class="fa-solid fa-calendar-days text-xs"></i>
       <span>Dates</span>
     </button>
-    <button onclick="openEnquiryModal('Mobile Bottom Bar')" class="flex-1 flex flex-col items-center justify-center py-2 rounded-xl bg-gradient-to-r from-brand-purple to-brand-purple-vibrant text-white active:scale-95 transition-transform text-[10px] font-bold gap-0.5 shadow-md shadow-purple-950">
+    <button onclick="openEnquiryModal('')" class="flex-1 flex flex-col items-center justify-center py-2 rounded-xl bg-gradient-to-r from-brand-purple to-brand-purple-vibrant text-white active:scale-95 transition-transform text-[10px] font-bold gap-0.5 shadow-md shadow-purple-950">
       <i class="fa-solid fa-paper-plane text-xs"></i>
       <span>Enquire</span>
     </button>
@@ -916,7 +916,7 @@
     </a>
 
     <!-- Enquire Now Floating Button -->
-    <button onclick="openEnquiryModal('Floating Action Button')" class="group relative flex items-center gap-3 px-5 py-3.5 rounded-full bg-gradient-to-r from-brand-purple via-brand-purple-vibrant to-brand-purple-dark text-white font-bold text-sm shadow-2xl shadow-purple-900/70 border border-purple-400/40 hover:scale-105 transition-all duration-300 animate-pulse-glow">
+    <button onclick="openEnquiryModal('')" class="group relative flex items-center gap-3 px-5 py-3.5 rounded-full bg-gradient-to-r from-brand-purple via-brand-purple-vibrant to-brand-purple-dark text-white font-bold text-sm shadow-2xl shadow-purple-900/70 border border-purple-400/40 hover:scale-105 transition-all duration-300 animate-pulse-glow">
       <span class="w-2.5 h-2.5 rounded-full bg-white animate-ping"></span>
       <i class="fa-solid fa-paper-plane text-xs"></i>
       <span class="tracking-wide">Enquire Now</span>
@@ -1248,7 +1248,11 @@
     function openEnquiryModal(tourName) {
       const modal = document.getElementById('enquiryModal');
       const input = document.getElementById('modalTourInput');
-      input.value = tourName ? tourName : '';
+      if (tourName && !tourName.toLowerCase().includes('footer') && !tourName.toLowerCase().includes('button') && !tourName.toLowerCase().includes('header') && !tourName.toLowerCase().includes('bar') && !tourName.toLowerCase().includes('cta') && !tourName.toLowerCase().includes('custom')) {
+        input.value = tourName;
+      } else {
+        input.value = '';
+      }
       modal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
     }
